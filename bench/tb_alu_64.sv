@@ -1,3 +1,4 @@
+`include "../hdl/alu_64.sv"
 `timescale 1ns/1ns
 
 module tb_alu_64;
@@ -35,7 +36,7 @@ module tb_alu_64;
     );
 
     initial begin
-        $monitor(" time = %t\n opcode = %b\n a      = %d\n b      = %d\n result = %d\n overf = %b\n neg   = %b\n zero  = %b\n eq    = %b\n grt   = %b\n les   = %b\n\n===-==-===-==-===", $time, opcode, num_a, num_b, result, overflow, negative, zero, equal, greater, less);
+        $monitor("\ntime = %t\n opcode = %b\n a      = %d\n b      = %d\n result = %d\n overf = %b\n neg   = %b\n zero  = %b\n eq    = %b\n grt   = %b\n les   = %b\n\n===-==-===-==-===", $time, opcode, num_a, num_b, result, overflow, negative, zero, equal, greater, less);
 
         $display("sum test:\n");
         opcode = SUM;

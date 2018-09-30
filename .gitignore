@@ -1,3 +1,4 @@
+# Quartus files
 **/*.vvp
 **/*.vcd
 **/*.bak
@@ -8,3 +9,8 @@
 **/simulation/qsim
 **/simulation/modelsim/rtl_work
 **/work
+
+# Compile files
+**/modelsim.ini
+/libs/lib_*/*
+transcript
