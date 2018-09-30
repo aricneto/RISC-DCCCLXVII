@@ -1,1 +1,313 @@
-vsim -i -l msim_transcript work.tb_alu_64
+# Loading project modelsim
+# Compile of alu_64.sv failed with 1 errors.
+# Compile of tb_alu_64.sv failed with 1 errors.
+# 2 compiles, 2 failed with 2 errors.
+# Compile of alu_64.sv was successful.
+# Compile of tb_alu_64.sv was successful.
+# 2 compiles, 0 failed with no errors.
+vsim work.tb_alu_64
+# vsim work.tb_alu_64 
+# Start time: 12:56:20 on Sep 30,2018
+# Loading sv_std.std
+# Loading work.tb_alu_64
+# Loading work.alu_64
+run
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_compat.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_nis.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnsl.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_files.so.2 : module was loaded at an absolute address.
+# sum test:
+# 
+#  time =                    0
+#  opcode = 001
+#  a      =                    12
+#  b      =                    25
+#  result =                    37
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sub test:
+# 
+#  time =                   10
+#  opcode = 010
+#  a      =                    12
+#  b      =                    25
+#  result =                   -13
+#  overf = 0
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# and test:
+# 
+#  time =                   20
+#  opcode = 011
+#  a      =                    12
+#  b      =                    25
+#  result =                     8
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# xor test:
+# 
+#  time =                   30
+#  opcode = 100
+#  a      =                    12
+#  b      =                    25
+#  result =                    21
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# not test:
+# 
+#  time =                   40
+#  opcode = 101
+#  a      =                     0
+#  b      =                    25
+#  result =                    -1
+#  overf = 0
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# inc test:
+# 
+#  time =                   50
+#  opcode = 110
+#  a      =                     2
+#  b      =                    25
+#  result =                     3
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sum overflow test:
+# 
+#  time =                   60
+#  opcode = 001
+#  a      =   9223372036854775807
+#  b      =                     3
+#  result =  -9223372036854775806
+#  overf = 1
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 1
+#  les   = 0
+# 
+# ===-==-===-==-===
+# sub overflow test:
+# 
+#  time =                   70
+#  opcode = 010
+#  a      =  -9223372036854775808
+#  b      =                     3
+#  result =   9223372036854775805
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# zero test:
+# 
+#  time =                   80
+#  opcode = 010
+#  a      =                    54
+#  b      =                    54
+#  result =                     0
+#  overf = 0
+#  neg   = 0
+#  zero  = 1
+#  eq    = 1
+#  grt   = 0
+#  les   = 0
+# 
+# ===-==-===-==-===
+# Compile of alu_64.sv was successful.
+# Compile of tb_alu_64.sv was successful.
+# 2 compiles, 0 failed with no errors.
+restart
+# Loading work.tb_alu_64
+# Loading work.alu_64
+run
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_compat.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_nis.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnsl.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_files.so.2 : module was loaded at an absolute address.
+# sum test:
+# 
+#  time =                    0
+#  opcode = 001
+#  a      =                    12
+#  b      =                    25
+#  result =                    37
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sub test:
+# 
+#  time =                   10
+#  opcode = 010
+#  a      =                    12
+#  b      =                    25
+#  result =                   -13
+#  overf = 0
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# and test:
+# 
+#  time =                   20
+#  opcode = 011
+#  a      =                    12
+#  b      =                    25
+#  result =                     8
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# xor test:
+# 
+#  time =                   30
+#  opcode = 100
+#  a      =                    12
+#  b      =                    25
+#  result =                    21
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# not test:
+# 
+#  time =                   40
+#  opcode = 101
+#  a      =                     0
+#  b      =                    25
+#  result =                    -1
+#  overf = 0
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# inc test:
+# 
+#  time =                   50
+#  opcode = 110
+#  a      =                     2
+#  b      =                    25
+#  result =                     3
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sum overflow test:
+# 
+#  time =                   60
+#  opcode = 001
+#  a      =   9223372036854775807
+#  b      =                     3
+#  result =  -9223372036854775806
+#  overf = 1
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 1
+#  les   = 0
+# 
+# ===-==-===-==-===
+# sub overflow test:
+# 
+#  time =                   70
+#  opcode = 010
+#  a      =  -9223372036854775808
+#  b      =                     3
+#  result =   9223372036854775805
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# zero test:
+# 
+#  time =                   80
+#  opcode = 010
+#  a      =                    54
+#  b      =                    54
+#  result =                     0
+#  overf = 0
+#  neg   = 0
+#  zero  = 1
+#  eq    = 1
+#  grt   = 0
+#  les   = 0
+# 
+# ===-==-===-==-===

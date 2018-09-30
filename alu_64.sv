@@ -43,7 +43,7 @@ assign zero = (result == 0);  // output true if result is zero
 assign negative = result[63]; // output true if result is negative
 
 // output true if overflow occurred 
-assign overflow = a[63] != b[63] ? 0 : (opcode == SUM ? res_add[63] != a[63] : res_sub[63] == a[63]);
+assign overflow = opcode == SUM ? ((a[63] == b[63]) & res_add[63] != a[63]) : ((a[63] != b[63]) & res_sub[63] != a[63]);
 
 always @(*) begin
     case (opcode)
