@@ -1,0 +1,10 @@
+**/*.vvp
+**/*.vcd
+**/*.bak
+**/**/*.rpt
+**/db
+**/incremental_db
+**/output_files
+**/simulation/qsim
+**/simulation/modelsim/rtl_work
+**/work
