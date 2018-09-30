@@ -45,6 +45,12 @@ Run the scripts.
 ### Running
 Once you've compiled the files, open ModelSim `vsim &` (assuming it's in your path), select a file and run the simulation.
 
+## Folder structure
+* `bench/`: all testbench files
+* `hdl/`: all module files
+  * `hdl/memory`: memory modules
+* `config`: scripts for running/compilation
+
 ## Coding guidelines
 
 * 4 space identation
