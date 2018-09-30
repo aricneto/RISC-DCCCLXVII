@@ -1,0 +1,2194 @@
+# vsim -i -l msim_transcript work.tb_alu_64 
+# Start time: 00:35:06 on Sep 30,2018
+# Loading sv_std.std
+# Loading work.tb_alu_64
+# Loading work.alu_64
+run
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_compat.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_nis.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnsl.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_files.so.2 : module was loaded at an absolute address.
+# |||                     0  |||
+#  opcode = xxx
+#  a =                    x
+#  b =                    x
+#  result =                    x
+#  overflow = x
+#  neg = x
+#  zero = x
+#  eq = x
+#  grt = x
+#  les = x
+# 
+# |||                    10  |||
+#  opcode = 001
+#  a =                    x
+#  b =                    x
+#  result =                    x
+#  overflow = x
+#  neg = x
+#  zero = x
+#  eq = x
+#  grt = x
+#  les = x
+# 
+# |||                    20  |||
+#  opcode = 001
+#  a =                   12
+#  b =                    x
+#  result =                    x
+#  overflow = x
+#  neg = x
+#  zero = x
+#  eq = x
+#  grt = x
+#  les = x
+# 
+# ** Note: $finish    : /home/aricneto/Documents/risc-dccclxvii/testbench/tb_alu_64.sv(41)
+#    Time: 30 ns  Iteration: 0  Instance: /tb_alu_64
+# 1
+# Break in Module tb_alu_64 at /home/aricneto/Documents/risc-dccclxvii/testbench/tb_alu_64.sv line 41
+# Compile of alu_64.sv was successful.
+# Compile of tb_alu_64.sv was successful.
+# 2 compiles, 0 failed with no errors.
+vsim -i -l msim_transcript work.tb_alu_64
+# End time: 00:36:27 on Sep 30,2018, Elapsed time: 0:01:21
+# Errors: 0, Warnings: 11
+# vsim -i -l msim_transcript work.tb_alu_64 
+# Start time: 00:36:27 on Sep 30,2018
+# Loading sv_std.std
+# Loading work.tb_alu_64
+# Loading work.alu_64
+run
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_compat.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_nis.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnsl.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_files.so.2 : module was loaded at an absolute address.
+# |||                     0  |||
+#  opcode = 001
+#  a =                   12
+#  b =                   25
+#  result =                   37
+#  overflow = 0
+#  neg = 0
+#  zero = 0
+#  eq = 0
+#  grt = 0
+#  les = 1
+# 
+run
+run
+run
+run -continue
+run -continue
+# Break key hit
+run -continue
+restart
+run
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_compat.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_nis.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnsl.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_files.so.2 : module was loaded at an absolute address.
+# |||                     0  |||
+#  opcode = 001
+#  a =                   12
+#  b =                   25
+#  result =                   37
+#  overflow = 0
+#  neg = 0
+#  zero = 0
+#  eq = 0
+#  grt = 0
+#  les = 1
+# 
+restart
+# Compile of alu_64.sv was successful.
+# Compile of tb_alu_64.sv was successful.
+# 2 compiles, 0 failed with no errors.
+run -continue
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_compat.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_nis.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnsl.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_files.so.2 : module was loaded at an absolute address.
+# |||                     0  |||
+#  opcode = 001
+#  a =                   12
+#  b =                   25
+#  result =                   37
+#  overflow = 0
+#  neg = 0
+#  zero = 0
+#  eq = 0
+#  grt = 0
+#  les = 1
+# 
+vsim -i -l msim_transcript work.tb_alu_64
+# End time: 00:39:38 on Sep 30,2018, Elapsed time: 0:03:11
+# Errors: 0, Warnings: 33
+# vsim -i -l msim_transcript work.tb_alu_64 
+# Start time: 00:39:38 on Sep 30,2018
+# Loading sv_std.std
+# Loading work.tb_alu_64
+# Loading work.alu_64
+run
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_compat.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_nis.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnsl.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_files.so.2 : module was loaded at an absolute address.
+# |||                     0  |||
+#  opcode = 001
+#  a =                   12
+#  b =                   25
+#  result =                   37
+#  overflow = 0
+#  neg = 0
+#  zero = 0
+#  eq = 0
+#  grt = 0
+#  les = 1
+# 
+# 
+# ============
+# 
+# |||                    10  |||
+#  opcode = 010
+#  a =                   12
+#  b =                   25
+#  result = 18446744073709551603
+#  overflow = 1
+#  neg = 1
+#  zero = 0
+#  eq = 0
+#  grt = 0
+#  les = 1
+# 
+# 
+# ============
+# 
+# |||                    20  |||
+#  opcode = 011
+#  a =                   12
+#  b =                   25
+#  result =                    8
+#  overflow = 1
+#  neg = 0
+#  zero = 0
+#  eq = 0
+#  grt = 0
+#  les = 1
+# 
+# 
+# ============
+# 
+# |||                    30  |||
+#  opcode = 100
+#  a =                   12
+#  b =                   25
+#  result =                   21
+#  overflow = 1
+#  neg = 0
+#  zero = 0
+#  eq = 0
+#  grt = 0
+#  les = 1
+# 
+# 
+# ============
+# 
+# |||                    40  |||
+#  opcode = 101
+#  a =                    0
+#  b =                   25
+#  result = 18446744073709551615
+#  overflow = 1
+#  neg = 1
+#  zero = 0
+#  eq = 0
+#  grt = 0
+#  les = 1
+# 
+# 
+# ============
+# 
+# Compile of alu_64.sv was successful.
+# Compile of tb_alu_64.sv was successful.
+# 2 compiles, 0 failed with no errors.
+vsim -i -l msim_transcript work.tb_alu_64
+# End time: 00:40:58 on Sep 30,2018, Elapsed time: 0:01:20
+# Errors: 0, Warnings: 11
+# vsim -i -l msim_transcript work.tb_alu_64 
+# Start time: 00:40:58 on Sep 30,2018
+# Loading sv_std.std
+# Loading work.tb_alu_64
+# Loading work.alu_64
+run
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_compat.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_nis.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnsl.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_files.so.2 : module was loaded at an absolute address.
+# |||                     0  |||
+#  opcode = 001
+#  a      =                   12
+#  b      =                   25
+#  result =                   37
+#  overflow = 0
+#  neg = 0
+#  zero = 0
+#  eq = 0
+#  grt = 0
+#  les = 1
+# 
+# 
+# ============
+# 
+# |||                    10  |||
+#  opcode = 010
+#  a      =                   12
+#  b      =                   25
+#  result = 18446744073709551603
+#  overflow = 1
+#  neg = 1
+#  zero = 0
+#  eq = 0
+#  grt = 0
+#  les = 1
+# 
+# 
+# ============
+# 
+# |||                    20  |||
+#  opcode = 011
+#  a      =                   12
+#  b      =                   25
+#  result =                    8
+#  overflow = 1
+#  neg = 0
+#  zero = 0
+#  eq = 0
+#  grt = 0
+#  les = 1
+# 
+# 
+# ============
+# 
+# |||                    30  |||
+#  opcode = 100
+#  a      =                   12
+#  b      =                   25
+#  result =                   21
+#  overflow = 1
+#  neg = 0
+#  zero = 0
+#  eq = 0
+#  grt = 0
+#  les = 1
+# 
+# 
+# ============
+# 
+# |||                    40  |||
+#  opcode = 101
+#  a      =                    0
+#  b      =                   25
+#  result = 18446744073709551615
+#  overflow = 1
+#  neg = 1
+#  zero = 0
+#  eq = 0
+#  grt = 0
+#  les = 1
+# 
+# 
+# ============
+# 
+# Compile of alu_64.sv was successful.
+# Compile of tb_alu_64.sv was successful.
+# 2 compiles, 0 failed with no errors.
+vsim -i -l msim_transcript work.tb_alu_64
+# End time: 00:42:14 on Sep 30,2018, Elapsed time: 0:01:16
+# Errors: 0, Warnings: 11
+# vsim -i -l msim_transcript work.tb_alu_64 
+# Start time: 00:42:14 on Sep 30,2018
+# Loading sv_std.std
+# Loading work.tb_alu_64
+# Loading work.alu_64
+run
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_compat.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_nis.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnsl.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_files.so.2 : module was loaded at an absolute address.
+# |||                     0  |||
+#  opcode = 001
+#  a      =                    12
+#  b      =                    25
+#  result =                    37
+#  overflow = 0
+#  neg = 0
+#  zero = 0
+#  eq = 0
+#  grt = 0
+#  les = 1
+# 
+# 
+# ============
+# 
+# |||                    10  |||
+#  opcode = 010
+#  a      =                    12
+#  b      =                    25
+#  result =                   -13
+#  overflow = 1
+#  neg = 1
+#  zero = 0
+#  eq = 0
+#  grt = 0
+#  les = 1
+# 
+# 
+# ============
+# 
+# |||                    20  |||
+#  opcode = 011
+#  a      =                    12
+#  b      =                    25
+#  result =                     8
+#  overflow = 1
+#  neg = 0
+#  zero = 0
+#  eq = 0
+#  grt = 0
+#  les = 1
+# 
+# 
+# ============
+# 
+# |||                    30  |||
+#  opcode = 100
+#  a      =                    12
+#  b      =                    25
+#  result =                    21
+#  overflow = 1
+#  neg = 0
+#  zero = 0
+#  eq = 0
+#  grt = 0
+#  les = 1
+# 
+# 
+# ============
+# 
+# |||                    40  |||
+#  opcode = 101
+#  a      =                     0
+#  b      =                    25
+#  result =                    -1
+#  overflow = 1
+#  neg = 1
+#  zero = 0
+#  eq = 0
+#  grt = 0
+#  les = 1
+# 
+# 
+# ============
+# 
+# Compile of alu_64.sv was successful.
+# Compile of tb_alu_64.sv was successful.
+# 2 compiles, 0 failed with no errors.
+vsim -i -l msim_transcript work.tb_alu_64
+# End time: 00:52:33 on Sep 30,2018, Elapsed time: 0:10:19
+# Errors: 0, Warnings: 11
+# vsim -i -l msim_transcript work.tb_alu_64 
+# Start time: 00:52:33 on Sep 30,2018
+# Loading sv_std.std
+# Loading work.tb_alu_64
+# Loading work.alu_64
+run
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_compat.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_nis.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnsl.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_files.so.2 : module was loaded at an absolute address.
+# sum test:
+# 
+# 
+# 
+# 
+# ============
+# |||                       0    |||
+#  opcode = 001
+#  a      =                    12
+#  b      =                    25
+#  result =                    37
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# 
+# sub test:
+# 
+# 
+# 
+# 
+# ============
+# |||                      10    |||
+#  opcode = 010
+#  a      =                    12
+#  b      =                    25
+#  result =                   -13
+#  overf = 1
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# 
+# and test:
+# 
+# 
+# 
+# 
+# ============
+# |||                      20    |||
+#  opcode = 011
+#  a      =                    12
+#  b      =                    25
+#  result =                     8
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# 
+# xor test:
+# 
+# 
+# 
+# 
+# ============
+# |||                      30    |||
+#  opcode = 100
+#  a      =                    12
+#  b      =                    25
+#  result =                    21
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# 
+# not test:
+# 
+# 
+# 
+# 
+# ============
+# |||                      40    |||
+#  opcode = 101
+#  a      =                     0
+#  b      =                    25
+#  result =                    -1
+#  overf = 1
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# 
+# inc test:
+# 
+# 
+# 
+# 
+# ============
+# |||                      50    |||
+#  opcode = 110
+#  a      =                     2
+#  b      =                    25
+#  result =                     3
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# 
+# sub overflow test:
+# 
+# 
+# 
+# 
+# ============
+# |||                      60    |||
+#  opcode = 001
+#  a      =                    -1
+#  b      =                     3
+#  result =                     2
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 1
+#  les   = 0
+# 
+# 
+# sub overflow test:
+# 
+# 
+# 
+# 
+# ============
+# |||                      70    |||
+#  opcode = 010
+#  a      =                     3
+#  b      =                    -1
+#  result =                     4
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# 
+# zero test:
+# 
+# 
+# 
+# 
+# ============
+# |||                      80    |||
+#  opcode = 010
+#  a      =                    54
+#  b      =                    54
+#  result =                     0
+#  overf = 0
+#  neg   = 0
+#  zero  = 1
+#  eq    = 1
+#  grt   = 0
+#  les   = 0
+# 
+# 
+# Compile of alu_64.sv was successful.
+# Compile of tb_alu_64.sv was successful.
+# 2 compiles, 0 failed with no errors.
+vsim -i -l msim_transcript work.tb_alu_64
+# End time: 00:53:40 on Sep 30,2018, Elapsed time: 0:01:07
+# Errors: 0, Warnings: 11
+# vsim -i -l msim_transcript work.tb_alu_64 
+# Start time: 00:53:40 on Sep 30,2018
+# Loading sv_std.std
+# Loading work.tb_alu_64
+# Loading work.alu_64
+# Load canceled
+run
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_compat.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_nis.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnsl.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_files.so.2 : module was loaded at an absolute address.
+# sum test:
+# 
+# time =                    0
+#  opcode = 001
+#  a      =                    12
+#  b      =                    25
+#  result =                    37
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===        ===
+# sub test:
+# 
+# time =                   10
+#  opcode = 010
+#  a      =                    12
+#  b      =                    25
+#  result =                   -13
+#  overf = 1
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===        ===
+# and test:
+# 
+# time =                   20
+#  opcode = 011
+#  a      =                    12
+#  b      =                    25
+#  result =                     8
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===        ===
+# xor test:
+# 
+# time =                   30
+#  opcode = 100
+#  a      =                    12
+#  b      =                    25
+#  result =                    21
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===        ===
+# not test:
+# 
+# time =                   40
+#  opcode = 101
+#  a      =                     0
+#  b      =                    25
+#  result =                    -1
+#  overf = 1
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===        ===
+# inc test:
+# 
+# time =                   50
+#  opcode = 110
+#  a      =                     2
+#  b      =                    25
+#  result =                     3
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===        ===
+# sub overflow test:
+# 
+# time =                   60
+#  opcode = 001
+#  a      =                    -1
+#  b      =                     3
+#  result =                     2
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 1
+#  les   = 0
+# 
+# ===        ===
+# sub overflow test:
+# 
+# time =                   70
+#  opcode = 010
+#  a      =                     3
+#  b      =                    -1
+#  result =                     4
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===        ===
+# zero test:
+# 
+# time =                   80
+#  opcode = 010
+#  a      =                    54
+#  b      =                    54
+#  result =                     0
+#  overf = 0
+#  neg   = 0
+#  zero  = 1
+#  eq    = 1
+#  grt   = 0
+#  les   = 0
+# 
+# ===        ===
+# Compile of alu_64.sv was successful.
+# Compile of tb_alu_64.sv was successful.
+# 2 compiles, 0 failed with no errors.
+vsim -i -l msim_transcript work.tb_alu_64
+# End time: 00:54:56 on Sep 30,2018, Elapsed time: 0:01:16
+# Errors: 1, Warnings: 11
+# vsim -i -l msim_transcript work.tb_alu_64 
+# Start time: 00:54:56 on Sep 30,2018
+# Loading sv_std.std
+# Loading work.tb_alu_64
+# Loading work.alu_64
+run
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_compat.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_nis.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnsl.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_files.so.2 : module was loaded at an absolute address.
+# sum test:
+# 
+#  time =                    0
+#  opcode = 001
+#  a      =                    12
+#  b      =                    25
+#  result =                    37
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sub test:
+# 
+#  time =                   10
+#  opcode = 010
+#  a      =                    12
+#  b      =                    25
+#  result =                   -13
+#  overf = 1
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# and test:
+# 
+#  time =                   20
+#  opcode = 011
+#  a      =                    12
+#  b      =                    25
+#  result =                     8
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# xor test:
+# 
+#  time =                   30
+#  opcode = 100
+#  a      =                    12
+#  b      =                    25
+#  result =                    21
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# not test:
+# 
+#  time =                   40
+#  opcode = 101
+#  a      =                     0
+#  b      =                    25
+#  result =                    -1
+#  overf = 1
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# inc test:
+# 
+#  time =                   50
+#  opcode = 110
+#  a      =                     2
+#  b      =                    25
+#  result =                     3
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sub overflow test:
+# 
+#  time =                   60
+#  opcode = 001
+#  a      =                    -1
+#  b      =                     3
+#  result =                     2
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 1
+#  les   = 0
+# 
+# ===-==-===-==-===
+# sub overflow test:
+# 
+#  time =                   70
+#  opcode = 010
+#  a      =                     3
+#  b      =                    -1
+#  result =                     4
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# zero test:
+# 
+#  time =                   80
+#  opcode = 010
+#  a      =                    54
+#  b      =                    54
+#  result =                     0
+#  overf = 0
+#  neg   = 0
+#  zero  = 1
+#  eq    = 1
+#  grt   = 0
+#  les   = 0
+# 
+# ===-==-===-==-===
+# Compile of alu_64.sv was successful.
+# Compile of tb_alu_64.sv was successful.
+# 2 compiles, 0 failed with no errors.
+vsim -i -l msim_transcript work.tb_alu_64
+# End time: 01:01:11 on Sep 30,2018, Elapsed time: 0:06:15
+# Errors: 0, Warnings: 11
+# vsim -i -l msim_transcript work.tb_alu_64 
+# Start time: 01:01:11 on Sep 30,2018
+# Loading sv_std.std
+# Loading work.tb_alu_64
+# Loading work.alu_64
+run
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_compat.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_nis.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnsl.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_files.so.2 : module was loaded at an absolute address.
+# sum test:
+# 
+#  time =                    0
+#  opcode = 001
+#  a      =                    12
+#  b      =                    25
+#  result =                    37
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sub test:
+# 
+#  time =                   10
+#  opcode = 010
+#  a      =                    12
+#  b      =                    25
+#  result =                   -13
+#  overf = 1
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# and test:
+# 
+#  time =                   20
+#  opcode = 011
+#  a      =                    12
+#  b      =                    25
+#  result =                     8
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# xor test:
+# 
+#  time =                   30
+#  opcode = 100
+#  a      =                    12
+#  b      =                    25
+#  result =                    21
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# not test:
+# 
+#  time =                   40
+#  opcode = 101
+#  a      =                     0
+#  b      =                    25
+#  result =                    -1
+#  overf = 1
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# inc test:
+# 
+#  time =                   50
+#  opcode = 110
+#  a      =                     2
+#  b      =                    25
+#  result =                     3
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sub overflow test:
+# 
+#  time =                   60
+#  opcode = 001
+#  a      =                    -1
+#  b      =                     3
+#  result =                     2
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sub overflow test:
+# 
+#  time =                   70
+#  opcode = 010
+#  a      =                     3
+#  b      =                    -1
+#  result =                     4
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 1
+#  les   = 0
+# 
+# ===-==-===-==-===
+# zero test:
+# 
+#  time =                   80
+#  opcode = 010
+#  a      =                    54
+#  b      =                    54
+#  result =                     0
+#  overf = 0
+#  neg   = 0
+#  zero  = 1
+#  eq    = 1
+#  grt   = 0
+#  les   = 0
+# 
+# ===-==-===-==-===
+# Compile of alu_64.sv was successful.
+# Compile of tb_alu_64.sv was successful.
+# 2 compiles, 0 failed with no errors.
+vsim -i -l msim_transcript work.tb_alu_64
+# End time: 01:04:51 on Sep 30,2018, Elapsed time: 0:03:40
+# Errors: 0, Warnings: 11
+# vsim -i -l msim_transcript work.tb_alu_64 
+# Start time: 01:04:51 on Sep 30,2018
+# Loading sv_std.std
+# Loading work.tb_alu_64
+# Loading work.alu_64
+run
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_compat.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_nis.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnsl.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_files.so.2 : module was loaded at an absolute address.
+# sum test:
+# 
+#  time =                    0
+#  opcode = 001
+#  a      =                    12
+#  b      =                    25
+#  result =                    37
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sub test:
+# 
+#  time =                   10
+#  opcode = 010
+#  a      =                    12
+#  b      =                    25
+#  result =                   -13
+#  overf = 0
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# and test:
+# 
+#  time =                   20
+#  opcode = 011
+#  a      =                    12
+#  b      =                    25
+#  result =                     8
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# xor test:
+# 
+#  time =                   30
+#  opcode = 100
+#  a      =                    12
+#  b      =                    25
+#  result =                    21
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# not test:
+# 
+#  time =                   40
+#  opcode = 101
+#  a      =                     0
+#  b      =                    25
+#  result =                    -1
+#  overf = 0
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# inc test:
+# 
+#  time =                   50
+#  opcode = 110
+#  a      =                     2
+#  b      =                    25
+#  result =                     3
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sub overflow test:
+# 
+#  time =                   60
+#  opcode = 001
+#  a      =                    -1
+#  b      =                     3
+#  result =                     2
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sub overflow test:
+# 
+#  time =                   70
+#  opcode = 010
+#  a      =                     3
+#  b      =                    -1
+#  result =                     4
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 1
+#  les   = 0
+# 
+# ===-==-===-==-===
+# zero test:
+# 
+#  time =                   80
+#  opcode = 010
+#  a      =                    54
+#  b      =                    54
+#  result =                     0
+#  overf = 0
+#  neg   = 0
+#  zero  = 1
+#  eq    = 1
+#  grt   = 0
+#  les   = 0
+# 
+# ===-==-===-==-===
+# Compile of alu_64.sv was successful.
+# Compile of tb_alu_64.sv was successful.
+# 2 compiles, 0 failed with no errors.
+restart
+# Loading work.tb_alu_64
+# Loading work.alu_64
+run
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_compat.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_nis.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnsl.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_files.so.2 : module was loaded at an absolute address.
+# sum test:
+# 
+#  time =                    0
+#  opcode = 001
+#  a      =                    12
+#  b      =                    25
+#  result =                    37
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sub test:
+# 
+#  time =                   10
+#  opcode = 010
+#  a      =                    12
+#  b      =                    25
+#  result =                   -13
+#  overf = 1
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# and test:
+# 
+#  time =                   20
+#  opcode = 011
+#  a      =                    12
+#  b      =                    25
+#  result =                     8
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# xor test:
+# 
+#  time =                   30
+#  opcode = 100
+#  a      =                    12
+#  b      =                    25
+#  result =                    21
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# not test:
+# 
+#  time =                   40
+#  opcode = 101
+#  a      =                     0
+#  b      =                    25
+#  result =                    -1
+#  overf = 1
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# inc test:
+# 
+#  time =                   50
+#  opcode = 110
+#  a      =                     2
+#  b      =                    25
+#  result =                     3
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sub overflow test:
+# 
+#  time =                   60
+#  opcode = 001
+#  a      =                    -1
+#  b      =                     3
+#  result =                     2
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sub overflow test:
+# 
+#  time =                   70
+#  opcode = 010
+#  a      =                     3
+#  b      =                    -1
+#  result =                     4
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 1
+#  les   = 0
+# 
+# ===-==-===-==-===
+# zero test:
+# 
+#  time =                   80
+#  opcode = 010
+#  a      =                    54
+#  b      =                    54
+#  result =                     0
+#  overf = 1
+#  neg   = 0
+#  zero  = 1
+#  eq    = 1
+#  grt   = 0
+#  les   = 0
+# 
+# ===-==-===-==-===
+# Compile of alu_64.sv was successful.
+# Compile of tb_alu_64.sv was successful.
+# 2 compiles, 0 failed with no errors.
+run
+run
+run
+run
+restart
+# Loading work.tb_alu_64
+# Loading work.alu_64
+run
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_compat.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_nis.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnsl.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_files.so.2 : module was loaded at an absolute address.
+# sum test:
+# 
+#  time =                    0
+#  opcode = 001
+#  a      =                    12
+#  b      =                    25
+#  result =                    37
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sub test:
+# 
+#  time =                   10
+#  opcode = 010
+#  a      =                    12
+#  b      =                    25
+#  result =                   -13
+#  overf = 1
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# and test:
+# 
+#  time =                   20
+#  opcode = 011
+#  a      =                    12
+#  b      =                    25
+#  result =                     8
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# xor test:
+# 
+#  time =                   30
+#  opcode = 100
+#  a      =                    12
+#  b      =                    25
+#  result =                    21
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# not test:
+# 
+#  time =                   40
+#  opcode = 101
+#  a      =                     0
+#  b      =                    25
+#  result =                    -1
+#  overf = 1
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# inc test:
+# 
+#  time =                   50
+#  opcode = 110
+#  a      =                     2
+#  b      =                    25
+#  result =                     3
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sub overflow test:
+# 
+#  time =                   60
+#  opcode = 001
+#  a      =                    -1
+#  b      =                     3
+#  result =                     2
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sub overflow test:
+# 
+#  time =                   70
+#  opcode = 010
+#  a      =                     3
+#  b      =                    -1
+#  result =                     4
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 1
+#  les   = 0
+# 
+# ===-==-===-==-===
+# zero test:
+# 
+#  time =                   80
+#  opcode = 010
+#  a      =                    54
+#  b      =                    54
+#  result =                     0
+#  overf = 0
+#  neg   = 0
+#  zero  = 1
+#  eq    = 1
+#  grt   = 0
+#  les   = 0
+# 
+# ===-==-===-==-===
+# Compile of alu_64.sv was successful.
+# Compile of tb_alu_64.sv was successful.
+# 2 compiles, 0 failed with no errors.
+restart
+# Loading work.tb_alu_64
+# Loading work.alu_64
+run
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_compat.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_nis.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnsl.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_files.so.2 : module was loaded at an absolute address.
+# sum test:
+# 
+#  time =                    0
+#  opcode = 001
+#  a      =                    12
+#  b      =                    25
+#  result =                    37
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sub test:
+# 
+#  time =                   10
+#  opcode = 010
+#  a      =                    12
+#  b      =                    25
+#  result =                   -13
+#  overf = 0
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# and test:
+# 
+#  time =                   20
+#  opcode = 011
+#  a      =                    12
+#  b      =                    25
+#  result =                     8
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# xor test:
+# 
+#  time =                   30
+#  opcode = 100
+#  a      =                    12
+#  b      =                    25
+#  result =                    21
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# not test:
+# 
+#  time =                   40
+#  opcode = 101
+#  a      =                     0
+#  b      =                    25
+#  result =                    -1
+#  overf = 0
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# inc test:
+# 
+#  time =                   50
+#  opcode = 110
+#  a      =                     2
+#  b      =                    25
+#  result =                     3
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sub overflow test:
+# 
+#  time =                   60
+#  opcode = 001
+#  a      =                    -1
+#  b      =                     3
+#  result =                     2
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sub overflow test:
+# 
+#  time =                   70
+#  opcode = 010
+#  a      =                     3
+#  b      =                    -1
+#  result =                     4
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 1
+#  les   = 0
+# 
+# ===-==-===-==-===
+# zero test:
+# 
+#  time =                   80
+#  opcode = 010
+#  a      =                    54
+#  b      =                    54
+#  result =                     0
+#  overf = 0
+#  neg   = 0
+#  zero  = 1
+#  eq    = 1
+#  grt   = 0
+#  les   = 0
+# 
+# ===-==-===-==-===
+# Compile of alu_64.sv was successful.
+# Compile of tb_alu_64.sv was successful.
+# 2 compiles, 0 failed with no errors.
+restart
+# Loading work.tb_alu_64
+# Loading work.alu_64
+run
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_compat.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_nis.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnsl.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_files.so.2 : module was loaded at an absolute address.
+# sum test:
+# 
+#  time =                    0
+#  opcode = 001
+#  a      =                    12
+#  b      =                    25
+#  result =                    37
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sub test:
+# 
+#  time =                   10
+#  opcode = 010
+#  a      =                    12
+#  b      =                    25
+#  result =                   -13
+#  overf = 1
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# and test:
+# 
+#  time =                   20
+#  opcode = 011
+#  a      =                    12
+#  b      =                    25
+#  result =                     8
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# xor test:
+# 
+#  time =                   30
+#  opcode = 100
+#  a      =                    12
+#  b      =                    25
+#  result =                    21
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# not test:
+# 
+#  time =                   40
+#  opcode = 101
+#  a      =                     0
+#  b      =                    25
+#  result =                    -1
+#  overf = 1
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# inc test:
+# 
+#  time =                   50
+#  opcode = 110
+#  a      =                     2
+#  b      =                    25
+#  result =                     3
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sum overflow test:
+# 
+#  time =                   60
+#  opcode = 001
+#  a      =   9223372036854775807
+#  b      =                     3
+#  result =  -9223372036854775806
+#  overf = 1
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 1
+#  les   = 0
+# 
+# ===-==-===-==-===
+# sub overflow test:
+# 
+#  time =                   70
+#  opcode = 010
+#  a      =                     3
+#  b      =  -9223372036854775808
+#  result =  -9223372036854775805
+#  overf = 0
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 1
+#  les   = 0
+# 
+# ===-==-===-==-===
+# zero test:
+# 
+#  time =                   80
+#  opcode = 010
+#  a      =                    54
+#  b      =                    54
+#  result =                     0
+#  overf = 0
+#  neg   = 0
+#  zero  = 1
+#  eq    = 1
+#  grt   = 0
+#  les   = 0
+# 
+# ===-==-===-==-===
+# Compile of alu_64.sv was successful.
+# Compile of tb_alu_64.sv was successful.
+# 2 compiles, 0 failed with no errors.
+restart
+# Loading work.tb_alu_64
+# Loading work.alu_64
+run
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_compat.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_nis.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnsl.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_files.so.2 : module was loaded at an absolute address.
+# sum test:
+# 
+#  time =                    0
+#  opcode = 001
+#  a      =                    12
+#  b      =                    25
+#  result =                    37
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sub test:
+# 
+#  time =                   10
+#  opcode = 010
+#  a      =                    12
+#  b      =                    25
+#  result =                   -13
+#  overf = 1
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# and test:
+# 
+#  time =                   20
+#  opcode = 011
+#  a      =                    12
+#  b      =                    25
+#  result =                     8
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# xor test:
+# 
+#  time =                   30
+#  opcode = 100
+#  a      =                    12
+#  b      =                    25
+#  result =                    21
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# not test:
+# 
+#  time =                   40
+#  opcode = 101
+#  a      =                     0
+#  b      =                    25
+#  result =                    -1
+#  overf = 1
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# inc test:
+# 
+#  time =                   50
+#  opcode = 110
+#  a      =                     2
+#  b      =                    25
+#  result =                     3
+#  overf = 1
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sum overflow test:
+# 
+#  time =                   60
+#  opcode = 001
+#  a      =   9223372036854775807
+#  b      =                     3
+#  result =  -9223372036854775806
+#  overf = 1
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 1
+#  les   = 0
+# 
+# ===-==-===-==-===
+# sub overflow test:
+# 
+#  time =                   70
+#  opcode = 010
+#  a      =  -9223372036854775808
+#  b      =                     3
+#  result =   9223372036854775805
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# zero test:
+# 
+#  time =                   80
+#  opcode = 010
+#  a      =                    54
+#  b      =                    54
+#  result =                     0
+#  overf = 0
+#  neg   = 0
+#  zero  = 1
+#  eq    = 1
+#  grt   = 0
+#  les   = 0
+# 
+# ===-==-===-==-===
+# Compile of alu_64.sv was successful.
+# Compile of tb_alu_64.sv was successful.
+# 2 compiles, 0 failed with no errors.
+restart
+# Loading work.tb_alu_64
+# Loading work.alu_64
+run
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_compat.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_nis.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnsl.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_files.so.2 : module was loaded at an absolute address.
+# sum test:
+# 
+#  time =                    0
+#  opcode = 001
+#  a      =                    12
+#  b      =                    25
+#  result =                    37
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sub test:
+# 
+#  time =                   10
+#  opcode = 010
+#  a      =                    12
+#  b      =                    25
+#  result =                   -13
+#  overf = 0
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# and test:
+# 
+#  time =                   20
+#  opcode = 011
+#  a      =                    12
+#  b      =                    25
+#  result =                     8
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# xor test:
+# 
+#  time =                   30
+#  opcode = 100
+#  a      =                    12
+#  b      =                    25
+#  result =                    21
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# not test:
+# 
+#  time =                   40
+#  opcode = 101
+#  a      =                     0
+#  b      =                    25
+#  result =                    -1
+#  overf = 0
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# inc test:
+# 
+#  time =                   50
+#  opcode = 110
+#  a      =                     2
+#  b      =                    25
+#  result =                     3
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# sum overflow test:
+# 
+#  time =                   60
+#  opcode = 001
+#  a      =   9223372036854775807
+#  b      =                     3
+#  result =  -9223372036854775806
+#  overf = 1
+#  neg   = 1
+#  zero  = 0
+#  eq    = 0
+#  grt   = 1
+#  les   = 0
+# 
+# ===-==-===-==-===
+# sub overflow test:
+# 
+#  time =                   70
+#  opcode = 010
+#  a      =  -9223372036854775808
+#  b      =                     3
+#  result =   9223372036854775805
+#  overf = 0
+#  neg   = 0
+#  zero  = 0
+#  eq    = 0
+#  grt   = 0
+#  les   = 1
+# 
+# ===-==-===-==-===
+# zero test:
+# 
+#  time =                   80
+#  opcode = 010
+#  a      =                    54
+#  b      =                    54
+#  result =                     0
+#  overf = 1
+#  neg   = 0
+#  zero  = 1
+#  eq    = 1
+#  grt   = 0
+#  les   = 0
+# 
+# ===-==-===-==-===
+# End time: 01:14:31 on Sep 30,2018, Elapsed time: 0:09:40
+# Errors: 0, Warnings: 77

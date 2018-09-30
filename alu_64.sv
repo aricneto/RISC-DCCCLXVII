@@ -3,11 +3,11 @@ module alu_64(
     input wire [2:0] opcode,
 
     // alu operand inputs
-    input wire [63:0] a,
-    input wire [63:0] b,
+    input logic signed [63:0] a,
+    input logic signed [63:0] b,
 
     // operation result
-    output wire [63:0] result,
+    output logic signed [63:0] result,
 
     // status outputs
     output logic overflow,
@@ -21,11 +21,11 @@ module alu_64(
 enum {LOAD, SUM, SUB, AND, XOR, NOT, INC} ops;
 
 // result of the operation, assigned in always block
-wire [63:0] res;
+logic signed [63:0] res;
 
 // result of addition and subtraction operations.
-wire [63:0] res_add;
-wire [63:0] res_sub;
+logic signed [63:0] res_add;
+logic signed [63:0] res_sub;
 
 // assign operation results
 assign res_add = a + b;
@@ -43,10 +43,10 @@ assign zero = (result == 0);  // output true if result is zero
 assign negative = result[63]; // output true if result is negative
 
 // output true if overflow occurred 
-assign overflow = a[63] != b[63] ? 0 : (operation == SUM ? res_add[63] != a[63] : res_sub[63] != a[63]);
+assign overflow = a[63] != b[63] ? 0 : (opcode == SUM ? res_add[63] != a[63] : res_sub[63] == a[63]);
 
 always @(*) begin
-    case (opcode) begin
+    case (opcode)
         LOAD: // load
             res = a;
         SUM: // sum
@@ -61,8 +61,9 @@ always @(*) begin
             res = ~a;
         INC: // increment a
             res = a + 1;
-        default: 64'd0
-    end
+        default: 
+	        res = 64'd0;
+	endcase
 end
 
 endmodule: alu_64
