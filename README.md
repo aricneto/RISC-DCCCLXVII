@@ -33,12 +33,12 @@ Go to config folder:
 cd config
 ``` 
 
-Change `PATH_WORK=$(pwd)` to `PATH_WORK=$(cd ..; pwd)` in `comp_bench.` and `comp_hdl.sh` using a text editor.
+Change `PATH_WORK=$(pwd)` to `PATH_WORK=$(cd ..; pwd)` in `comp_bench.sh` and `comp_hdl.sh` using a text editor.
 
 Give all compile scripts executable permission:
 
 ```zsh
-sudo chmod +x comp_*
+sudo chmod +x comp_*.sh
 ```
 Run the scripts.
 
@@ -46,8 +46,8 @@ Run the scripts.
 Once you've compiled the files, open ModelSim `vsim &` (assuming it's in your path), select a file and run the simulation.
 
 ## Folder structure
-* `bench/`: all testbench files
-* `hdl/`: all module files
+* `bench`: all testbench files
+* `hdl`: all module files
   * `hdl/memory`: memory modules
 * `config`: scripts for running/compilation
 

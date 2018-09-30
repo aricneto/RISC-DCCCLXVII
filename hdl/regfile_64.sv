@@ -4,33 +4,33 @@ module regfile_64(
     input logic reset,
 
     // register write switch
-    input logic regWrite,
+    input logic reg_write,
 
     // register number inputs
-    input wire [4:0] rReg1, // read reg 1
-    input wire [4:0] rReg2, // read reg 2
-    input wire [4:0] wReg,  // write reg
+    input wire [4:0] r_reg1, // read reg 1
+    input wire [4:0] r_reg2, // read reg 2
+    input wire [4:0] w_reg,  // write reg
 
     // write data input
-    input wire [63:0]  wData,
+    input wire [63:0]  w_data,
 
     // register data outputs
-    output wire [63:0] rData1,
-    output wire [63:0] rData2
+    output wire [63:0] r_data1,
+    output wire [63:0] r_data2
 );
 
 reg [63:0] registers [31:0];
 
-assign rData1 = registers[rReg1];
-assign rData2 = registers[rReg2];
+assign r_data1 = registers[r_reg1];
+assign r_data2 = registers[r_reg2];
 
 always_ff @(posedge clk or posedge reset) begin
     if (reset) begin
         for (int i = 0; i < 31; i = i + 1)
             registers[i] <= 64'd0;
     end 
-    else if (regWrite) 
-        registers[wReg] <= wData;
+    else if (reg_write) 
+        registers[w_reg] <= w_data;
 end
 
 endmodule: regfile_64

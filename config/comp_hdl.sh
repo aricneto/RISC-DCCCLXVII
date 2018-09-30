@@ -12,7 +12,16 @@ vlib ${PATH_WORK}/libs/lib_SV
 # map lib to lib_SV
 vmap lib_SV ${PATH_WORK}/libs/lib_SV
 
-# compile files
-vlog -check_synthesis -work lib_SV ${PATH_WORK}/hdl/alu_64.sv
-vlog -check_synthesis -work lib_SV ${PATH_WORK}/hdl/instr_reg_64.sv
-vlog -check_synthesis -work lib_SV ${PATH_WORK}/hdl/regfile_64.sv
+# compile all files in hdl and its subfolders
+for filename in ${PATH_WORK}/hdl/*.sv ${PATH_WORK}/hdl/**/*.sv; do
+    # if a file exists
+    [ -e "$filename" ] || continue
+
+    # get full file name
+    fullname=${filename##*/}
+
+    # compile
+    printf "\n===-==-===-==-===\n\nCompiling $fullname\n\n"
+    vlog -warning error -msgsingleline -work lib_SV $filename
+
+done

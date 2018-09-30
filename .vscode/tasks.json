@@ -7,7 +7,10 @@
             "label": "Compile HDL",
             "type": "shell",
             "command": "${workspaceFolder}/config/comp_hdl.sh",
-            "group": "build",
+            "group": {
+                "isDefault": true,
+                "kind": "build"
+            },
             "presentation": {
                 "panel": "dedicated",
                 "reveal": "never"
@@ -33,10 +36,7 @@
             "label": "Compile BENCH",
             "type": "shell",
             "command": "${workspaceFolder}/config/comp_bench.sh",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
+            "group": "build",
             "presentation": {
                 "panel": "dedicated",
                 "reveal": "never"
