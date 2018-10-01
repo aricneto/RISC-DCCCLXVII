@@ -23,7 +23,7 @@
 --		long as its copyright notice remains unchanged. 
 ------------------------------------------------------------------------------*/
 
-module Memoria32 
+module memory_32 
     (input wire [31:0]raddress,
      input wire [31:0]waddress,
      input wire Clk,         

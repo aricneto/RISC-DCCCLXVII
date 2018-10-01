@@ -23,7 +23,7 @@
 --		long as its copyright notice remains unchanged. 
 ------------------------------------------------------------------------------*/
 
-module Memoria64 
+module memory_64 
     (input wire [63:0]raddress,
      input wire [63:0]waddress,
      input wire Clk,         
