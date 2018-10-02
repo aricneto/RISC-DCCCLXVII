@@ -3,6 +3,8 @@
 PATH_WORK=$(pwd)
 MODELSIM="${PATH_WORK}/modelsim.ini"
 
+mkdir -p ${PATH_WORK}/libs/lib_SV
+
 # delete previous lib
 vdel -lib  ${PATH_WORK}/libs/lib_SV -all
  

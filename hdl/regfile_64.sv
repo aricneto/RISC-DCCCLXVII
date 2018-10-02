@@ -27,10 +27,10 @@ assign r_data2 = registers[r_reg2];
 always_ff @(posedge clk or posedge reset) begin
     if (reset) begin
         for (int i = 0; i < 31; i = i + 1)
-            registers[i] <= 64'd0;
+            registers[i] = 64'd0;
     end 
     else if (reg_write) 
-        registers[w_reg] <= w_data;
+        registers[w_reg] = w_data;
 end
 
 endmodule: regfile_64

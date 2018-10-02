@@ -22,10 +22,10 @@ assign instr_15_0  = instr_all[15:0];
 
 always_ff @(posedge clk, posedge reset) begin
     if (reset) begin
-        instr_all <= 0;
+        instr_all = 0;
     end
     else if (load_ir) begin
-        instr_all <= instruction;
+        instr_all = instruction;
     end
 end
     
