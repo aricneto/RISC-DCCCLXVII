@@ -1,4 +1,4 @@
-module instr_reg_64(
+module instr_reg(
     // enable register data read
     input logic write_ir,
 
@@ -7,18 +7,20 @@ module instr_reg_64(
 
     // instruction outputs
     output logic [31:0] instr_all,
-    output logic [4:0]  instr_25_21,
-    output logic [4:0]  instr_20_16,
-    output logic [15:0] instr_15_0,
+    output logic [4:0]  instr_24_20, // rs2 in most cases
+    output logic [4:0]  instr_19_15, // rs1 in most cases
+    output logic [4:0]  instr_11_7,  // rd in most cases
+    output logic [6:0]  opcode,       // last 7 bits is always opcode 
 
     // clock and reset
     input logic clk,
     input logic reset
 );
 
-assign instr_25_21 = instr_all[25:21];
-assign instr_20_16 = instr_all[20:16];
-assign instr_15_0  = instr_all[15:0];
+assign instr_24_20 = instr_all[24:20];
+assign instr_19_15 = instr_all[19:15];
+assign instr_11_7  = instr_all[11:7];
+assign opcode      = instr_all[6:0];
 
 always_ff @(posedge clk, posedge reset) begin
     if (reset) begin

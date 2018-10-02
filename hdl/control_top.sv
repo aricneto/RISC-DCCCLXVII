@@ -1,9 +1,4 @@
-`include "alu_64.sv"
-`include "instr_reg_64.sv"
-`include "reg_64.sv"
-`include "regfile_64.sv"
-
-module top_control(
+module control_top(
     input logic clk,
     input logic reset
 );
@@ -17,7 +12,7 @@ logic PCWriteCond;
 // ALU flags
 logic ALUSrcA;
 logic [1:0] ALUSrcB;
-logic [1:0] ALUOp
+logic [1:0] ALUOp;
 logic LoadAOut;
 
 // regfile flags
@@ -46,31 +41,37 @@ wire [63:0] rd_reg_a;
 wire [63:0] rd_reg_b;
 
 // == « instruction register » == //
-wire [4:0] rd_instr_25_21;
-wire [4:0] rd_instr_20_16;
-wire [15:0] rd_instr_15_0;
 wire [31:0] rd_instr_all;
+wire [4:0] rd_instr_24_20;
+wire [4:0] rd_instr_19_15;
+wire [4:0] rd_instr_11_7;
+wire [6:0] opcode;
 
 instr_reg_64 instr_reg (
     .write_ir(IRWrite),
     .instr_all(rd_instr_all),
-    .instr_25_21(rd_instr_25_21),
-    .instr_20_16(rd_instr_20_16),
-    .instr_15_0(rd_instr_15_0),
+    .instr_24_20(rd_instr_24_20),
+    .instr_19_15(rd_instr_19_15),
+    .instr_11_7(rd_instr_11_7),
+    .opcode(opcode),
     .clk(clk),
     .reset(reset)
 );
 
 regfile_64 reg_file (
-    .r_reg1(rd_instr_25_21),
-    .r_reg2(rd_instr_20_16),
-    .w_reg()
+    .r_reg1(rd_instr_24_20),
+    .r_reg2(rd_instr_19_15),
+    .w_reg(rd_instr_11_7),
+    .r_data1(rd_regfile_1),
+    .r_data2(rd_regfile_2),
+    .clk(clk),
+    .reset(reset)
 );
 
 reg_64 reg_ALU_a (
     .load(LoadRegA),
     .w_data(rd_regfile_1),
-    .r_data(rd_reg_a)
+    .r_data(rd_reg_a),
     .clk(clk),
     .reset(reset)
 );
@@ -78,7 +79,7 @@ reg_64 reg_ALU_a (
 reg_64 reg_ALU_b (
     .load(LoadRegB),
     .w_data(rd_regfile_2),
-    .r_data(rd_reg_b)
+    .r_data(rd_reg_b),
     .clk(clk),
     .reset(reset)
 );
@@ -95,4 +96,4 @@ alu_64 ALU (
     output logic zero,
 );
     
-endmodule: top_control
+endmodule: control_top
