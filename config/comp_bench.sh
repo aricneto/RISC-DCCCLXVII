@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PATH_WORK=$(pwd)
-MODELSIM="${PATH_WORK}/config/modelsim.ini"
+MODELSIM="${PATH_WORK}/modelsim.ini"
 
 # delete previous lib
 vdel -lib  ${PATH_WORK}/libs/lib_BENCH -all

@@ -7,7 +7,7 @@ A RISC-V-like CPU designed in SystemVerilog for a Hardware Infrastructure class.
 
 ## Compiling and running
 In the `config` folder there are three scripts that can be used to automatically compile the files:  
-* `cfgpath.sh` will set the correct PATH for your directory.  
+* `cfgpath.sh` will set the correct PATH for your directory. You should run `source cfgpath.sh` before running any other scripts so ModelSim will recognize your work folders . 
 * `comp_hdl.sh` will compile only the files in the `hdl` folder.  
 * `comp_bench.sh` will compile all testbench files.
 
