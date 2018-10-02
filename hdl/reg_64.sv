@@ -1,14 +1,14 @@
 module reg_64(
-    // clock and reset
-    input logic clk,
-    input logic reset,
-
     // load flag
     input logic load,
 
     // data in/out
     input  logic [63:0] w_data,
-    output logic [63:0] r_data
+    output logic [63:0] r_data,
+
+    // clock and reset
+    input logic clk,
+    input logic reset
 );
 
 always_ff @(posedge clk, posedge reset) begin

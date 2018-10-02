@@ -1,8 +1,4 @@
 module regfile_64(
-    // clock and reset
-    input logic clk,
-    input logic reset,
-
     // register write switch
     input logic reg_write,
 
@@ -16,7 +12,11 @@ module regfile_64(
 
     // register data outputs
     output wire [63:0] r_data1,
-    output wire [63:0] r_data2
+    output wire [63:0] r_data2,
+
+    // clock and reset
+    input logic clk,
+    input logic reset
 );
 
 reg [63:0] registers [31:0];
