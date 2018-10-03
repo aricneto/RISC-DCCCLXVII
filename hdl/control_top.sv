@@ -47,6 +47,17 @@ wire [4:0] rd_instr_19_15;
 wire [4:0] rd_instr_11_7;
 wire [6:0] opcode;
 
+// == « ALU » == //
+wire [63:0] alu_res;
+wire [63:0] alu_zero;
+
+// == « ALU MUX » == //
+wire [63:0] mux_alu_a;
+wire [63:0] mux_alu_b;
+
+// == « ALU REG » == //
+wire [63:0] reg_alu_out;
+
 instr_reg_64 instr_reg (
     .write_ir(IRWrite),
     .instr_all(rd_instr_all),
@@ -84,16 +95,39 @@ reg_64 reg_ALU_b (
     .reset(reset)
 );
 
+mux_2to1_64 mux_ALU_A (
+    .i_select(ALUSrcA),
+    .i_1(), // PC out
+    .i_2(rd_reg_a),
+    .o_select(mux_alu_a)
+);
+
+mux_4to1_64 mux_ALU_B (
+    .i_select(ALUSrcB),
+    .i_1(rd_reg_b),
+    .i_2(64'd4),
+    .i_3(), // imm
+    .o_select(mux_alu_b)
+);
+
+reg_64 alu_out (
+    .load(LoadAOut),
+    .w_data(alu_res),
+    .r_data(reg_alu_out),
+    .clk(clk),
+    .reset(reset)
+);
+
+mux_2to1_64 (
+
+);
+
 alu_64 ALU (
-    opcode,
-    a,
-    b,
-
-    output logic signed [63:0] result,
-
-    output logic overflow,
-    output logic negative,
-    output logic zero,
+    .funct(ALUOp),
+    .a(),
+    .b(),
+    .result(alu_res),
+    .zero(alu_zero),
 );
     
 endmodule: control_top
