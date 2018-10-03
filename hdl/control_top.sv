@@ -58,6 +58,12 @@ wire [63:0] mux_alu_b;
 // == « ALU REG » == //
 wire [63:0] reg_alu_out;
 
+// == « PC » == //
+wire [63:0] pc_data;
+
+// == « PC MUX » == //
+wire [63:0] mux_pc_out;
+
 instr_reg_64 instr_reg (
     .write_ir(IRWrite),
     .instr_all(rd_instr_all),
@@ -97,16 +103,17 @@ reg_64 reg_ALU_b (
 
 mux_2to1_64 mux_ALU_A (
     .i_select(ALUSrcA),
-    .i_1(), // PC out
-    .i_2(rd_reg_a),
+    .i_0(), // PC out
+    .i_1(rd_reg_a),
     .o_select(mux_alu_a)
 );
 
 mux_4to1_64 mux_ALU_B (
     .i_select(ALUSrcB),
-    .i_1(rd_reg_b),
-    .i_2(64'd4),
-    .i_3(), // imm
+    .i_0(rd_reg_b),
+    .i_1(64'd4),
+    .i_2(), // imm
+    .i_3(), // imm * 2
     .o_select(mux_alu_b)
 );
 
@@ -120,7 +127,17 @@ reg_64 alu_out (
 
 mux_2to1_64 mux_PC (
     .i_select(PCSource),
-    .i_1(reg_alu_out)
+    .i_0(alu_res),
+    .i_1(reg_alu_out),
+    .o_select(mux_pc_out)
+);
+
+reg_64 program_counter (
+    .load() // pc write
+    .w_data(mux_pc_out),
+    .r_data(pc_data),
+    .clk(clk),
+    .reset(reset)
 );
 
 alu_64 ALU (
