@@ -10,7 +10,7 @@ module instr_reg(
     output logic [4:0]  instr_24_20, // rs2 in most cases
     output logic [4:0]  instr_19_15, // rs1 in most cases
     output logic [4:0]  instr_11_7,  // rd in most cases
-    output logic [6:0]  opcode,       // last 7 bits is always opcode 
+    output logic [6:0]  opcode,      // last 7 bits is always opcode 
 
     // clock and reset
     input logic clk,

@@ -55,7 +55,20 @@ Once you've compiled the files, open ModelSim `vsim &` (assuming it's in your pa
 
 * 4 space identation
 * `snake_case` naming for all variables
-* Don't specify `in_` or `out_` in variable names
+* Don't specify `in_` or `out_` in signal names outside of module declarations.
+```verilog
+« DON'T »
+
+wire i_signal;
+```
+
+```verilog
+« DO »
+
+module foo(
+  input wire i_signal
+);
+```
 * Explicit `.` operator when using modules
 * Clock is always `clk`, reset is always `reset`
 * Always use `enums` instead of arbitrary binary values in state machines/selector pins

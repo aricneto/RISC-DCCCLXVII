@@ -1,6 +1,6 @@
 module alu_64(
-    // alu opcode
-    input wire [2:0] opcode,
+    // alu funct
+    input wire [2:0] funct,
 
     // alu operand inputs
     input logic signed [63:0] a,
@@ -43,10 +43,10 @@ assign zero = (result == 0);  // output true if result is zero
 assign negative = result[63]; // output true if result is negative
 
 // output true if overflow occurred 
-assign overflow = opcode == SUM ? ((a[63] == b[63]) & res_add[63] != a[63]) : ((a[63] != b[63]) & res_sub[63] != a[63]);
+assign overflow = funct == SUM ? ((a[63] == b[63]) & res_add[63] != a[63]) : ((a[63] != b[63]) & res_sub[63] != a[63]);
 
 always @(*) begin
-    case (opcode)
+    case (funct)
         LOAD: // load
             res = a;
         SUM: // sum
