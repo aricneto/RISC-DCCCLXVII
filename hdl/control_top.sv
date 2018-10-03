@@ -118,8 +118,9 @@ reg_64 alu_out (
     .reset(reset)
 );
 
-mux_2to1_64 (
-
+mux_2to1_64 mux_PC (
+    .i_select(PCSource),
+    .i_1(reg_alu_out)
 );
 
 alu_64 ALU (
