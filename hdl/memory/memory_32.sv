@@ -23,13 +23,20 @@
 --		long as its copyright notice remains unchanged. 
 ------------------------------------------------------------------------------*/
 
-module memory_32 
-    (input wire [31:0]raddress,
-     input wire [31:0]waddress,
-     input wire Clk,         
-     input wire [31:0]Datain,
-     input wire	[31:0]Dataout,
-     input wire Wr
+module memory_32 (
+    // read and write address
+    input wire [31:0] raddress,
+    input wire [31:0] waddress,
+
+    // data in/out
+    input wire [31:0] data_in,
+    input wire [31:0] data_out,
+
+     // true if writing, false if reading
+     input wire write,
+
+     // clock
+     input wire clk       
     );
     
     wire [15:0]readUsefullAddress = raddress[15:0]; 
@@ -57,25 +64,25 @@ module memory_32
     wire [7:0]outS2;
     wire [7:0]outS3;
          	    
-    assign Dataout[31:24] = outS3;
-    assign Dataout[23:16] = outS2;
-    assign Dataout[15:8] = outS1;
-    assign Dataout[7:0] = outS0;
+    assign data_out[31:24] = outS3;
+    assign data_out[23:16] = outS2;
+    assign data_out[15:8] = outS1;
+    assign data_out[7:0] = outS0;
     
-    assign inS3 = Datain[31:24];
-    assign inS2 = Datain[23:16];
-    assign inS1 = Datain[15:8];
-    assign inS0 = Datain[7:0]; 
+    assign inS3 = data_in[31:24];
+    assign inS2 = data_in[23:16];
+    assign inS1 = data_in[15:8];
+    assign inS0 = data_in[7:0]; 
     
     //Bancos de memórias (cada banco possui 65536 bytes)
     //0
-    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock0 (.clk(Clk), .data(inS0), .radd(addS0), .wadd(waddS0), .wren(Wr), .q(outS0) );
+    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock0 (.clk(clk), .data(inS0), .radd(addS0), .wadd(waddS0), .wren(write), .q(outS0) );
     //1
-    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock1 (.clk(Clk), .data(inS1), .radd(addS1), .wadd(waddS1), .wren(Wr), .q(outS1) ); 
+    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock1 (.clk(clk), .data(inS1), .radd(addS1), .wadd(waddS1), .wren(write), .q(outS1) ); 
     //2
-    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock2 (.clk(Clk), .data(inS2), .radd(addS2), .wadd(waddS2), .wren(Wr), .q(outS2) ); 
+    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock2 (.clk(clk), .data(inS2), .radd(addS2), .wadd(waddS2), .wren(write), .q(outS2) ); 
     //3
-    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock3 (.clk(Clk), .data(inS3), .radd(addS3), .wadd(waddS3), .wren(Wr), .q(outS3) );
+    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock3 (.clk(clk), .data(inS3), .radd(addS3), .wadd(waddS3), .wren(write), .q(outS3) );
         
 endmodule
     

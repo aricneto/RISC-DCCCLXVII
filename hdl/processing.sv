@@ -1,34 +1,34 @@
-module control_top(
+module processing(
+    // ===-==-=== « control flags » ===-==-=== //
+    // PC flags
+    input logic PCWrite,
+    input logic [1:0] PCSource,
+
+    // ALU flags
+    input logic ALUSrcA,
+    input logic [1:0] ALUSrcB,
+    input logic [1:0] ALUOp,
+    input logic LoadAOut,
+
+    // regfile flags
+    input logic RegWrite,
+    input logic LoadRegA,
+    input logic LoadRegB,
+    input logic MemToReg,
+
+    // data memory flags
+    input logic DMemRead,
+    input logic DMemWrite,
+    input logic LoadMDR,
+
+    // instr. memory flags
+    input logic IMemRead,
+    input logic IRWrite,
+
+    // clock and reset
     input logic clk,
     input logic reset
 );
-
-// ===-==-=== « control flags » ===-==-=== //
-// PC flags
-logic PCWrite;
-logic [1:0] PCSource;
-logic PCWriteCond;
-
-// ALU flags
-logic ALUSrcA;
-logic [1:0] ALUSrcB;
-logic [1:0] ALUOp;
-logic LoadAOut;
-
-// regfile flags
-logic RegWrite;
-logic LoadRegA;
-logic LoadRegB;
-logic MemToReg;
-
-// data memory flahs
-logic DMemRead;
-logic DMemWrite;
-logic LoadMDR;
-
-// instr. memory flags
-logic IMemRead;
-logic IRWrite;
 
 // ===-==-=== « outputs » ===-==-=== //
 
@@ -64,8 +64,27 @@ wire [63:0] pc_data;
 // == « PC MUX » == //
 wire [63:0] mux_pc_out;
 
-instr_reg_64 instr_reg (
+// == « instr. memory » == //
+wire [63:0] instr_data;
+
+reg_64 program_counter (
+    .load(PCWrite),
+    .w_data(mux_pc_out),
+    .r_data(pc_data),
+    .clk(clk),
+    .reset(reset)
+);
+
+memory_32 instr_mem (
+    .raddress(pc_data),
+    .data_out(instr_data),
+    .clk(clk),
+    .write(0)
+);
+
+instr_reg instr_reg (
     .write_ir(IRWrite),
+    .instruction(instr_data),
     .instr_all(rd_instr_all),
     .instr_24_20(rd_instr_24_20),
     .instr_19_15(rd_instr_19_15),
@@ -103,7 +122,7 @@ reg_64 reg_ALU_b (
 
 mux_2to1_64 mux_ALU_A (
     .i_select(ALUSrcA),
-    .i_0(), // PC out
+    .i_0(pc_data),
     .i_1(rd_reg_a),
     .o_select(mux_alu_a)
 );
@@ -112,9 +131,17 @@ mux_4to1_64 mux_ALU_B (
     .i_select(ALUSrcB),
     .i_0(rd_reg_b),
     .i_1(64'd4),
-    .i_2(), // imm
-    .i_3(), // imm * 2
+    .i_2(), // todo: imm
+    .i_3(), // todo: imm * 2
     .o_select(mux_alu_b)
+);
+
+alu_64 alu (
+    .funct(ALUOp),
+    .a(mux_alu_a),
+    .b(mux_alu_a),
+    .result(alu_res),
+    .zero(alu_zero)
 );
 
 reg_64 alu_out (
@@ -131,21 +158,5 @@ mux_2to1_64 mux_PC (
     .i_1(reg_alu_out),
     .o_select(mux_pc_out)
 );
-
-reg_64 program_counter (
-    .load() // pc write
-    .w_data(mux_pc_out),
-    .r_data(pc_data),
-    .clk(clk),
-    .reset(reset)
-);
-
-alu_64 ALU (
-    .funct(ALUOp),
-    .a(),
-    .b(),
-    .result(alu_res),
-    .zero(alu_zero),
-);
     
-endmodule: control_top
+endmodule: processing

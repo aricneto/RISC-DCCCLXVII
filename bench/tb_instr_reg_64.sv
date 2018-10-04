@@ -1,4 +1,4 @@
-`include "../hdl/instr_reg_64.sv"
+`include "../hdl/instr_reg.sv"
 `timescale 1ns/1ns
 
 module tb_instr_reg_64;

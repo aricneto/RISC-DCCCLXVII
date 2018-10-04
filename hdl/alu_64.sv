@@ -45,7 +45,7 @@ assign negative = result[63]; // output true if result is negative
 // output true if overflow occurred 
 assign overflow = funct == SUM ? ((a[63] == b[63]) & res_add[63] != a[63]) : ((a[63] != b[63]) & res_sub[63] != a[63]);
 
-always @(*) begin
+always_comb begin
     case (funct)
         LOAD: // load
             res = a;

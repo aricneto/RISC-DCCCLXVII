@@ -9,7 +9,7 @@ module mux_4to1_64(
 
 enum {A, B, C, D} states;
 
-always @(*) begin
+always_comb begin
     case (i_select)
         A: o_select = i_0;
         B: o_select = i_1;

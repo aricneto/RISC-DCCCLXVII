@@ -2,7 +2,7 @@ module instr_reg(
     // enable register data read
     input logic write_ir,
 
-    // register num
+    // instruction data
     input logic [31:0] instruction,
 
     // instruction outputs
