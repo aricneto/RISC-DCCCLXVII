@@ -25,6 +25,9 @@ module processing(
     input logic IMemRead,
     input logic IRWrite,
 
+    // instruction outputs
+    output logic [31:0] instruction_out,
+
     // clock and reset
     input logic clk,
     input logic reset
@@ -66,6 +69,8 @@ wire [63:0] mux_pc_out;
 
 // == « instr. memory » == //
 wire [63:0] instr_data;
+
+assign instruction_out = rd_instr_all;
 
 reg_64 program_counter (
     .load(PCWrite),
