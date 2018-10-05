@@ -1,5 +1,5 @@
 `include "../hdl/alu_64.sv"
-`timescale 1ns/1ns
+`timescale 1ps/1ps
 
 module tb_alu_64;
 
@@ -43,47 +43,47 @@ module tb_alu_64;
         num_a = 64'd12;
         num_b = 64'd25;
 
-        #10
+        #1
         $display("sub test:\n");
         funct = SUB;
         num_a = 64'd12;
         num_b = 64'd25;
 
-        #10
+        #1
         $display("and test:\n");
         funct = AND;
         num_a = 64'd12;
         num_b = 64'd25;
 
-        #10
+        #1
         $display("xor test:\n");
         funct = XOR;
         num_a = 64'd12;
         num_b = 64'd25;
 
-        #10
+        #1
         $display("not test:\n");
         funct = NOT;
         num_a = 64'd0;
 
-        #10
+        #1
         $display("inc test:\n");
         funct = INC;
         num_a = 64'd2;
 
-        #10 // testing overflow
+        #1 // testing overflow
         $display("sum overflow test:\n");
         funct = SUM;
         num_a = 64'b0111111111111111111111111111111111111111111111111111111111111111;
         num_b = 64'd3;
 
-        #10 // testing overflow
+        #1 // testing overflow
         $display("sub overflow test:\n");
         funct = SUB;
         num_a = 64'b1000000000000000000000000000000000000000000000000000000000000000;
         num_b = 64'd3;
 
-        #10 // testing zero
+        #1 // testing zero
         $display("zero test:\n");
         funct = SUB;
         num_a = 64'd54;

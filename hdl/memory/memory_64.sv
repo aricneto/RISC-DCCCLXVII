@@ -23,14 +23,21 @@
 --		long as its copyright notice remains unchanged. 
 ------------------------------------------------------------------------------*/
 
-module memory_64 
-    (input wire [63:0]raddress,
-     input wire [63:0]waddress,
-     input wire Clk,         
-     input wire [63:0]Datain,
-     input wire	[63:0]Dataout,
-     input wire Wr
-    );
+module memory_64 (
+    // read and write address
+    input wire [63:0] raddress,
+    input wire [63:0] waddress,
+
+    // data in/out
+    input wire [63:0] data_in,
+    input wire [63:0] data_out,
+
+     // true if writing, false if reading
+     input wire write,
+
+     // clock
+     input wire clk    
+);
     
     wire [15:0]readUsefullAddress = raddress[15:0]; 
     
@@ -72,41 +79,41 @@ module memory_64
     wire [7:0]outS6;
     wire [7:0]outS7;
      	    
-    assign Dataout[63:56] = outS7;
-    assign Dataout[55:48] = outS6;
-    assign Dataout[47:40] = outS5;
-    assign Dataout[39:32] = outS4;
-    assign Dataout[31:24] = outS3;
-    assign Dataout[23:16] = outS2;
-    assign Dataout[15:8] = outS1;
-    assign Dataout[7:0] = outS0;
+    assign data_out[63:56] = outS7;
+    assign data_out[55:48] = outS6;
+    assign data_out[47:40] = outS5;
+    assign data_out[39:32] = outS4;
+    assign data_out[31:24] = outS3;
+    assign data_out[23:16] = outS2;
+    assign data_out[15:8] = outS1;
+    assign data_out[7:0] = outS0;
     
-    assign inS7 = Datain[63:56];
-    assign inS6 = Datain[55:48];
-    assign inS5 = Datain[47:40];
-    assign inS4 = Datain[39:32];     
-    assign inS3 = Datain[31:24];
-    assign inS2 = Datain[23:16];
-    assign inS1 = Datain[15:8];
-    assign inS0 = Datain[7:0]; 
+    assign inS7 = data_in[63:56];
+    assign inS6 = data_in[55:48];
+    assign inS5 = data_in[47:40];
+    assign inS4 = data_in[39:32];     
+    assign inS3 = data_in[31:24];
+    assign inS2 = data_in[23:16];
+    assign inS1 = data_in[15:8];
+    assign inS0 = data_in[7:0]; 
     
     //Bancos de memórias (cada banco possui 65536 bytes)
     //0
-    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock0 (.clk(Clk), .data(inS0), .radd(addS0), .wadd(waddS0), .wren(Wr), .q(outS0) );
+    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock0 (.clk(clk), .data(inS0), .radd(addS0), .wadd(waddS0), .wren(Wr), .q(outS0) );
     //1
-    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock1 (.clk(Clk), .data(inS1), .radd(addS1), .wadd(waddS1), .wren(Wr), .q(outS1) ); 
+    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock1 (.clk(clk), .data(inS1), .radd(addS1), .wadd(waddS1), .wren(Wr), .q(outS1) ); 
     //2
-    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock2 (.clk(Clk), .data(inS2), .radd(addS2), .wadd(waddS2), .wren(Wr), .q(outS2) ); 
+    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock2 (.clk(clk), .data(inS2), .radd(addS2), .wadd(waddS2), .wren(Wr), .q(outS2) ); 
     //3
-    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock3 (.clk(Clk), .data(inS3), .radd(addS3), .wadd(waddS3), .wren(Wr), .q(outS3) );
+    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock3 (.clk(clk), .data(inS3), .radd(addS3), .wadd(waddS3), .wren(Wr), .q(outS3) );
     //4
-    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock4 (.clk(Clk), .data(inS4), .radd(addS4), .wadd(waddS4), .wren(Wr), .q(outS4) );
+    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock4 (.clk(clk), .data(inS4), .radd(addS4), .wadd(waddS4), .wren(Wr), .q(outS4) );
     //5
-    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock5 (.clk(Clk), .data(inS5), .radd(addS5), .wadd(waddS5), .wren(Wr), .q(outS5) ); 
+    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock5 (.clk(clk), .data(inS5), .radd(addS5), .wadd(waddS5), .wren(Wr), .q(outS5) ); 
     //6
-    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock6 (.clk(Clk), .data(inS6), .radd(addS6), .wadd(waddS6), .wren(Wr), .q(outS6) ); 
+    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock6 (.clk(clk), .data(inS6), .radd(addS6), .wadd(waddS6), .wren(Wr), .q(outS6) ); 
     //7
-    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock7 (.clk(Clk), .data(inS7), .radd(addS7), .wadd(waddS7), .wren(Wr), .q(outS7) );  
+    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock7 (.clk(clk), .data(inS7), .radd(addS7), .wadd(waddS7), .wren(Wr), .q(outS7) );  
     
 endmodule
     

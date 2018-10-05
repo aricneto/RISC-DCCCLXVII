@@ -65,7 +65,13 @@ wire [63:0] pc_data;
 wire [63:0] mux_pc_out;
 
 // == « instr. memory » == //
-wire [63:0] instr_data;
+wire [63:0] mem_rd_instr;
+
+// == « data memory » == //
+wire [63:0] mem_rd_data;
+
+// == « signal extender » == //
+wire [63:0] instr_extended;
 
 reg_64 program_counter (
     .load(PCWrite),
@@ -75,16 +81,16 @@ reg_64 program_counter (
     .reset(reset)
 );
 
-memory_32 instr_mem (
+memory_32 memory_instr (
     .raddress(pc_data),
-    .data_out(instr_data),
+    .data_out(mem_rd_instr),
     .clk(clk),
     .write(0)
 );
 
 instr_reg instr_reg (
     .write_ir(IRWrite),
-    .instruction(instr_data),
+    .instruction(mem_rd_instr),
     .instr_all(rd_instr_all),
     .instr_24_20(rd_instr_24_20),
     .instr_19_15(rd_instr_19_15),
@@ -100,6 +106,7 @@ regfile_64 reg_file (
     .w_reg(rd_instr_11_7),
     .r_data1(rd_regfile_1),
     .r_data2(rd_regfile_2),
+    .w_data(), // todo: file mux 
     .clk(clk),
     .reset(reset)
 );
@@ -157,6 +164,23 @@ mux_2to1_64 mux_PC (
     .i_0(alu_res),
     .i_1(reg_alu_out),
     .o_select(mux_pc_out)
+);
+
+sign_extend sign_extend (
+    .i_num(mem_rd_instr),
+    .o_extended(instr_extended)
+);
+
+memory_64 memory_data (
+    .raddress(alu_res),
+    .data_out(mem_rd_data),
+    .
+    .clk(clk),
+    .write() // todo: DMemRead or DMemWrite?
+);
+
+reg_64 reg_mem_data (
+    .
 );
     
 endmodule: processing

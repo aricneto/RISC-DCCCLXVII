@@ -4,6 +4,15 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Config PATH",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/config; source cfgpath",
+            "presentation": {
+                "panel": "shared",
+                "reveal": "never"
+            },
+        },
+        {
             "label": "Compile HDL",
             "type": "shell",
             "command": "${workspaceFolder}/config/comp_hdl.sh",
@@ -17,7 +26,6 @@
             },
             "problemMatcher": [
                 {
-                    "owner": "cpp",
                     "fileLocation": [
                         "relative",
                         "."
@@ -43,7 +51,6 @@
             },
             "problemMatcher": [
                 {
-                    "owner": "cpp",
                     "fileLocation": [
                         "relative",
                         "."
