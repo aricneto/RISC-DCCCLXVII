@@ -70,6 +70,7 @@ processing processor (
 )
 
 // r-type
+parameter TYPE_OP_R = 7'b0110011;
 parameter OP_ADD = 7'b0110011;
 parameter OP_SUB = 7'b0110011;
 
@@ -126,9 +127,11 @@ always_comb begin //
             ALUOp    = 2'b00;
 
             case (opcode)
-                OP_LD:
-                OP_SD:
-            endcase
+                OP_LD: next_state = MEM_ADDRESS_COMP;
+                OP_SD: next_state = MEM_ADDRESS_COMP;
+                TYPE_OP_R: next_state = EXECUTION;
+                OP_BEQ: next_state = BRANCH_COMPL;
+            endcase // todo: add default
         end
         // opcode: « ld » OR « SD »
         MEM_ADDRESS_COMP: begin
@@ -137,7 +140,10 @@ always_comb begin //
             ALUSrcB  = 2'b10;
             ALUOp    = 2'b00;
 
-            //todo: next state logic
+            case (opcode)
+                OP_LD: next_state = MEM_ACC_LD;
+                OP_SD: next_state = MEM_ACC_SD;
+            endcase // todo: add default
         end
         // opcode: « r-type »
         EXECUTION: begin
@@ -169,7 +175,7 @@ always_comb begin //
         MEM_ACC_SD: begin
             DMemWrite = 1;
 
-            //todo: next state logic
+            next_state = INSTR_FETCH;
         end
         WRITE_BACK: begin
             //RegDst = 0;
