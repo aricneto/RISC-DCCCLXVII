@@ -1,4 +1,4 @@
-module mux_4to1_64(
+module mux_4to1_64 (
     input wire [1:0] i_select,
     input wire [63:0] i_0,
     input wire [63:0] i_1,
@@ -19,4 +19,4 @@ always_comb begin
     endcase
 end
 
-endmodule
+endmodule: mux_4to1_64

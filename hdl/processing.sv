@@ -2,6 +2,7 @@ module processing(
     // ===-==-=== « control flags » ===-==-=== //
     // PC flags
     input logic PCWrite,
+    input logic PCWriteCond,
     input logic [1:0] PCSource,
 
     // ALU flags
@@ -17,8 +18,7 @@ module processing(
     input logic MemToReg,
 
     // data memory flags
-    input logic DMemRead,
-    input logic DMemWrite,
+    input logic DMemOp,
     input logic LoadMDR,
 
     // instr. memory flags
@@ -63,6 +63,7 @@ wire [63:0] reg_alu_out;
 
 // == « PC » == //
 wire [63:0] pc_data;
+logic PCWriteState;
 
 // == « PC MUX » == //
 wire [63:0] mux_pc_out;
@@ -72,11 +73,16 @@ wire [63:0] mem_rd_instr;
 
 // == « data memory » == //
 wire [63:0] mem_rd_data;
+wire [63:0] reg_mem_rd_data;
 
 // == « signal extender » == //
 wire [63:0] instr_extended;
 
+// == « reg file MUX » == //
+wire [63:0] mux_reg_file_data;
+
 assign instruction_out = rd_instr_all;
+assign PCWriteState = (PCWrite || (alu_zero && PCWrite));
 
 reg_64 program_counter (
     .load(PCWrite),
@@ -111,7 +117,7 @@ regfile_64 reg_file (
     .w_reg(rd_instr_11_7),
     .r_data1(rd_regfile_1),
     .r_data2(rd_regfile_2),
-    .w_data(), // todo: file mux 
+    .w_data(mux_reg_file_data),
     .clk(clk),
     .reset(reset)
 );
@@ -143,8 +149,8 @@ mux_4to1_64 mux_ALU_B (
     .i_select(ALUSrcB),
     .i_0(rd_reg_b),
     .i_1(64'd4),
-    .i_2(), // todo: imm
-    .i_3(), // todo: imm * 2
+    .i_2(instr_extended),
+    .i_3(instr_extended << 2),
     .o_select(mux_alu_b)
 );
 
@@ -178,14 +184,25 @@ sign_extend sign_extend (
 
 memory_64 memory_data (
     .raddress(alu_res),
+    .waddress(alu_res),
     .data_out(mem_rd_data),
-    .
-    .clk(clk),
-    .write() // todo: DMemRead or DMemWrite?
+    .data_in(rd_reg_b),
+    .write(DMemOp),
+    .clk(clk)
 );
 
 reg_64 reg_mem_data (
-    .
+    .w_data(mem_rd_data),
+    .r_data(reg_mem_rd_data),
+    .clk(clk),
+    .reset(reset)
+);
+
+mux_2to1_64 mux_reg_file (
+    .i_select(MemToReg),
+    .i_0(alu_res),
+    .i_1(reg_mem_rd_data),
+    .o_select(mux_reg_file_data)
 );
     
 endmodule: processing

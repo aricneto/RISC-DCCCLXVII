@@ -4,6 +4,7 @@ module control_top();
 // PC flags
 logic PCWrite;
 logic [1:0] PCSource;
+logic PCWriteCond;
 // final result between PCWrite and PCSource
 logic PCStateOut;
 
@@ -20,8 +21,7 @@ logic LoadRegB;
 logic MemToReg;
 
 // data memory flags
-logic DMemRead;
-logic DMemWrite;
+logic DMemOp;
 logic LoadMDR;
 
 // instr. memory flags
@@ -38,8 +38,7 @@ processing processor (
     // PC flags
     .PCWrite(PCWrite),
     .PCSource(PCSource),
-    // final result between PCWrite and PCSource
-    .PCStateOut(PCStateOut),
+    .PCWriteCond(PCWriteCond),
 
     // ALU flags
     .ALUSrcA(ALUSrcA),
@@ -54,8 +53,7 @@ processing processor (
     .MemToReg(MemToReg),
 
     // data memory flags
-    .DMemRead(DMemRead),
-    .DMemWrite(DMemWrite),
+    .DMemOp(DMemOp),
     .LoadMDR(LoadMDR),
 
     // instr memory flags
@@ -67,7 +65,7 @@ processing processor (
     // clock and reset
     .clk(clk),
     .reset(reset)
-)
+);
 
 // r-type
 parameter TYPE_OP_R = 7'b0110011;
@@ -93,7 +91,7 @@ enum {
     INSTR_DECODE,
     MEM_ADDRESS_COMP,
     EXECUTION,
-    R_TYPE_COMPL
+    R_TYPE_COMPL,
     BRANCH_COMPL,
     MEM_ACC_LD,
     MEM_ACC_SD,
@@ -101,7 +99,7 @@ enum {
 } state, next_state;
 
 always_ff @(posedge clk) begin
-    state <= next_state
+    state <= next_state;
 end
 
 // todo: add reset
@@ -148,7 +146,7 @@ always_comb begin //
         // opcode: « r-type »
         EXECUTION: begin
             LoadAOut = 1;
-            ALUSrcA  = 1
+            ALUSrcA  = 1;
             ALUSrcB  = 2'b00;
             ALUOp    = 2'b10;
 
@@ -166,14 +164,14 @@ always_comb begin //
         end
         // opcode: « ld »
         MEM_ACC_LD: begin
-            DMemRead = 1;
-            LoadMDR  = 1;
+            DMemOp  = 0;
+            LoadMDR = 1;
 
             next_state = WRITE_BACK;
         end
         // opcode: « sd »
         MEM_ACC_SD: begin
-            DMemWrite = 1;
+            DMemOp = 1;
 
             next_state = INSTR_FETCH;
         end
@@ -191,9 +189,9 @@ always_comb begin //
 
             next_state = INSTR_FETCH;
         end
-        default: begin
-            pass
-        end
+        //default: begin
+        //    pass
+        //end
     endcase
 end
 
