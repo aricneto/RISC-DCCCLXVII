@@ -3,7 +3,7 @@ module control_top();
 // ===-==-=== « control flags » ===-==-=== //
 // PC flags
 logic PCWrite;
-logic [1:0] PCSource;
+logic PCSource;
 logic PCWriteCond;
 // final result between PCWrite and PCSource
 logic PCStateOut;
@@ -109,7 +109,7 @@ always_comb begin //
             IMemRead = 1;
             IRWrite  = 1;
             PCWrite  = 1;
-            PCSource = 2'b00;
+            PCSource = 0;
             ALUSrcA  = 0;
             ALUSrcB  = 2'b01;
             ALUOp    = 2'b00;
@@ -155,7 +155,7 @@ always_comb begin //
         // opcode: « beq »
         BRANCH_COMPL: begin
             //PCWriteCond = 1;
-            PCSource = 2'b01;
+            PCSource = 1;
             ALUSrcA  = 1;
             ALUSrcB  = 2'b00;
             ALUOp    = 2'b01;

@@ -1,7 +1,7 @@
-`include "../hdl/instr_reg.sv"
+`include "instr_reg.sv"
 `timescale 1ns/1ns
 
-module tb_instr_reg_64;
+module tb_instr_reg;
 
     // clock and reset
     logic clk;
@@ -19,7 +19,7 @@ module tb_instr_reg_64;
     logic [4:0] instr_20_16;
     logic [15:0] instr_15_0;
 
-    instr_reg_64 inreg (
+    instr_reg inreg (
         .clk(clk),
         .reset(reset),
         .load_ir(load_ir),
@@ -64,4 +64,4 @@ module tb_instr_reg_64;
     always
         #1 clk = !clk;
 
-endmodule: tb_instr_reg_64
+endmodule: tb_instr_reg

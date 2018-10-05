@@ -15,7 +15,7 @@ vlib ${PATH_WORK}/libs/lib_BENCH
 vmap lib_BENCH ${PATH_WORK}/libs/lib_BENCH
 
 # compile all files in bench and its subfolders
-for filename in ${PATH_WORK}/bench/*.sv ${PATH_WORK}/bench/**/*.sv; do
+for filename in ${PATH_WORK}/bench/*.*v ${PATH_WORK}/bench/**/*.*v; do
     # if a file exists
     [ -e "$filename" ] || continue
 
@@ -24,6 +24,6 @@ for filename in ${PATH_WORK}/bench/*.sv ${PATH_WORK}/bench/**/*.sv; do
 
     # compile
     printf "\n===-==-===-==-===\n\nCompiling $fullname\n\n"
-    vlog -warning error -msgsingleline -work lib_BENCH $filename
+    vlog -warning error -msgsingleline -work lib_BENCH $filename +incdir+${PATH_WORK}/hdl+${PATH_WORK}/hdl/memory -y ${PATH_WORK}/hdl
 
 done

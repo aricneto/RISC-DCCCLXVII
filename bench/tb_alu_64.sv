@@ -1,4 +1,4 @@
-`include "../hdl/alu_64.sv"
+`include "alu_64.sv"
 `timescale 1ps/1ps
 
 module tb_alu_64;

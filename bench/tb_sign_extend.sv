@@ -1,4 +1,4 @@
-`include "../hdl/sign_extend.sv"
+`include "sign_extend.sv"
 `timescale 1ns/1ns
 
 module tb_sign_extend;
@@ -19,4 +19,4 @@ module tb_sign_extend;
 
     end // initial begin
 
-endmodule: tb_alu_64
+endmodule: tb_sign_extend

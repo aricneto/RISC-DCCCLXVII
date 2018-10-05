@@ -3,7 +3,7 @@ module processing(
     // PC flags
     input logic PCWrite,
     input logic PCWriteCond,
-    input logic [1:0] PCSource,
+    input logic PCSource,
 
     // ALU flags
     input logic ALUSrcA,
@@ -52,7 +52,7 @@ wire [6:0] opcode;
 
 // == « ALU » == //
 wire [63:0] alu_res;
-wire [63:0] alu_zero;
+wire alu_zero;
 
 // == « ALU MUX » == //
 wire [63:0] mux_alu_a;
@@ -62,14 +62,14 @@ wire [63:0] mux_alu_b;
 wire [63:0] reg_alu_out;
 
 // == « PC » == //
-wire [63:0] pc_data;
+wire [31:0] pc_data;
 logic PCWriteState;
 
 // == « PC MUX » == //
 wire [63:0] mux_pc_out;
 
 // == « instr. memory » == //
-wire [63:0] mem_rd_instr;
+wire [31:0] mem_rd_instr;
 
 // == « data memory » == //
 wire [63:0] mem_rd_data;
@@ -84,9 +84,9 @@ wire [63:0] mux_reg_file_data;
 assign instruction_out = rd_instr_all;
 assign PCWriteState = (PCWrite || (alu_zero && PCWrite));
 
-reg_64 program_counter (
-    .load(PCWrite),
-    .w_data(mux_pc_out),
+reg_32 program_counter (
+    .load(PCWriteState),
+    .w_data(mux_pc_out[31:0]),
     .r_data(pc_data),
     .clk(clk),
     .reset(reset)
@@ -96,7 +96,7 @@ memory_32 memory_instr (
     .raddress(pc_data),
     .data_out(mem_rd_instr),
     .clk(clk),
-    .write(0)
+    .write(1'b0)
 );
 
 instr_reg instr_reg (

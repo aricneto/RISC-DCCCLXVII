@@ -31,4 +31,4 @@ always_ff @(posedge clk, posedge reset) begin
     end
 end
     
-endmodule: instr_reg_64
+endmodule: instr_reg
