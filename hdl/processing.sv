@@ -86,7 +86,7 @@ assign PCWriteState = (PCWrite || (alu_zero && PCWrite));
 
 reg_32 program_counter (
     .load(PCWriteState),
-    .w_data(mux_pc_out[63:32]),
+    .w_data(mux_pc_out[31:0]),
     .r_data(pc_data),
     .clk(clk),
     .reset(reset)
@@ -141,7 +141,7 @@ reg_64 reg_ALU_b (
 
 mux_2to1_64 mux_ALU_A (
     .i_select(ALUSrcA),
-    .i_0(pc_data),
+    .i_0({32'd0, pc_data}),
     .i_1(rd_reg_a),
     .o_select(mux_alu_a)
 );
@@ -178,14 +178,15 @@ mux_2to1_64 mux_PC (
     .o_select(mux_pc_out)
 );
 
-sign_extend sign_extend (
-    .i_num(mem_rd_instr),
+// todo: change this later so we can use all immediate lengths for the different types
+sign_extend #(.IN_WIDTH(12)) sign_extend (
+    .i_num(rd_instr_all[31:20]),
     .o_extended(instr_extended)
 );
 
 memory_64 memory_data (
-    .raddress(alu_res),
-    .waddress(alu_res),
+    .raddress(reg_alu_out),
+    .waddress(reg_alu_out),
     .data_out(mem_rd_data),
     .data_in(rd_reg_b),
     .write(DMemOp),
@@ -193,6 +194,7 @@ memory_64 memory_data (
 );
 
 reg_64 reg_mem_data (
+    .load(LoadMDR),
     .w_data(mem_rd_data),
     .r_data(reg_mem_rd_data),
     .clk(clk),
@@ -201,7 +203,7 @@ reg_64 reg_mem_data (
 
 mux_2to1_64 mux_reg_file (
     .i_select(MemToReg),
-    .i_0(alu_res),
+    .i_0(reg_alu_out),
     .i_1(reg_mem_rd_data),
     .o_select(mux_reg_file_data)
 );

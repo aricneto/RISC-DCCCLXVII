@@ -1,5 +1,7 @@
-module sign_extend(
-    input logic [31:0] i_num,
+module sign_extend #(
+    parameter IN_WIDTH=32
+)(
+    input logic [IN_WIDTH-1:0] i_num,
     output logic [63:0] o_extended
 );
 

@@ -133,7 +133,7 @@ always_comb begin
     PCStateOut  = 0;
     ALUSrcA     = 0;
     ALUSrcB     = 2'd0;
-    ALUOp       = 3'd0;
+    ALUOp       = SUM;
     LoadAOut    = 0;
     RegWrite    = 0;
     LoadRegA    = 0;
@@ -217,7 +217,7 @@ always_comb begin
             PCSource = 1;
             ALUSrcA  = REG_A;
             ALUSrcB  = REG_B;
-            ALUOp    = 2'b01; // fixme: fix operation
+            ALUOp    = SUM; // fixme: fix operation
 
             next_state = INSTR_FETCH;
         end
@@ -248,7 +248,7 @@ always_comb begin
         R_TYPE_COMPL: begin
             // RegDst = 1;
             RegWrite = 1;
-            MemToReg = MEM_OUT;
+            MemToReg = ALU_OUT;
 
             next_state = INSTR_FETCH;
         end
