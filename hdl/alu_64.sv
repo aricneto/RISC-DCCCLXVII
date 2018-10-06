@@ -1,6 +1,6 @@
 module alu_64(
     // alu funct
-    input wire [3:0] funct,
+    input wire [2:0] funct,
 
     // alu operand inputs
     input logic signed [63:0] a,
@@ -18,7 +18,7 @@ module alu_64(
     output logic less
 );
 
-enum {LOAD, SUM, SUB, AND, XOR, NOT, INC} ops;
+enum {SUM, SHIFT_LEFT, SUB, LOAD, XOR, SHIFT_RIGHT, NOT, AND} ops;
 
 // result of the operation, assigned in always block
 logic signed [63:0] res;
@@ -47,20 +47,22 @@ assign overflow = funct == SUM ? ((a[63] == b[63]) & res_add[63] != a[63]) : ((a
 
 always_comb begin
     case (funct)
-        LOAD: // load
-            res = a;
         SUM: // sum
             res = res_add;
         SUB: // sub
             res = res_sub;
+        SHIFT_LEFT:
+            res = a << b;
+        SHIFT_RIGHT:
+            res = a >> b;
+        LOAD: // load
+            res = a;
         AND: // and
             res = a & b;
         XOR: // xor
             res = a ^ b;
         NOT: // not a
             res = ~a;
-        INC: // increment a
-            res = a + 1;
         default: 
 	        res = 64'd0;
 	endcase

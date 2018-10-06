@@ -3,7 +3,7 @@
 
 module tb_alu_64;
 
-    enum {LOAD, SUM, SUB, AND, XOR, NOT, INC} ops;
+    enum {SUM, SHIFT_LEFT, SUB, LOAD, XOR, SHIFT_RIGHT, NOT, AND} ops;
     
     logic [2:0] funct;
 
@@ -65,11 +65,6 @@ module tb_alu_64;
         $display("not test:\n");
         funct = NOT;
         num_a = 64'd0;
-
-        #1
-        $display("inc test:\n");
-        funct = INC;
-        num_a = 64'd2;
 
         #1 // testing overflow
         $display("sum overflow test:\n");

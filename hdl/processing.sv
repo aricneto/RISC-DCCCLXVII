@@ -8,7 +8,7 @@ module processing(
     // ALU flags
     input logic ALUSrcA,
     input logic [1:0] ALUSrcB,
-    input logic [3:0] ALUOp,
+    input logic [2:0] ALUOp,
     input logic LoadAOut,
 
     // regfile flags
@@ -112,6 +112,7 @@ instr_reg instr_reg (
 );
 
 regfile_64 reg_file (
+    .reg_write(RegWrite),
     .r_reg1(rd_instr_24_20),
     .r_reg2(rd_instr_19_15),
     .w_reg(rd_instr_11_7),

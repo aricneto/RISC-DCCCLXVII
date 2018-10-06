@@ -8,4 +8,4 @@ export MODELSIM="${PATH_WORK}/modelsim.ini"
 
 printf "\nMODELSIM = \n%s\n\n" "$MODELSIM"
 
-vsim -L altera_mf_ver -L lpm_ver -L cycloneiv_ver lib_BENCH.tb_control
+vsim -L altera_mf_ver -L lpm_ver -L cycloneiv_ver lib_BENCH.tb_control -do waves.do
