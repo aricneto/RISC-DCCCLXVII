@@ -1,4 +1,8 @@
-module control_top();
+module control_top(  
+    // clock and reset
+    input logic clk,
+    input logic reset
+);
 
 // ===-==-=== « control flags » ===-==-=== //
 // PC flags
@@ -11,7 +15,7 @@ logic PCStateOut;
 // ALU flags
 logic ALUSrcA;
 logic [1:0] ALUSrcB;
-logic [1:0] ALUOp;
+logic [3:0] ALUOp;
 logic LoadAOut;
 
 // regfile flags
@@ -29,10 +33,6 @@ logic IMemRead;
 logic IRWrite;
 
 logic [31:0] instruction;
-
-// clock and reset
-logic clk;
-logic reset;
 
 processing processor (
     // PC flags
@@ -86,7 +86,10 @@ logic [6:0] opcode;
 
 assign opcode = instruction[6:0];
 
+enum {LOAD, SUM, SUB, AND, XOR, NOT, INC} ops;
+
 enum {
+    START,
     INSTR_FETCH,
     INSTR_DECODE,
     MEM_ADDRESS_COMP,
@@ -103,8 +106,29 @@ always_ff @(posedge clk) begin
 end
 
 // todo: add reset
-always_comb begin //
+always_comb begin
+    // zero all control inputs, then assert only the needed ones
+    PCWrite     = 0;
+    PCSource    = 0;
+    PCWriteCond = 0;
+    PCStateOut  = 0;
+    ALUSrcA     = 0;
+    ALUSrcB     = 2'd0;
+    ALUOp       = 4'd0;
+    LoadAOut    = 0;
+    RegWrite    = 0;
+    LoadRegA    = 0;
+    LoadRegB    = 0;
+    MemToReg    = 0;
+    DMemOp      = 0;
+    LoadMDR     = 0;
+    IMemRead    = 0;
+    IRWrite     = 0;
+
     case (state)
+        START: begin
+            next_state = INSTR_FETCH;
+        end
         INSTR_FETCH: begin
             IMemRead = 1;
             IRWrite  = 1;
@@ -112,7 +136,7 @@ always_comb begin //
             PCSource = 0;
             ALUSrcA  = 0;
             ALUSrcB  = 2'b01;
-            ALUOp    = 2'b00;
+            ALUOp    = SUM;
 
             next_state = INSTR_DECODE; 
         end
@@ -122,7 +146,7 @@ always_comb begin //
             LoadAOut = 1;
             ALUSrcA  = 0;
             ALUSrcB  = 2'b11;
-            ALUOp    = 2'b00;
+            ALUOp    = SUM;
 
             case (opcode)
                 OP_LD: next_state = MEM_ADDRESS_COMP;
@@ -136,7 +160,7 @@ always_comb begin //
             LoadAOut = 1;
             ALUSrcA  = 1;
             ALUSrcB  = 2'b10;
-            ALUOp    = 2'b00;
+            ALUOp    = SUM;
 
             case (opcode)
                 OP_LD: next_state = MEM_ACC_LD;
@@ -148,7 +172,7 @@ always_comb begin //
             LoadAOut = 1;
             ALUSrcA  = 1;
             ALUSrcB  = 2'b00;
-            ALUOp    = 2'b10;
+            ALUOp    = SUM; // todo: this should be separated into states like add, sub etc
 
             next_state = R_TYPE_COMPL;
         end
@@ -189,9 +213,9 @@ always_comb begin //
 
             next_state = INSTR_FETCH;
         end
-        //default: begin
-        //    pass
-        //end
+        default: begin
+            next_state = INSTR_FETCH;
+        end
     endcase
 end
 

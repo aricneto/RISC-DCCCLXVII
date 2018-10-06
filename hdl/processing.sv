@@ -8,7 +8,7 @@ module processing(
     // ALU flags
     input logic ALUSrcA,
     input logic [1:0] ALUSrcB,
-    input logic [1:0] ALUOp,
+    input logic [3:0] ALUOp,
     input logic LoadAOut,
 
     // regfile flags
@@ -86,7 +86,7 @@ assign PCWriteState = (PCWrite || (alu_zero && PCWrite));
 
 reg_32 program_counter (
     .load(PCWriteState),
-    .w_data(mux_pc_out[31:0]),
+    .w_data(mux_pc_out[63:32]),
     .r_data(pc_data),
     .clk(clk),
     .reset(reset)
@@ -150,14 +150,14 @@ mux_4to1_64 mux_ALU_B (
     .i_0(rd_reg_b),
     .i_1(64'd4),
     .i_2(instr_extended),
-    .i_3(instr_extended << 2),
+    .i_3(instr_extended * 2),
     .o_select(mux_alu_b)
 );
 
 alu_64 alu (
     .funct(ALUOp),
     .a(mux_alu_a),
-    .b(mux_alu_a),
+    .b(mux_alu_b),
     .result(alu_res),
     .zero(alu_zero)
 );

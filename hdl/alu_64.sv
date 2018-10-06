@@ -1,6 +1,6 @@
 module alu_64(
     // alu funct
-    input wire [1:0] funct,
+    input wire [3:0] funct,
 
     // alu operand inputs
     input logic signed [63:0] a,

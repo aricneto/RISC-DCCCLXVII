@@ -13,10 +13,10 @@ module reg_32(
 
 always_ff @(posedge clk, posedge reset) begin
     if (reset) begin
-        r_data = 0;
+        r_data <= 0;
     end
     else if (load) begin
-        r_data = w_data;
+        r_data <= w_data;
     end
 end
     

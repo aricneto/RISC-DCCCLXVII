@@ -9,7 +9,7 @@ enum {A, B} states;
 
 always_comb begin
     case (i_select)
-        A: o_select = i_0;
+        A: o_select = {i_0, 32'd0};
         B: o_select = i_1;
         default: o_select = 63'd0;
     endcase
