@@ -12,5 +12,6 @@
 
 # Compile files
 **/modelsim.ini
+/config/*.ver
 /libs/lib_*/*
 transcript
