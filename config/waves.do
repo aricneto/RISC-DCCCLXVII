@@ -1,13 +1,13 @@
 config wave -signalnamewidth 1
 config list -signalnamewidth 1
-config wave -vectorcolor yellow
+config wave -vectorcolor yellow -rowmargin 8
+
 
 # clock/reset
-add wave -divider "Clock/Reset"
-
 add wave sim:/tb_control/control_top/reset
 add wave sim:/tb_control/control_top/clk
 add wave -color cyan -label "PC" sim:/tb_control/control_top/processor/program_counter/r_data
+add wave -color yellow -label "state" sim:/tb_control/control_top/state
 
 add wave -divider ""
 
