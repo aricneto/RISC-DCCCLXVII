@@ -84,7 +84,7 @@ wire [63:0] mux_reg_file_data;
 assign instruction_out = rd_instr_all;
 assign PCWriteState = (PCWrite || (alu_zero && PCWrite));
 
-reg_32 program_counter (
+reg_ld #(.SIZE(32)) program_counter (
     .load(PCWriteState),
     .w_data(mux_pc_out[31:0]),
     .r_data(pc_data),
@@ -123,7 +123,7 @@ regfile_64 reg_file (
     .reset(reset)
 );
 
-reg_64 reg_ALU_a (
+reg_ld reg_ALU_a (
     .load(LoadRegA),
     .w_data(rd_regfile_1),
     .r_data(rd_reg_a),
@@ -131,7 +131,7 @@ reg_64 reg_ALU_a (
     .reset(reset)
 );
 
-reg_64 reg_ALU_b (
+reg_ld reg_ALU_b (
     .load(LoadRegB),
     .w_data(rd_regfile_2),
     .r_data(rd_reg_b),
@@ -155,7 +155,7 @@ mux_4to1_64 mux_ALU_B (
     .o_select(mux_alu_b)
 );
 
-alu_64 alu (
+alu alu (
     .funct(ALUOp),
     .a(mux_alu_a),
     .b(mux_alu_b),
@@ -163,7 +163,7 @@ alu_64 alu (
     .zero(alu_zero)
 );
 
-reg_64 alu_out (
+reg_ld alu_out (
     .load(LoadAOut),
     .w_data(alu_res),
     .r_data(reg_alu_out),
@@ -178,7 +178,7 @@ mux_2to1_64 mux_PC (
     .o_select(mux_pc_out)
 );
 
-// todo: change this later so we can use all immediate lengths for the different types
+// fixme: case switch on sign_extend to extend the right amount for each opcode
 sign_extend #(.IN_WIDTH(12)) sign_extend (
     .i_num(rd_instr_all[31:20]),
     .o_extended(instr_extended)
@@ -193,7 +193,7 @@ memory_64 memory_data (
     .clk(clk)
 );
 
-reg_64 reg_mem_data (
+reg_ld reg_mem_data (
     .load(LoadMDR),
     .w_data(mem_rd_data),
     .r_data(reg_mem_rd_data),

@@ -11,7 +11,7 @@ always_comb begin
     case (i_select)
         A: o_select = i_0;
         B: o_select = i_1;
-        default: o_select = 63'd0;
+        default: o_select = 64'd0;
     endcase
 end
 

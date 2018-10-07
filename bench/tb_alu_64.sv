@@ -1,7 +1,7 @@
-`include "alu_64.sv"
+`include "alu.sv"
 `timescale 1ps/1ps
 
-module tb_alu_64;
+module tb_alu;
 
     enum {SUM, SHIFT_LEFT, SUB, LOAD, XOR, SHIFT_RIGHT, NOT, AND} ops;
     
@@ -22,7 +22,7 @@ module tb_alu_64;
     logic greater;
     logic less;
 
-    alu_64 alu (
+    alu alu (
         .funct(funct),
         .a(num_a),
         .b(num_b),
@@ -86,4 +86,4 @@ module tb_alu_64;
 
     end // initial begin
 
-endmodule: tb_alu_64
+endmodule: tb_alu

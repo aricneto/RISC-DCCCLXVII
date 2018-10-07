@@ -1,10 +1,12 @@
-module reg_64(
+module reg_ld #(
+    parameter SIZE = 64
+)(
     // load flag
     input logic load,
 
     // data in/out
-    input  logic [63:0] w_data,
-    output logic [63:0] r_data,
+    input  logic [SIZE-1:0] w_data,
+    output logic [SIZE-1:0] r_data,
 
     // clock and reset
     input logic clk,
@@ -20,4 +22,4 @@ always_ff @(posedge clk, posedge reset) begin
     end
 end
     
-endmodule: reg_64
+endmodule: reg_ld

@@ -15,7 +15,7 @@ always_comb begin
         B: o_select = i_1;
         C: o_select = i_2;
         D: o_select = i_3;
-        default: o_select = 63'd0;
+        default: o_select = 64'd0;
     endcase
 end
 

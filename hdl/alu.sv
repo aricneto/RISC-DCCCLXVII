@@ -1,13 +1,15 @@
-module alu_64(
+module alu #(
+    parameter SIZE = 64
+)(
     // alu funct
     input wire [2:0] funct,
 
     // alu operand inputs
-    input logic signed [63:0] a,
-    input logic signed [63:0] b,
+    input logic signed [SIZE-1:0] a,
+    input logic signed [SIZE-1:0] b,
 
     // operation result
-    output logic signed [63:0] result,
+    output logic signed [SIZE-1:0] result,
 
     // status outputs
     output logic overflow,
@@ -21,11 +23,11 @@ module alu_64(
 enum {SUM, SHIFT_LEFT, SUB, LOAD, XOR, SHIFT_RIGHT, NOT, AND} ops;
 
 // result of the operation, assigned in always block
-logic signed [63:0] res;
+logic signed [SIZE-1:0] res;
 
 // result of addition and subtraction operations.
-logic signed [63:0] res_add;
-logic signed [63:0] res_sub;
+logic signed [SIZE-1:0] res_add;
+logic signed [SIZE-1:0] res_sub;
 
 // assign operation results
 assign res_add = a + b;
@@ -40,10 +42,10 @@ assign greater = a > b;  // output true if a > b
 assign less    = a < b;  // output true if a < b
 
 assign zero = (result == 0);  // output true if result is zero
-assign negative = result[63]; // output true if result is negative
+assign negative = result[SIZE-1]; // output true if result is negative
 
 // output true if overflow occurred 
-assign overflow = funct == SUM ? ((a[63] == b[63]) & res_add[63] != a[63]) : ((a[63] != b[63]) & res_sub[63] != a[63]);
+assign overflow = funct == SUM ? ((a[SIZE-1] == b[SIZE-1]) & res_add[SIZE-1] != a[SIZE-1]) : ((a[SIZE-1] != b[SIZE-1]) & res_sub[SIZE-1] != a[SIZE-1]);
 
 always_comb begin
     case (funct)
@@ -64,8 +66,8 @@ always_comb begin
         NOT: // not a
             res = ~a;
         default: 
-	        res = 64'd0;
+	        res = 0;
 	endcase
 end
 
-endmodule: alu_64
+endmodule: alu

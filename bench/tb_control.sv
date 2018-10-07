@@ -1,7 +1,7 @@
 `include "control_top.sv"
-`include "alu_64.sv"       
+`include "alu.sv"       
 `include "mux_2to1_64.sv"  
-`include "reg_64.sv"
+`include "reg_ld.sv"
 `include "mux_4to1_64.sv"  
 `include "regfile_64.sv"
 `include "instr_reg.sv"    
@@ -10,7 +10,6 @@
 `include "memory_64.sv"  
 `include "memory_32.sv"     
 `include "ramOnChip.v"
-`include "reg_32.sv" 
 `timescale 1ps/1ps
 
 module tb_control;
