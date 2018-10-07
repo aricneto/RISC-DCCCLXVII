@@ -7,49 +7,35 @@ A RISC-V-like CPU designed in SystemVerilog for a Hardware Infrastructure class.
 
 ## Compiling and running
 In the `config` folder there are three scripts that can be used to automatically compile the files:  
-* `cfgpath.sh` will set the correct PATH for your directory. You should run `source cfgpath.sh` before running any other scripts so ModelSim will recognize your work folders . 
+* `initsim.sh` will set the correct PATH for your directory, setup and launch ModelSim with all the right configs. 
 * `comp_hdl.sh` will compile only the files in the `hdl` folder.  
 * `comp_bench.sh` will compile all testbench files.
 
-There are two ways to use the included build scripts.
-### Using VSCode
-Go to `config` folder:
+There are two ways to use the included build scripts. First, give all compile scripts executable permission:
 
 ```zsh
-cd config
-``` 
-
-Give all compile scripts executable permission:
-
-```zsh
-sudo chmod +x comp_*.sh
+sudo chmod +x config/*.sh
 ```
+
+### Using VSCode
 
 On VSCode, run the default build task with <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>B</kbd>. It should also provide problem matching for all files.
+
 ### Using the terminal
-Go to config folder:
 
-```zsh
-cd config
-``` 
+Change `PATH_WORK=$(pwd)` to `PATH_WORK=$(cd ..; pwd)` in `config/comp_bench.sh` and `config/comp_hdl.sh` using a text editor.
 
-Change `PATH_WORK=$(pwd)` to `PATH_WORK=$(cd ..; pwd)` in `comp_bench.sh` and `comp_hdl.sh` using a text editor.
-
-Give all compile scripts executable permission:
-
-```zsh
-sudo chmod +x comp_*.sh
-```
 Run the scripts.
 
 ### Running
-Once you've compiled the files, open ModelSim `vsim &` (assuming it's in your path), select a file and run the simulation.
+Once you've compiled the files, run `cd config; source initsim.sh` on a terminal, or run the `Run ModelSim` task on VSCode. It should automatically launch and configure the simulation, provided you have ModelSim correctly setup on your PATH.
 
 ## Folder structure
 * `bench`: all testbench files
+* `config`: scripts for running/compilation
+* `docs`: diagrams and state machine visualizations
 * `hdl`: all module files
   * `hdl/memory`: memory modules
-* `config`: scripts for running/compilation
 
 ## Coding guidelines
 
@@ -57,52 +43,23 @@ Once you've compiled the files, open ModelSim `vsim &` (assuming it's in your pa
 * `snake_case` naming for all variables
 * Don't specify `in_` or `out_` in signal names outside of module declarations.
 ```verilog
-« DON'T »
-
-wire i_signal;
-```
-
-```verilog
-« DO »
-
-module foo(
-  input wire i_signal
-);
+« DON'T »             « DO »
+                    
+                      module foo(
+                        input wire i_signal
+wire i_signal;        );
 ```
 * Explicit `.` operator when using modules
 * Clock is always `clk`, reset is always `reset`
 * Always use `enums` instead of arbitrary binary values in state machines/selector pins
 ```verilog
-« DON'T »
+« DON'T »             « DO »
 
-always @(*)
-  case (foo)
-    2'b00: ..
-    2'b01: ..
-    2'b11: ..
+always @(*)           enum {READ, WAIT} states;
+  case (foo)          always @(*)
+    2'b00: ..           case (foo)
+    2'b01: ..             READ: ..
+    2'b11: ..             WAIT: ..
 ```
 
-```verilog
-« DO »
-
-enum {READ, WAIT, WALK} states;
-always @(*)
-  case (foo)
-    READ: ..
-    WAIT: ..
-    WALK: ..
-```
-* Write the datatype for *all* variables. Only one declaration *per line*. Don't use implicit declaration:
-```verilog
-« DON'T »
-
-input logic a, b, c;
-```
-```verilog
-« DO »
-
-input logic a;
-input logic b;
-input logic c;
-```
-This makes it easier to search, change, and identify the type of each variable.
+* Write the datatype for *all* variables. Only one declaration *per line*. Don't use implicit declaration.
