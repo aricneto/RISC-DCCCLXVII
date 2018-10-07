@@ -45,9 +45,9 @@ Once you've compiled the files, run `cd config; source initsim.sh` on a terminal
 ```verilog
 « DON'T »             « DO »
                     
-                      module foo(
+wire i_signal;        module foo(
                         input wire i_signal
-wire i_signal;        );
+                      );
 ```
 * Explicit `.` operator when using modules
 * Clock is always `clk`, reset is always `reset`
@@ -55,8 +55,8 @@ wire i_signal;        );
 ```verilog
 « DON'T »             « DO »
 
-always @(*)           enum {READ, WAIT} states;
-  case (foo)          always @(*)
+always_comb           enum {READ, WAIT} states;
+  case (foo)          always_comb
     2'b00: ..           case (foo)
     2'b01: ..             READ: ..
     2'b11: ..             WAIT: ..
