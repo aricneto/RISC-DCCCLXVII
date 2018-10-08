@@ -7,6 +7,11 @@
 //        8-function ALU with variable bus width 
 // ==--===--===-==---==--==--===--===-==---==--==--===--===-==---==--==--==
 
+// include ops package
+`include "operations.svh"
+
+import operations::*;
+
 module alu #(
     parameter SIZE = 64
 )(
@@ -28,8 +33,6 @@ module alu #(
     output logic greater,
     output logic less
 );
-
-enum {SUM, SHIFT_LEFT, SUB, LOAD, XOR, SHIFT_RIGHT, NOT, AND} ops;
 
 // result of the operation, assigned in always block
 logic signed [SIZE-1:0] res;
@@ -54,28 +57,28 @@ assign zero = (result == 0);  // output true if result is zero
 assign negative = result[SIZE-1]; // output true if result is negative
 
 // output true if overflow occurred 
-assign overflow = funct == SUM ? ((a[SIZE-1] == b[SIZE-1]) & res_add[SIZE-1] != a[SIZE-1]) : ((a[SIZE-1] != b[SIZE-1]) & res_sub[SIZE-1] != a[SIZE-1]);
+assign overflow = funct == operations::SUM ? ((a[SIZE-1] == b[SIZE-1]) & res_add[SIZE-1] != a[SIZE-1]) : ((a[SIZE-1] != b[SIZE-1]) & res_sub[SIZE-1] != a[SIZE-1]);
 
 always_comb begin
     case (funct)
-        SUM: // sum
+        operations::SUM: // sum
             res = res_add;
-        SUB: // sub
+        operations::SUB: // sub
             res = res_sub;
-        SHIFT_LEFT:
+        operations::SHIFT_LEFT:
             res = a << b;
-        SHIFT_RIGHT:
+        operations::SHIFT_RIGHT:
             res = a >> b;
-        LOAD: // load
+        operations::LOAD: // load
             res = a;
-        AND: // and
+        operations::AND: // and
             res = a & b;
-        XOR: // xor
+        operations::XOR: // xor
             res = a ^ b;
-        NOT: // not a
+        operations::NOT: // not a
             res = ~a;
         default: 
-	        res = 0;
+	        res = '0;
 	endcase
 end
 

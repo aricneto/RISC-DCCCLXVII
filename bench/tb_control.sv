@@ -1,3 +1,5 @@
+`include "opcodes.svh"
+`include "operations.svh"
 `include "control_top.sv"
 `include "alu.sv"       
 `include "mux_2to1_64.sv"  
@@ -11,6 +13,9 @@
 `include "memory_32.sv"     
 `include "ramOnChip.v"
 `timescale 1ps/1ps
+
+import opcodes::*;
+import operations::*;
 
 module tb_control;
 

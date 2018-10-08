@@ -7,6 +7,13 @@
 //        control unit that implements the processor state machine
 // ==--===--===-==---==--==--===--===-==---==--==--===--===-==---==--==--==
 
+// include packages
+`include "opcodes.svh"
+`include "operations.svh"
+
+import opcodes::*;
+import operations::*;
+
 module control_top(  
     // clock and reset
     input logic clk,
@@ -76,22 +83,6 @@ processing processor (
     .reset(reset)
 );
 
-// r-type
-parameter TYPE_OP_R = 7'b0110011;
-parameter TYPE_OP_I = 7'b0010011;
-parameter OP_ADD    = 7'b0110011;
-parameter OP_SUB    = 7'b0110011;
-
-// i-type
-parameter OP_ADDI = 7'b0010011;
-parameter OP_LD   = 7'b0000011;
-
-// s-type
-parameter OP_SD   = 7'b0100011;
-
-// sb-type
-parameter OP_BEQ  = 7'b1100111;
-
 logic [6:0] funct7;
 logic [2:0] funct3;
 logic [6:0] opcode;
@@ -99,21 +90,6 @@ logic [6:0] opcode;
 assign funct7 = instruction[31:25];
 assign funct3 = instruction[14:12];
 assign opcode = instruction[6:0];
-
-// ALU ops
-enum {SUM, SHIFT_LEFT, SUB, LOAD, XOR, SHIFT_RIGHT, NOT, AND} ops;
-
-// ALUSrcB MUX
-enum {REG_B, CONST4, IMM, IMM2} ops_ALUSrcB;
-
-// ALUSrcA MUX
-enum {PC, REG_A} ops_ALUSrcA;
-
-// PC MUX
-enum {ALU_OUT, ALU_REG} ops_PCSource;
-
-// File Write MUX: alu_out, mem_out
-parameter MEM_OUT = 1'b1;
 
 enum {
     START,
@@ -141,8 +117,8 @@ always_comb begin
     PCWriteCond = 0;
     PCStateOut  = 0;
     ALUSrcA     = 0;
-    ALUSrcB     = 2'd0;
-    ALUOp       = SUM;
+    ALUSrcB     = '0;
+    ALUOp       = operations::SUM;
     LoadAOut    = 0;
     RegWrite    = 0;
     LoadRegA    = 0;
@@ -162,10 +138,10 @@ always_comb begin
             IMemRead = 1;
             IRWrite  = 1;
             PCWrite  = 1;
-            PCSource = 0;
-            ALUSrcA  = ALU_OUT;
-            ALUSrcB  = CONST4;
-            ALUOp    = SUM;
+            PCSource = operations::_PC_ALU_OUT;
+            ALUSrcA  = operations::_ALA_PC;
+            ALUSrcB  = operations::_ALB_CONST4;
+            ALUOp    = operations::SUM;
 
             next_state = INSTR_DECODE; 
         end
@@ -174,16 +150,16 @@ always_comb begin
             LoadRegA = 1;
             LoadRegB = 1;
             LoadAOut = 1;
-            ALUSrcA  = PC;
-            ALUSrcB  = IMM2;
-            ALUOp    = SUM;
+            ALUSrcA  = operations::_ALA_PC;
+            ALUSrcB  = operations::_ALB_IMM2;
+            ALUOp    = operations::SUM;
 
             case (opcode)
-                OP_LD: next_state = MEM_ADDRESS_COMP;
-                OP_SD: next_state = MEM_ADDRESS_COMP;
-                TYPE_OP_I: next_state = EXECUTION_TYPE_I;
-                TYPE_OP_R: next_state = EXECUTION_TYPE_R;
-                OP_BEQ: next_state = BRANCH_COMPL;
+                opcodes::LD: next_state = MEM_ADDRESS_COMP;
+                opcodes::TYPE_S: next_state = MEM_ADDRESS_COMP;
+                opcodes::ADDI: next_state = EXECUTION_TYPE_I;
+                opcodes::TYPE_R: next_state = EXECUTION_TYPE_R;
+                opcodes::TYPE_SB: next_state = BRANCH_COMPL;
             endcase // todo: add default
         end
 
@@ -191,20 +167,20 @@ always_comb begin
         MEM_ADDRESS_COMP: begin
             LoadAOut = 1;
             ALUSrcA  = 1;
-            ALUSrcB  = IMM;
-            ALUOp    = SUM;
+            ALUSrcB  = operations::_ALB_IMM;
+            ALUOp    = operations::SUM;
 
             case (opcode)
-                OP_LD: next_state = MEM_ACC_LD;
-                OP_SD: next_state = MEM_ACC_SD;
+                opcodes::LD: next_state = MEM_ACC_LD;
+                opcodes::SD: next_state = MEM_ACC_SD;
             endcase // todo: add default
         end
 
         // opcode: « r-type »
         EXECUTION_TYPE_R: begin
             LoadAOut = 1;
-            ALUSrcA  = REG_A;
-            ALUSrcB  = REG_B;
+            ALUSrcA  = operations::_ALA_REG_A;
+            ALUSrcB  = operations::_ALB_REG_B;
             ALUOp    = funct7[6:4]; // todo: if funct3 != 0
 
             next_state = R_TYPE_COMPL;
@@ -213,8 +189,8 @@ always_comb begin
         // opcode: « i-type »
         EXECUTION_TYPE_I: begin
             LoadAOut = 1;
-            ALUSrcA  = REG_A;
-            ALUSrcB  = IMM;
+            ALUSrcA  = operations::_ALA_REG_A;
+            ALUSrcB  = operations::_ALB_IMM;
             ALUOp    = funct3; // fixme: srai uses funct7
 
             next_state = R_TYPE_COMPL;
@@ -223,10 +199,10 @@ always_comb begin
         // opcode: « beq »
         BRANCH_COMPL: begin
             //PCWriteCond = 1;
-            PCSource = 1;
-            ALUSrcA  = REG_A;
-            ALUSrcB  = REG_B;
-            ALUOp    = SUM; // fixme: fix operation
+            PCSource = operations::_PC_ALU_REG;
+            ALUSrcA  = operations::_ALA_REG_A;
+            ALUSrcB  = operations::_ALB_REG_B;
+            ALUOp    = operations::SUM; // fixme: fix operation
 
             next_state = INSTR_FETCH;
         end
@@ -255,7 +231,7 @@ always_comb begin
 
         R_TYPE_COMPL: begin
             RegWrite = 1;
-            MemToReg = ALU_OUT;
+            MemToReg = operations::_FW_ALU_OUT;
 
             next_state = INSTR_FETCH;
         end
