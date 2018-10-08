@@ -7,6 +7,9 @@
 //        sign-extends the immediate address for some instructions to 64bit
 // ==--===--===-==---==--==--===--===-==---==--==--===--===-==---==--==--==
 
+`include "opcodes.svh"
+import opcodes::*;
+
 module sign_extend #(
     parameter IN_WIDTH=32
 )(
@@ -14,8 +17,23 @@ module sign_extend #(
     output logic [63:0] o_extended
 );
 
+logic [6:0] opcode;
+
+assign opcode = i_num[6:0];
+
 always_comb begin
-    o_extended = $signed(i_num);
+    case (opcode)
+        opcodes::ADDI, opcodes::JALR, opcodes::LD:
+            o_extended = $signed(i_num[31:20]);
+        opcodes::TYPE_S:
+            o_extended = $signed(i_num[31:25]);
+        opcodes::TYPE_SB:
+            o_extended = $signed({i_num[31:25], i_num[11:7]});
+        opcodes::TYPE_U:
+            o_extended = $signed(i_num[31:12]);
+        opcodes::TYPE_UJ:
+            o_extended = $signed({i_num[31], i_num[20:12], i_num[21], i_num[30:22]});
+    endcase
 end
 
 endmodule: sign_extend

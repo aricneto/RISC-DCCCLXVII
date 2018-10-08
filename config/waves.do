@@ -96,7 +96,7 @@ add wave -group "PC" \
     -color green sim:/tb_control/control_top/processor/program_counter/w_data \
     -color yellow sim:/tb_control/control_top/processor/program_counter/load
 add wave -group "Reg File" \
-    -color yellow sim:/tb_control/control_top/processor/reg_file/registers \
+    -color cyan sim:/tb_control/control_top/processor/reg_file/registers \
     -color red sim:/tb_control/control_top/processor/reg_file/reg_write \
     -color yellow -unsigned sim:/tb_control/control_top/processor/reg_file/w_reg \
     -unsigned sim:/tb_control/control_top/processor/reg_file/r_reg1 \
