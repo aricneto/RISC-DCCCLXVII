@@ -98,6 +98,7 @@ enum {
     MEM_ADDRESS_COMP,
     EXECUTION_TYPE_I,
     EXECUTION_TYPE_R,
+    EXECUTION_TYPE_U,
     R_TYPE_COMPL,
     BRANCH_COMPL,
     MEM_ACC_LD,
@@ -159,6 +160,7 @@ always_comb begin
                 opcodes::TYPE_S: next_state = MEM_ADDRESS_COMP;
                 opcodes::ADDI: next_state = EXECUTION_TYPE_I;
                 opcodes::TYPE_R: next_state = EXECUTION_TYPE_R;
+                opcodes::TYPE_U: next_state = EXECUTION_TYPE_U;
                 opcodes::TYPE_SB: next_state = BRANCH_COMPL;
             endcase // todo: add default
         end
@@ -192,6 +194,16 @@ always_comb begin
             ALUSrcA  = operations::_ALA_REG_A;
             ALUSrcB  = operations::_ALB_IMM;
             ALUOp    = funct3; // fixme: srai uses funct7
+
+            next_state = R_TYPE_COMPL;
+        end
+        
+        // opcode: « u-type » 
+        EXECUTION_TYPE_U: begin
+            LoadAOut = 1;
+            ALUSrcA = operations::_ALA_REG_A;
+            ALUSrcB = operations::_ALB_IMM;
+            ALUOp = operations::LOAD;
 
             next_state = R_TYPE_COMPL;
         end
