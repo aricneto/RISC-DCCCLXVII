@@ -37,7 +37,9 @@ add wave -group "Instruction" -radix binary \
     tb_control/control_top/funct7 \
     tb_control/control_top/funct3 \
     tb_control/control_top/opcode \
-    -label "imm" -decimal {tb_control/control_top/instruction[31:20]}
+    -label "rs1" -color cyan -decimal {tb_control/control_top/instruction[19:15]} \
+    -label "rs2" -color cyan -decimal {tb_control/control_top/instruction[24:20]} \
+    -label "rd"  -color cyan -decimal {tb_control/control_top/instruction[11:7]}
 
 # processing signals
 
