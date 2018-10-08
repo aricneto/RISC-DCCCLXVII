@@ -91,7 +91,7 @@ wire [63:0] instr_extended;
 wire [63:0] mux_reg_file_data;
 
 assign instruction_out = rd_instr_all;
-assign PCWriteState = (PCWrite || (alu_zero && PCWrite));
+    assign PCWriteState = (PCWrite || (alu_zero && PCWriteCond));
 
 reg_ld #(.SIZE(32)) program_counter (
     .load(PCWriteState),
