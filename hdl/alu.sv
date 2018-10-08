@@ -70,7 +70,7 @@ always_comb begin
         operations::SHIFT_RIGHT:
             res = a >> b;
         operations::LOAD: // load
-            res = a;
+            res = b;
         operations::AND: // and
             res = a & b;
         operations::XOR: // xor
