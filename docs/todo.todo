@@ -1,0 +1,35 @@
+Instructions:
+    Type R:
+        ✔ add @done(18-10-08 14:10)
+        ☐ sub
+        ☐ and
+        ☐ slt
+    Type I:
+        ✔ addi @done(18-10-08 14:14)
+        ☐ srli
+        ☐ srai
+        ☐ slli
+        ☐ slti
+        ☐ jalr
+        ☐ ld
+        ☐ lw
+        ☐ lbu
+        ☐ lh
+        ☐ nop
+        ☐ break
+    Type S:
+        ☐ sd
+        ☐ sw
+        ☐ sh
+        ☐ sb
+    Type SB:
+        ☐ beq
+        ☐ bne
+        ☐ bge
+        ☐ blt
+    Type U:
+        ☐ lui
+    Type UJ:
+        ☐ jal
+Things:
+    ☐ zero constante
