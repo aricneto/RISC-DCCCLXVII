@@ -1,3 +1,12 @@
+// ==--===--===-==---==--==--===--===-==---==--==--===--===-==---==--==--==
+// -> aricneto                          88,bd88b  88b .d888b, d8888b
+//                                     88,P'    88P  ?8b,   d8P' `P
+//                                    d88      d88    `?8b 88,b    
+//                                   d88'     d88' `?888P' `?888P'
+// -> module description:
+//        control unit that implements the processor state machine
+// ==--===--===-==---==--==--===--===-==---==--==--===--===-==---==--==--==
+
 module control_top(  
     // clock and reset
     input logic clk,
@@ -238,7 +247,6 @@ always_comb begin
         end
 
         WRITE_BACK: begin
-            //RegDst = 0;
             RegWrite = 1;
             MemToReg = 1;
 
@@ -246,7 +254,6 @@ always_comb begin
         end
 
         R_TYPE_COMPL: begin
-            // RegDst = 1;
             RegWrite = 1;
             MemToReg = ALU_OUT;
 

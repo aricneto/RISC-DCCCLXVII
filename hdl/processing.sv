@@ -1,3 +1,12 @@
+// ==--===--===-==---==--==--===--===-==---==--==--===--===-==---==--==--==
+// -> aricneto                          88,bd88b  88b .d888b, d8888b
+//                                     88,P'    88P  ?8b,   d8P' `P
+//                                    d88      d88    `?8b 88,b    
+//                                   d88'     d88' `?888P' `?888P'
+// -> module description:
+//        connects all modules and components necessary for the RISC-V
+// ==--===--===-==---==--==--===--===-==---==--==--===--===-==---==--==--==
+
 module processing(
     // ===-==-=== « control flags » ===-==-=== //
     // PC flags
@@ -179,8 +188,8 @@ mux_2to1_64 mux_PC (
 );
 
 // fixme: case switch on sign_extend to extend the right amount for each opcode
-sign_extend #(.IN_WIDTH(12)) sign_extend (
-    .i_num(rd_instr_all[31:20]),
+sign_extend sign_extend (
+    .i_num(rd_instr_all),
     .o_extended(instr_extended)
 );
 

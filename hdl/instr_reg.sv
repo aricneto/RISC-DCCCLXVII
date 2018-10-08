@@ -1,3 +1,12 @@
+// ==--===--===-==---==--==--===--===-==---==--==--===--===-==---==--==--==
+// -> aricneto                          88,bd88b  88b .d888b, d8888b
+//                                     88,P'    88P  ?8b,   d8P' `P
+//                                    d88      d88    `?8b 88,b    
+//                                   d88'     d88' `?888P' `?888P'
+// -> module description:
+//        instruction register with RISC-V standard outputs
+// ==--===--===-==---==--==--===--===-==---==--==--===--===-==---==--==--==
+
 module instr_reg(
     // enable register data read
     input logic write_ir,
