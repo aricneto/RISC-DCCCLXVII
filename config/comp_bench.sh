@@ -24,6 +24,6 @@ for filename in ${PATH_WORK}/bench/*.*v ${PATH_WORK}/bench/**/*.*v; do
 
     # compile
     printf "\n===-==-===-==-===\n\nCompiling $fullname\n\n"
-    vlog -warning error -msgsingleline -work lib_BENCH $filename +incdir+${PATH_WORK}/hdl+${PATH_WORK}/hdl/memory -y ${PATH_WORK}/hdl
+    vlog -msgsingleline -work lib_BENCH $filename +incdir+${PATH_WORK}/hdl+${PATH_WORK}/hdl/memory -y ${PATH_WORK}/hdl
 
 done

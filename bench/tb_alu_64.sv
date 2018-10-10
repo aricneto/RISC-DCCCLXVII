@@ -1,4 +1,4 @@
-`include "operations.svh"
+`include "packages/operations.svh"
 `include "alu.sv"
 `timescale 1ps/1ps
 

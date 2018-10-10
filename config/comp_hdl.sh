@@ -24,6 +24,6 @@ for filename in ${PATH_WORK}/hdl/*.*v ${PATH_WORK}/hdl/**/*.*v; do
 
     # compile
     printf "\n===-==-===-==-===\n\nCompiling $fullname\n\n"
-    vlog -warning error -msgsingleline -work lib_SV $filename
+    vlog -msgsingleline -work lib_SV $filename
 
 done

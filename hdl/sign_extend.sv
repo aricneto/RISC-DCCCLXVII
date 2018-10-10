@@ -7,7 +7,7 @@
 //        sign-extends the immediate address for some instructions to 64bit
 // ==--===--===-==---==--==--===--===-==---==--==--===--===-==---==--==--==
 
-`include "opcodes.svh"
+`include "packages/opcodes.svh"
 import opcodes::*;
 
 module sign_extend #(

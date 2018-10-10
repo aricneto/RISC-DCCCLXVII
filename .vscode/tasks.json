@@ -6,7 +6,7 @@
         {
             "label": "Run ModelSim",
             "type": "shell",
-            "command": "cd ${workspaceFolder}/config; source initsim.sh",
+            "command": "source config/initsim.sh",
             "presentation": {
                 "panel": "shared",
                 "reveal": "never"

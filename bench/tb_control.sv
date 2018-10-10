@@ -1,5 +1,5 @@
-`include "opcodes.svh"
-`include "operations.svh"
+`include "packages/opcodes.svh"
+`include "packages/operations.svh"
 `include "control_top.sv"
 `include "alu.sv"       
 `include "mux_2to1_64.sv"  

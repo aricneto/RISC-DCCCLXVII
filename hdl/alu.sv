@@ -8,7 +8,7 @@
 // ==--===--===-==---==--==--===--===-==---==--==--===--===-==---==--==--==
 
 // include ops package
-`include "operations.svh"
+`include "packages/operations.svh"
 
 import operations::*;
 

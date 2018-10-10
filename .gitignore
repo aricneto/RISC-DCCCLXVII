@@ -12,7 +12,7 @@
 
 # Compile files
 **/modelsim.ini
-/config/*.wlf
-/config/*.ver
+/**/*.wlf
+/**/*.ver
 /libs/lib_*/*
 transcript

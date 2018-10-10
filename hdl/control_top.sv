@@ -8,8 +8,8 @@
 // ==--===--===-==---==--==--===--===-==---==--==--===--===-==---==--==--==
 
 // include packages
-`include "opcodes.svh"
-`include "operations.svh"
+`include "packages/opcodes.svh"
+`include "packages/operations.svh"
 
 import opcodes::*;
 import operations::*;
