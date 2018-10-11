@@ -6,7 +6,7 @@
         {
             "label": "Run ModelSim",
             "type": "shell",
-            "command": "source config/initsim.sh",
+            "command": "source config/sh/initsim.sh",
             "presentation": {
                 "panel": "shared",
                 "reveal": "never"
@@ -15,7 +15,7 @@
         {
             "label": "Compile HDL",
             "type": "shell",
-            "command": "${workspaceFolder}/config/comp_hdl.sh",
+            "command": "${workspaceFolder}/config/sh/comp_hdl.sh",
             "group": {
                 "isDefault": true,
                 "kind": "build"
@@ -43,7 +43,7 @@
         {
             "label": "Compile BENCH",
             "type": "shell",
-            "command": "${workspaceFolder}/config/comp_bench.sh",
+            "command": "${workspaceFolder}/config/sh/comp_bench.sh",
             "group": "build",
             "presentation": {
                 "panel": "dedicated",

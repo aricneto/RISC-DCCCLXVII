@@ -1,7 +1,10 @@
+# create lib if it wasn't created before
+vlib libs/lib_BENCH
+
 # delete previous lib
 vdel -lib libs/lib_BENCH -all
  
-# create new lib
+# recreate lib
 vlib libs/lib_BENCH
 
 # map lib to lib_BENCH
