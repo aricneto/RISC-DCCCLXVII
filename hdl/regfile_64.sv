@@ -38,7 +38,7 @@ always_ff @(posedge clk or posedge reset) begin
         for (int i = 0; i < 32; i = i + 1)
             registers[i] = 64'd0;
     end 
-    else if (reg_write) 
+    else if (reg_write && w_reg != 0) 
         registers[w_reg] = w_data;
 end
 
