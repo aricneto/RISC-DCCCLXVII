@@ -2,6 +2,10 @@ config wave -signalnamewidth 1
 config list -signalnamewidth 1
 config wave -vectorcolor yellow -rowmargin 8
 
+# state machine list
+add list -width 30 \
+    tb_control/control_top/state \
+     -notrigger tb_control/control_top/next_state 
 
 # clock/reset
 add wave tb_control/control_top/reset
@@ -40,6 +44,13 @@ add wave -group "Instruction" -radix binary \
     -label "rs1" -color cyan -decimal {tb_control/control_top/instruction[19:15]} \
     -label "rs2" -color cyan -decimal {tb_control/control_top/instruction[24:20]} \
     -label "rd"  -color cyan -decimal {tb_control/control_top/instruction[11:7]}
+
+add wave -group "Immediate" -decimal \
+    -label "type i" {tb_control/control_top/instruction[31:20]} \
+    -label "type s" {tb_control/control_top/instruction[31:25] & tb_control/control_top/instruction[11:7]} \
+    -label "type sb" {tb_control/control_top/instruction[31] & tb_control/control_top/instruction[7] & tb_control/control_top/instruction[30:25] & tb_control/control_top/instruction[11:8]} \
+    -label "type u" {tb_control/control_top/instruction[31:12]} \
+    -label "type uj" {tb_control/control_top/instruction[31] & tb_control/control_top/instruction[20:12] & tb_control/control_top/instruction[21] & tb_control/control_top/instruction[30:22]}
 
 # processing signals
 
@@ -112,18 +123,14 @@ add wave -group "Reg ALU A" tb_control/control_top/processor/reg_ALU_a/*
 add wave -group "Reg ALU B" tb_control/control_top/processor/reg_ALU_b/*
 
 # watch signals
-::add watch tb_control/control_top/processor/program_counter/r_data -radix decimal -radixenum default
-::add watch tb_control/control_top/processor/alu/b -radix decimal -radixenum default
-::add watch tb_control/control_top/processor/alu/result -radix decimal -radixenum default
-::add watch tb_control/control_top/state -radix default -radixenum default
-::add watch tb_control/control_top/processor/reg_file/registers -radix decimal -radixenum default
-::add watch tb_control/control_top/processor/alu/ops -radix default -radixenum default
-::add watch tb_control/control_top/processor/alu/a -radix decimal -radixenum default
+# ::add watch tb_control/control_top/processor/program_counter/r_data -radix decimal -radixenum # default
+# ::add watch tb_control/control_top/processor/alu/b -radix decimal -radixenum default
+# ::add watch tb_control/control_top/processor/alu/result -radix decimal -radixenum default
+# ::add watch tb_control/control_top/state -radix default -radixenum default
+# ::add watch tb_control/control_top/processor/reg_file/registers -radix decimal -radixenum # default
+# ::add watch tb_control/control_top/processor/alu/ops -radix default -radixenum default
+# ::add watch tb_control/control_top/processor/alu/a -radix decimal -radixenum default
 
-# state machine list
-add list -width 30 \
-    tb_control/control_top/state \
-     -notrigger tb_control/control_top/next_state 
 # pc
 # add list  clk -notrigger tb_control/control_top/processor/pc_data
 # alu

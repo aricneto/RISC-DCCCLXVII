@@ -26,9 +26,9 @@ always_comb begin
         opcodes::ADDI, opcodes::JALR, opcodes::LD:
             o_extended = $signed(i_num[31:20]);
         opcodes::TYPE_S:
-            o_extended = $signed(i_num[31:25]);
-        opcodes::TYPE_SB:
             o_extended = $signed({i_num[31:25], i_num[11:7]});
+        opcodes::TYPE_SB:
+            o_extended = $signed({i_num[31], i_num[7], i_num[30:25], i_num[11:8]});
         opcodes::TYPE_U:
             o_extended = $signed(i_num[31:12]);
         opcodes::TYPE_UJ:
