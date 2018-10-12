@@ -37,9 +37,11 @@
 // synopsys translate_off
 `timescale 1 ps / 1 ps
 // synopsys translate_on
-module ramOnChip #(parameter ramSize,
-              parameter ramWide,
-              parameter ramAddrWide = $clog2(ramSize) 
+module ramOnChip #(
+	parameter init_file = "",
+	parameter ramSize,
+    parameter ramWide,
+    parameter ramAddrWide = $clog2(ramSize) 
   )
   (
 	clk,
@@ -98,7 +100,7 @@ module ramOnChip #(parameter ramSize,
 		altsyncram_component.clock_enable_input_b = "BYPASS",
 		altsyncram_component.clock_enable_output_b = "BYPASS",
 		altsyncram_component.intended_device_family = "Cyclone IV GX",
-		altsyncram_component.init_file = "instruction.mif",
+		altsyncram_component.init_file = init_file,//"instruction.mif",
 		altsyncram_component.lpm_type = "altsyncram",
 		altsyncram_component.numwords_a = ramSize,
 		altsyncram_component.numwords_b = ramSize,

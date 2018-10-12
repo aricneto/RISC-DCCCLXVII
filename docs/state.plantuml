@@ -1,9 +1,15 @@
-@startuml state
+@startuml staty
 
 skinparam monochrome true
 'line ortho, polyline
 skinparam linetype ortho
 skinparam shadowing false
+skinparam class {
+	'BackgroundColor PaleGreen
+	'ArrowColor SeaGreen
+	BorderColor gray
+}
+
 
 class instr_fetch {
     + 1 IMemRead

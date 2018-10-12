@@ -101,7 +101,7 @@ reg_ld #(.SIZE(32)) program_counter (
     .reset(reset)
 );
 
-memory_32 memory_instr (
+memory_32 #(.init_file("mem/instruction.mif")) memory_instr (
     .raddress(pc_data),
     .data_out(mem_rd_instr),
     .clk(clk),
@@ -193,7 +193,7 @@ sign_extend sign_extend (
     .o_extended(instr_extended)
 );
 
-memory_64 memory_data (
+memory_64 #(.init_file("mem/dados.mif")) memory_data (
     .raddress(reg_alu_out),
     .waddress(reg_alu_out),
     .data_out(mem_rd_data),

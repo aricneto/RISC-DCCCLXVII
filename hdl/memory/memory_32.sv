@@ -23,7 +23,9 @@
 --		long as its copyright notice remains unchanged. 
 ------------------------------------------------------------------------------*/
 
-module memory_32 (
+module memory_32 #(
+    parameter init_file = ""
+)(
     // read and write address
     input wire [31:0] raddress,
     input wire [31:0] waddress,
@@ -38,7 +40,7 @@ module memory_32 (
      // clock
      input wire clk       
     );
-    
+
     wire [15:0]readUsefullAddress = raddress[15:0]; 
     
     wire [15:0]addS0 = readUsefullAddress + 0;
@@ -76,13 +78,13 @@ module memory_32 (
     
     //Bancos de memórias (cada banco possui 65536 bytes)
     //0
-    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock0 (.clk(clk), .data(inS0), .radd(addS0), .wadd(waddS0), .wren(write), .q(outS0) );
+    ramOnChip #(.init_file(init_file), .ramSize(65536), .ramWide(8) ) memBlock0 (.clk(clk), .data(inS0), .radd(addS0), .wadd(waddS0), .wren(write), .q(outS0) );
     //1
-    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock1 (.clk(clk), .data(inS1), .radd(addS1), .wadd(waddS1), .wren(write), .q(outS1) ); 
+    ramOnChip #(.init_file(init_file), .ramSize(65536), .ramWide(8) ) memBlock1 (.clk(clk), .data(inS1), .radd(addS1), .wadd(waddS1), .wren(write), .q(outS1) ); 
     //2
-    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock2 (.clk(clk), .data(inS2), .radd(addS2), .wadd(waddS2), .wren(write), .q(outS2) ); 
+    ramOnChip #(.init_file(init_file), .ramSize(65536), .ramWide(8) ) memBlock2 (.clk(clk), .data(inS2), .radd(addS2), .wadd(waddS2), .wren(write), .q(outS2) ); 
     //3
-    ramOnChip #(.ramSize(65536), .ramWide(8) ) memBlock3 (.clk(clk), .data(inS3), .radd(addS3), .wadd(waddS3), .wren(write), .q(outS3) );
+    ramOnChip #(.init_file(init_file), .ramSize(65536), .ramWide(8) ) memBlock3 (.clk(clk), .data(inS3), .radd(addS3), .wadd(waddS3), .wren(write), .q(outS3) );
         
 endmodule
     

@@ -44,6 +44,8 @@ In VSCode, open the task menu with <kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>B</kb
 * `hdl`: all module files
   * `hdl/memory`: memory modules
   * `hdl/packages`: functions and constants
+* `libs`: build folder
+* `mem`: stores memory instructions for pre-load
 
 ## Coding guidelines
 
