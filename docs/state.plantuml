@@ -1,17 +1,18 @@
-@startuml
+@startuml state
 
-'skinparam monochrome true
-skinparam linetype polyline
+skinparam monochrome true
+'line ortho, polyline
+skinparam linetype ortho
 skinparam shadowing false
 
 class instr_fetch {
     + 1 IMemRead
     + 1 IrWrite
     + 1 PCWrite
-    ~ 00 PCSource
+    # 00 PCSource
     - 0 ALUSrcA
-    ~ 01 ALUSrcB
-    ~ 00 ALUOp
+    # 01 ALUSrcB
+    # 00 ALUOp
 }
 
 class instr_decode {
@@ -19,15 +20,15 @@ class instr_decode {
     + 1 LoadRegB
     + 1 LoadAOut
     - 0 ALUSrcA
-    ~ 11 ALUSrcB
-    ~ 00 ALUOp
+    # 11 ALUSrcB
+    # 00 ALUOp
 }
 
 class mem_comp < ld or sd > {
     + 1 LoadAOut
     + 1 ALUSrcA
-    ~ 10 ALUSrcB
-    ~ 00 ALUOp 
+    # 10 ALUSrcB
+    # 00 ALUOp 
 }
 
 class mem_acc_ld < ld > {
@@ -44,31 +45,34 @@ class write_back {
     + 1 MemToReg
 }
 
-class exec_type_r < type r >{
+class exec_type_r < op: 51 >{
     + 1 LoadAOut
     + 1 ALUSrcA
-    ~ 00 ALUSrcB
-    ~ f7 ALUOp
+    # 00 ALUSrcB
+    .. ALUOp ..
+    # f7 if f3 == 0
+    # f3 if f3 != 0
 }
 
-class exec_type_i < type i >{
+class exec_type_i < op: 19 >{
     + 1 LoadAOut
     + 1 ALUSrcA
-    ~ 10 ALUSrcB
-    ~ f3 ALUOp
+    # 10 ALUSrcB
+    .. ALUOp ..
+    # f3 if f3 != 2
 }
 
-class compl_type_r {
+class compl_alu {
     + 1 RegWrite
     - 0 MemToReg
 }
 
-class branch_compl < beq >{
+class branch_compl < beq > {
     + 1 PCWriteCond
-    ~ 01 PCSource
+    # 01 PCSource
     + 1 ALUSrcA
-    ~ 00 ALUSrcB
-    ~ 01 ALUOp
+    # 00 ALUSrcB
+    # 01 ALUOp
 }
 
 instr_fetch --> instr_decode
@@ -86,10 +90,10 @@ write_back ..> instr_fetch
 
 mem_acc_sd ..> instr_fetch
 
-exec_type_r --> compl_type_r
-exec_type_i --> compl_type_r
+exec_type_r --> compl_alu
+exec_type_i --> compl_alu
 
-compl_type_r ..> instr_fetch
+compl_alu ..> instr_fetch
 
 branch_compl ..> instr_fetch
 
