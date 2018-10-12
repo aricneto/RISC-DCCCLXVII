@@ -28,24 +28,12 @@ module tb_control;
     );
 
     initial begin
-        $monitor("\ntime = %t\nreg x9 = %d\nreg x20 = %d\nreg x21 = %d\nstate = %b\nnext  = %b\ninstr = %b\npc = %d\nmux = %d\n\n===-==-===-==-===", 
-        $time, 
-        control_top.processor.reg_file.registers[10], 
-        control_top.processor.reg_file.registers[21], 
-        control_top.processor.reg_file.registers[22],
-        control_top.state,
-        control_top.next_state,
-        control_top.instruction,
-        control_top.processor.pc_data,
-        control_top.processor.mux_pc_out);
-
         clk = 0;
         reset = 1;
         #10 reset = 0;
-
-    end // initial begin
+    end
 
     always
-        #80 clk = !clk;
+        #20 clk = !clk;
 
 endmodule: tb_control
