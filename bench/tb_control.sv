@@ -19,7 +19,7 @@ import operations::*;
 
 module tb_control;
 
-    logic clk;
+    logi clk;
     logic reset;
 
     control_top control_top(
@@ -34,6 +34,6 @@ module tb_control;
     end
 
     always
-        #20 clk = !clk;
+        #80 clk = !clk;
 
 endmodule: tb_control
