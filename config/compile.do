@@ -11,4 +11,4 @@ vlib libs/lib_BENCH
 vmap lib_BENCH libs/lib_BENCH
 
 # compile all files in bench and its subfolders
-vlog -msgsingleline -work lib_BENCH bench/* hdl/*.sv hdl/memory/* +incdir+hdl+hdl/memory -y hdl
+vlog -msgsingleline -work lib_BENCH bench/*.sv hdl/*.sv hdl/memory/* +incdir+hdl+hdl/memory -y hdl

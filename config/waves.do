@@ -19,6 +19,42 @@ radix define Opcode {
      -default binary
 }
 
+radix define Register {
+     5'd0 "[x0] zero", -color red
+     5'd1 "[x1] ra", -color coral
+     5'd2 "[x2] sp", -color orange
+     5'd3 "[x3] gp", -color goldenrod
+     5'd4 "[x4] tp", -color "aquamarine"
+     5'd5 "[x5] t0", -color "aquamarine"
+     5'd6 "[x6] t1", -color "aquamarine"
+     5'd7 "[x7] t2", -color "aquamarine"
+     5'd8 "[x8] s0/fp", -color "violet"
+     5'd9 "[x9] s1", -color "violet"
+     5'd10 "[x10] a0", -color "spring green"
+     5'd11 "[x11] a1", -color "spring green"
+     5'd12 "[x12] a2", -color "spring green"
+     5'd13 "[x13] a3", -color "spring green"
+     5'd14 "[x14] a4", -color "spring green"
+     5'd15 "[x15] a5", -color "spring green"
+     5'd16 "[x16] a6", -color "spring green"
+     5'd17 "[x17] a7", -color "spring green"
+     5'd18 "[x18] s2", -color "violet"
+     5'd19 "[x19] s3", -color "violet"
+     5'd20 "[x20] s4", -color "violet"
+     5'd21 "[x21] s5", -color "violet"
+     5'd22 "[x22] s6", -color "violet"
+     5'd23 "[x23] s7", -color "violet"
+     5'd24 "[x24] s8", -color "violet"
+     5'd25 "[x25] s9", -color "violet"
+     5'd26 "[x26] s10", -color "violet"
+     5'd27 "[x27] s11", -color "violet"
+     5'd28 "[x28] t3", -color "aquamarine"
+     5'd29 "[x29] t4", -color "aquamarine"
+     5'd30 "[x30] t5", -color "aquamarine"
+     5'd31 "[x31] t6", -color "aquamarine"
+     -default binary
+}
+
 radix define ALU {
      3'b000 "SUM", -color orange
      3'b001 "SHIFT LEFT", -color green
@@ -73,9 +109,9 @@ add wave -group "Instruction" -radix binary \
     -radix Opcode tb_control/control_top/opcode \
     -color white tb_control/control_top/funct7 \
     -color white tb_control/control_top/funct3 \
-    -label "rs1" -color gray -unsigned {tb_control/control_top/instruction[19:15]} \
-    -label "rs2" -color gray -unsigned {tb_control/control_top/instruction[24:20]} \
-    -label "rd"  -color gray -unsigned {tb_control/control_top/instruction[11:7]} \
+    -label "rs1" -color white -radix Register {tb_control/control_top/instruction[19:15]} \
+    -label "rs2" -color white -radix Register {tb_control/control_top/instruction[24:20]} \
+    -label "rd"  -color white -radix Register {tb_control/control_top/instruction[11:7]} \
     -label "instruction" -binary tb_control/control_top/instruction
 
 add wave -group "Immediate" -decimal \
@@ -146,10 +182,10 @@ add wave -group "PC" \
 add wave -group "Reg File" \
     -color cyan tb_control/control_top/processor/reg_file/registers \
     -color yellow tb_control/control_top/processor/reg_file/reg_write \
-    -color white -unsigned tb_control/control_top/processor/reg_file/w_reg \
-    -unsigned tb_control/control_top/processor/reg_file/r_reg1 \
-    -unsigned tb_control/control_top/processor/reg_file/r_reg2 \
-    -color gray tb_control/control_top/processor/reg_file/w_data \
+    -color green -radix Register tb_control/control_top/processor/reg_file/w_reg \
+    -radix Register tb_control/control_top/processor/reg_file/r_reg1 \
+    -radix Register tb_control/control_top/processor/reg_file/r_reg2 \
+    -color gray -decimal tb_control/control_top/processor/reg_file/w_data \
     -decimal tb_control/control_top/processor/reg_file/r_data1 \
     -decimal tb_control/control_top/processor/reg_file/r_data2 
 add wave -group "Instr Reg" -binary tb_control/control_top/processor/instr_reg/*

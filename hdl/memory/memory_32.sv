@@ -32,7 +32,7 @@ module memory_32 #(
 
     // data in/out
     input wire [31:0] data_in,
-    input wire [31:0] data_out,
+    output wire [31:0] data_out,
 
      // true if writing, false if reading
      input wire write,

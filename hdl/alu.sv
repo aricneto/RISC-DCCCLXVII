@@ -57,7 +57,7 @@ assign zero = (result == 0);  // output true if result is zero
 assign negative = result[SIZE-1]; // output true if result is negative
 
 // output true if overflow occurred 
-assign overflow = funct == operations::SUM ? ((a[SIZE-1] == b[SIZE-1]) & res_add[SIZE-1] != a[SIZE-1]) : ((a[SIZE-1] != b[SIZE-1]) & res_sub[SIZE-1] != a[SIZE-1]);
+assign overflow = funct == 3'b000 ? ((a[SIZE-1] == b[SIZE-1]) & res_add[SIZE-1] != a[SIZE-1]) : ((a[SIZE-1] != b[SIZE-1]) & res_sub[SIZE-1] != a[SIZE-1]);
 
 always_comb begin
     case (funct)

@@ -183,7 +183,13 @@ always_comb begin
             LoadAOut = 1;
             ALUSrcA  = operations::_ALA_REG_A;
             ALUSrcB  = operations::_ALB_REG_B;
-            ALUOp    = funct7[6:4]; // todo: if funct3 != 0
+
+            if (funct3 == 3'b000)
+                ALUOp = funct7[6:4];
+            else if (funct3 == 3'b010)
+                ALUOp = 3'b001;
+            else
+                ALUOp = funct3;
 
             next_state = R_TYPE_COMPL;
         end
