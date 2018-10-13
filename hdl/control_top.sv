@@ -43,6 +43,7 @@ logic MemToReg;
 // data memory flags
 logic DMemOp;
 logic LoadMDR;
+logic [1:0] LoadSplice;
 
 // instr. memory flags
 logic IMemRead;
@@ -71,6 +72,7 @@ processing processor (
     // data memory flags
     .DMemOp(DMemOp),
     .LoadMDR(LoadMDR),
+    .LoadSplice(LoadSplice),
 
     // instr memory flags
     .IMemRead(IMemRead),
@@ -253,6 +255,13 @@ always_comb begin
         WRITE_BACK: begin
             RegWrite = 1;
             MemToReg = 1;
+
+            case (funct3)
+                3'b011: LoadSplice = operations::SPL_LD;
+                3'b010: LoadSplice = operations::SPL_LW;
+                3'b001: LoadSplice = operations::SPL_LH;
+                3'b100: LoadSplice = operations::SPL_LBU;
+            endcase
 
             next_state = INSTR_FETCH;
         end

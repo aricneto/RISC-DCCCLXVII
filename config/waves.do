@@ -80,9 +80,6 @@ add list -width 30 \
 
 # clock/reset
 add wave tb_control/control_top/reset
-add wave tb_control/control_top/clk
-add wave -color cyan -label "PC" tb_control/control_top/processor/program_counter/r_data
-add wave -color yellow -label "state" tb_control/control_top/state
 
 add wave -divider ""
 
@@ -216,6 +213,11 @@ add wave -group "Mem Data" \
      tb_control/control_top/processor/memory_data/data_in \
      -color cyan tb_control/control_top/processor/memory_data/data_out \
      tb_control/control_top/processor/memory_data/write
+
+quietly WaveActivateNextPane
+add wave -color yellow -label "state" tb_control/control_top/state
+add wave -color cyan -label "PC" tb_control/control_top/processor/program_counter/r_data
+add wave tb_control/control_top/clk
 
 # watch signals
 # ::add watch tb_control/control_top/processor/program_counter/r_data -radix decimal -radixenum # default

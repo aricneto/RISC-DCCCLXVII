@@ -11,7 +11,7 @@ Instructions:
         ✔ slli @done(18-10-13 09:57)
         ✔ slti @done(18-10-13 09:57)
         ☐ jalr
-        ☐ ld
+        ✔ ld @done(18-10-13 11:04)
         ☐ lw
         ☐ lbu
         ☐ lh

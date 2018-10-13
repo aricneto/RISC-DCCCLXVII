@@ -29,6 +29,7 @@ module processing(
     // data memory flags
     input logic DMemOp,
     input logic LoadMDR,
+    input logic [1:0] LoadSplice,
 
     // instr. memory flags
     input logic IMemRead,
@@ -83,6 +84,7 @@ wire [31:0] mem_rd_instr;
 // == « data memory » == //
 wire [63:0] mem_rd_data;
 wire [63:0] reg_mem_rd_data;
+wire [63:0] ext_mem_rd_data;
 
 // == « signal extender » == //
 wire [63:0] instr_extended;
@@ -187,7 +189,6 @@ mux_2to1_64 mux_PC (
     .o_select(mux_pc_out)
 );
 
-// fixme: case switch on sign_extend to extend the right amount for each opcode
 sign_extend sign_extend (
     .i_num(rd_instr_all),
     .o_extended(instr_extended)
@@ -210,10 +211,16 @@ reg_ld reg_mem_data (
     .reset(reset)
 );
 
+load_splicer load_splicer (
+    .control(LoadSplice),
+    .i_num(reg_mem_rd_data),
+    .o_extended(ext_mem_rd_data)
+);
+
 mux_2to1_64 mux_reg_file (
     .i_select(MemToReg),
     .i_0(reg_alu_out),
-    .i_1(reg_mem_rd_data),
+    .i_1(ext_mem_rd_data),
     .o_select(mux_reg_file_data)
 );
     

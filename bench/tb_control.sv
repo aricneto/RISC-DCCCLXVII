@@ -1,7 +1,7 @@
 `include "packages/opcodes.svh"
 `include "packages/operations.svh"
-//`include "bench/asserts/assert_type_r.sv"
 `include "control_top.sv"
+`include "load_splicer.sv"
 `include "alu.sv"       
 `include "mux_2to1_64.sv"  
 `include "reg_ld.sv"
