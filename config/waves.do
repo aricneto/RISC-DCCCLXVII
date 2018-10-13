@@ -143,7 +143,7 @@ add wave -group "Sign extend" \
 add wave -group "Reg ALUOut" \
      tb_control/control_top/processor/alu_out/load \
      tb_control/control_top/processor/alu_out/w_data \
-     tb_control/control_top/processor/alu_out/r_data
+     -color cyan tb_control/control_top/processor/alu_out/r_data
 
 # ==================================================
 # ====---==--==-|| « Multiplexers » ||-==--==---====
@@ -197,6 +197,25 @@ add wave -group "Instr Reg" -binary tb_control/control_top/processor/instr_reg/*
 add wave -group "Reg Mem Data" tb_control/control_top/processor/reg_mem_data/*
 add wave -group "Reg ALU A" tb_control/control_top/processor/reg_ALU_a/*
 add wave -group "Reg ALU B" tb_control/control_top/processor/reg_ALU_b/*
+
+
+# ===============================================
+# ====---==--==-|| « Memory » ||-==--==---====
+
+add wave -divider "Memory"
+add wave -group "Mem Instruction" \
+     -color cyan tb_control/control_top/processor/memory_instr/raddress \
+     -color white tb_control/control_top/processor/memory_instr/waddress \
+     tb_control/control_top/processor/memory_instr/data_in \
+     -color cyan tb_control/control_top/processor/memory_instr/data_out \
+     tb_control/control_top/processor/memory_instr/write
+
+add wave -group "Mem Data" \
+     -color cyan tb_control/control_top/processor/memory_data/raddress \
+     -color white tb_control/control_top/processor/memory_data/waddress \
+     tb_control/control_top/processor/memory_data/data_in \
+     -color cyan tb_control/control_top/processor/memory_data/data_out \
+     tb_control/control_top/processor/memory_data/write
 
 # watch signals
 # ::add watch tb_control/control_top/processor/program_counter/r_data -radix decimal -radixenum # default

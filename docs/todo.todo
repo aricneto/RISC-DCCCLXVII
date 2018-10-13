@@ -1,15 +1,15 @@
 Instructions:
     Type R:
         ✔ add @done(18-10-08 14:10)
-        ☐ sub
-        ☐ and
-        ☐ slt
+        ✔ sub @done(18-10-13 09:57)
+        ✔ and @done(18-10-13 09:57)
+        ✔ slt @done(18-10-13 09:57)
     Type I:
         ✔ addi @done(18-10-08 14:14)
-        ☐ srli
-        ☐ srai
-        ☐ slli
-        ☐ slti
+        ✔ srli @done(18-10-13 09:57)
+        ✔ srai @done(18-10-13 09:57)
+        ✔ slli @done(18-10-13 09:57)
+        ✔ slti @done(18-10-13 09:57)
         ☐ jalr
         ☐ ld
         ☐ lw

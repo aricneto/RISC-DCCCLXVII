@@ -171,6 +171,7 @@ always_comb begin
             ALUSrcB  = operations::_ALB_IMM;
             ALUOp    = operations::SUM;
             LoadAOut = 1;
+            LoadMDR = 1;
 
             case (opcode)
                 opcodes::LD: next_state = MEM_ACC_LD;
@@ -233,7 +234,6 @@ always_comb begin
         // opcode: « ld »
         MEM_ACC_LD: begin
             DMemOp  = 0;
-            LoadMDR = 1;
 
             next_state = WRITE_BACK;
         end

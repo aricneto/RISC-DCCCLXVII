@@ -5,6 +5,9 @@ MODELSIM="${PATH_WORK}/modelsim.ini"
 
 mkdir -p ${PATH_WORK}/libs/lib_BENCH
 
+# create new lib
+vlib ${PATH_WORK}/libs/lib_BENCH
+
 # delete previous lib
 vdel -lib  ${PATH_WORK}/libs/lib_BENCH -all
  

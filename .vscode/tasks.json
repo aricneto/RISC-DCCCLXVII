@@ -13,9 +13,9 @@
             },
         },
         {
-            "label": "Compile HDL",
+            "label": "Compile TOP",
             "type": "shell",
-            "command": "${workspaceFolder}/config/sh/comp_hdl.sh",
+            "command": "${workspaceFolder}/config/sh/comp_top.sh",
             "group": {
                 "isDefault": true,
                 "kind": "build"
@@ -31,7 +31,7 @@
                         "."
                     ],
                     "pattern": {
-                        "regexp": "\\*\\* (Error):.* (\\/.*.sv)\\((\\d*)\\).?\\s(?:\\(.*\\))*(.*)",
+                        "regexp": "\\*\\* (Error|Warning):.* (\\/.*.sv)\\((\\d*)\\).?\\s(?:\\(.*\\))*(.*)",
                         "severity": 1,
                         "file": 2,
                         "line": 3,
@@ -56,7 +56,7 @@
                         "."
                     ],
                     "pattern": {
-                        "regexp": "\\*\\* (Error):.* (\\/.*.sv)\\((\\d*)\\).?\\s(?:\\(.*\\))*(.*)",
+                        "regexp": "\\*\\* (Error|Warning):.* (\\/.*.sv)\\((\\d*)\\).?\\s(?:\\(.*\\))*(.*)",
                         "severity": 1,
                         "file": 2,
                         "line": 3,
