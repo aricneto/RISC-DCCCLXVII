@@ -18,10 +18,10 @@ Instructions:
         ☐ nop
         ☐ break
     Type S:
-        ☐ sd
-        ☐ sw
-        ☐ sh
-        ☐ sb
+        ✔ sd @done(18-10-13 19:09)
+        ✔ sw @done(18-10-13 19:09)
+        ✔ sh @done(18-10-13 19:09)
+        ✔ sb @done(18-10-13 19:09)
     Type SB:
         ☐ beq
         ☐ bne

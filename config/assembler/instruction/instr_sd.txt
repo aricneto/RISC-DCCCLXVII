@@ -1,0 +1,10 @@
+ld x1,0(x0)
+addi x11,x0,64
+sd x1,64(x0)
+sw x1,8(x11)
+sh x1,16(x11)
+sb x1,24(x11)
+ld x3,64(x0)
+lw x4,8(x11)
+lh x5,16(x11)
+lbu x6,24(x11)

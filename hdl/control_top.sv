@@ -44,6 +44,7 @@ logic MemToReg;
 logic DMemOp;
 logic LoadMDR;
 logic [1:0] LoadSplice;
+logic [1:0] StoreSplice;
 
 // instr. memory flags
 logic IMemRead;
@@ -73,6 +74,7 @@ processing processor (
     .DMemOp(DMemOp),
     .LoadMDR(LoadMDR),
     .LoadSplice(LoadSplice),
+    .StoreSplice(StoreSplice),
 
     // instr memory flags
     .IMemRead(IMemRead),
@@ -159,8 +161,7 @@ always_comb begin
             ALUOp    = operations::SUM;
 
             case (opcode)
-                opcodes::LD, opcodes::SD: next_state = MEM_ADDRESS_COMP;
-                opcodes::TYPE_S: next_state = MEM_ADDRESS_COMP;
+                opcodes::LD, opcodes::TYPE_S: next_state = MEM_ADDRESS_COMP;
                 opcodes::IMM_ARITH: next_state = IMM_ARITH;
                 opcodes::TYPE_R: next_state = EXECUTION_TYPE_R;
                 opcodes::TYPE_U: next_state = EXECUTION_TYPE_U;
@@ -177,7 +178,7 @@ always_comb begin
 
             case (opcode)
                 opcodes::LD: next_state = MEM_ACC_LD;
-                opcodes::SD: next_state = MEM_ACC_SD;
+                opcodes::TYPE_S: next_state = MEM_ACC_SD;
             endcase // todo: add default
         end
 
@@ -248,6 +249,13 @@ always_comb begin
         // opcode: « sd »
         MEM_ACC_SD: begin
             DMemOp = 1;
+
+             case (funct3)
+                3'b111: StoreSplice = operations::SPL_SD;
+                3'b010: StoreSplice = operations::SPL_SW;
+                3'b001: StoreSplice = operations::SPL_SH;
+                3'b000: StoreSplice = operations::SPL_SB;
+            endcase
 
             next_state = INSTR_FETCH;
         end

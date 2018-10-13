@@ -30,6 +30,7 @@ module processing(
     input logic DMemOp,
     input logic LoadMDR,
     input logic [1:0] LoadSplice,
+    input logic [1:0] StoreSplice,
 
     // instr. memory flags
     input logic IMemRead,
@@ -85,6 +86,7 @@ wire [31:0] mem_rd_instr;
 wire [63:0] mem_rd_data;
 wire [63:0] reg_mem_rd_data;
 wire [63:0] ext_mem_rd_data;
+wire [63:0] ext_mem_w_data;
 
 // == « signal extender » == //
 wire [63:0] instr_extended;
@@ -194,11 +196,17 @@ sign_extend sign_extend (
     .o_extended(instr_extended)
 );
 
+store_splicer store_splicer (
+    .control(StoreSplice),
+    .i_num(rd_reg_b),
+    .o_extended(ext_mem_w_data)
+);
+
 memory_64 #(.init_file("mem/dados.mif")) memory_data (
     .raddress(reg_alu_out),
     .waddress(reg_alu_out),
     .data_out(mem_rd_data),
-    .data_in(rd_reg_b),
+    .data_in(ext_mem_w_data),
     .write(DMemOp),
     .clk(clk)
 );

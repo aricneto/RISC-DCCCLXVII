@@ -39,31 +39,6 @@
                     }
                 }
             ]
-        },
-        {
-            "label": "Compile BENCH",
-            "type": "shell",
-            "command": "${workspaceFolder}/config/sh/comp_bench.sh",
-            "group": "build",
-            "presentation": {
-                "panel": "dedicated",
-                "reveal": "never"
-            },
-            "problemMatcher": [
-                {
-                    "fileLocation": [
-                        "relative",
-                        "."
-                    ],
-                    "pattern": {
-                        "regexp": "\\*\\* (Error|Warning):.* (\\/.*.sv)\\((\\d*)\\).?\\s(?:\\(.*\\))*(.*)",
-                        "severity": 1,
-                        "file": 2,
-                        "line": 3,
-                        "message": 4
-                    }
-                }
-            ]
         }
     ]
 }

@@ -4,16 +4,13 @@
 //                                    d88      d88    `?8b 88,b    
 //                                   d88'     d88' `?888P' `?888P'
 // -> module description:
-//        sign-extends the memory data for load operations
+//        sign-extends the memory data for store operations
 // ==--===--===-==---==--==--===--===-==---==--==--===--===-==---==--==--==
-
-
- // BREAKING: check how LW and LH are supposed to be extended 
 
 `include "packages/operations.svh"
 import operations::*;
 
-module load_splicer (
+module store_splicer (
     input logic [1:0] control, 
     input logic [63:0] i_num,
     output logic [63:0] o_extended
@@ -21,15 +18,15 @@ module load_splicer (
 
 always_comb begin
     case (control)
-        operations::SPL_LD:
+        operations::SPL_SD:
             o_extended = i_num;
-        operations::SPL_LW: // sign extend
-            o_extended = {i_num[63] == 1 ? 32'b1 : 32'b0, i_num[31:0]};
-        operations::SPL_LH:
-            o_extended = {i_num[63] == 1 ? 48'b1 : 48'b0, i_num[15:0]};
-        operations::SPL_LBU:
-            o_extended = {56'b0, i_num[7:0]};
+        operations::SPL_SW:
+            o_extended = {32'd0, i_num[31:0]};
+        operations::SPL_SH:
+            o_extended = {48'd0, i_num[15:0]};
+        operations::SPL_SB:
+            o_extended = {56'd0, i_num[7:0]};
     endcase
 end
 
-endmodule: load_splicer
+endmodule: store_splicer

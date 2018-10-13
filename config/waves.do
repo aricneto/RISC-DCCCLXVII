@@ -59,16 +59,16 @@ radix define States {
      7'd0 "START", 
      7'd1 "FETCH", -color yellow
      7'd2 "DECODE", -color "spring green"
-     7'd3 "MEM_ADDRESS_COMP",  -color aquamarine
-     7'd4 "IMM_ARITH", -color aquamarine
-     7'd5 "EXECUTION_TYPE_R", -color aquamarine
-     7'd6 "EXECUTION_TYPE_U", -color aquamarine
-     7'd7 "R_TYPE_COMPL", -color aquamarine
-     7'd8 "BRANCH_COMPL", -color aquamarine
-     7'd9 "MEM_ACC_LD", -color aquamarine
-     7'd10 "WAIT_READMEM", -color aquamarine
-     7'd11 "MEM_ACC_SD", -color aquamarine
-     7'd12 "WRITE_BACK" -color aquamarine
+     7'd3 "MEM_ADDRESS_COMP",  -color violet
+     7'd4 "IMM_ARITH", -color violet
+     7'd5 "EXECUTION_TYPE_R", -color violet
+     7'd6 "EXECUTION_TYPE_U", -color violet
+     7'd7 "R_TYPE_COMPL", -color violet
+     7'd8 "BRANCH_COMPL", -color violet
+     7'd9 "MEM_ACC_LD", -color violet
+     7'd10 "WAIT_READMEM", -color violet
+     7'd11 "MEM_ACC_SD", -color violet
+     7'd12 "WRITE_BACK" -color violet
      -default decimal
      -defaultcolor cyan
 }
@@ -269,6 +269,9 @@ add wave -group "Mem Data" \
      tb_control/control_top/processor/memory_data/data_in \
      -color cyan tb_control/control_top/processor/memory_data/data_out \
      tb_control/control_top/processor/memory_data/write
+
+add wave -group "Splice Store" -decimal tb_control/control_top/processor/store_splicer/*
+add wave -group "Splice Load" -decimal tb_control/control_top/processor/load_splicer/*
 
 quietly WaveActivateNextPane
 add wave -color cyan -radix States -label "state" tb_control/control_top/state

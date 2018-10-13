@@ -30,6 +30,9 @@ enum {_FW_ALU_OUT, _FW_MEM_OUT} mux_FileWrite;
 // Load splicer control
 enum {SPL_LD, SPL_LW, SPL_LH, SPL_LBU} splice_load;
 
+// Store splicer control
+enum {SPL_SD, SPL_SW, SPL_SH, SPL_SB} splice_store;
+
 endpackage
 
 `endif

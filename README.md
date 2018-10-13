@@ -6,15 +6,12 @@
 A RISC-V-like CPU designed in SystemVerilog for a Hardware Infrastructure class.
 
 ## Compiling and running
-In the `config` folder there are three scripts that can be used to automatically compile the files in a Linux environment:  
-* `initsim.sh` will set the correct PATH for your directory, setup and launch ModelSim with all the right configs. 
-* `comp_hdl.sh` will compile only the files in the `hdl` folder.  
-* `comp_bench.sh` will compile all testbench files.
-
-Addidionaly, there are three `.do` files that can be used to compile and run the project in any operating system:
+In the `config` folder there are three `.do` files that can be used to compile and run the project in any operating system:
 * `initsim.do` will compile and run the simulation.
 * `compile.do` will compile all files.
 * `waves.do` will setup all the waves for the simulation.
+
+Addidionaly, if you're in a Linux system, `initsim.sh` will set the correct PATH for your directory, setup and launch ModelSim with all the right configs. 
 
 There are two ways to use the included build scripts.
 
@@ -32,10 +29,10 @@ It should then compile and setup the simulation automatically.
 First, make sure ModelSim is in your PATH. Then, give all compile scripts executable permission:
 
 ```zsh
-sudo chmod +x config/*.sh
+sudo chmod +x config/*.do ; sudo chmod +x config/sh/initsim.sh
 ```
 
-In VSCode, open the task menu with <kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>B</kbd>. Run `Compile BENCH` first to compile all files, then run `Run ModelSim` to setup the simulation environment.
+In VSCode, open the task menu with <kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>B</kbd>. Run `Compile TOP` first to compile all files, then run `Run ModelSim` to setup the simulation environment.
 
 ## Folder structure
 * `bench`: all testbench files
