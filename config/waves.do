@@ -55,6 +55,24 @@ radix define Register {
      -default binary
 }
 
+radix define States {
+     7'd0 "START", 
+     7'd1 "FETCH", -color yellow
+     7'd2 "DECODE", -color "spring green"
+     7'd3 "MEM_ADDRESS_COMP",  -color aquamarine
+     7'd4 "IMM_ARITH", -color aquamarine
+     7'd5 "EXECUTION_TYPE_R", -color aquamarine
+     7'd6 "EXECUTION_TYPE_U", -color aquamarine
+     7'd7 "R_TYPE_COMPL", -color aquamarine
+     7'd8 "BRANCH_COMPL", -color aquamarine
+     7'd9 "MEM_ACC_LD", -color aquamarine
+     7'd10 "WAIT_READMEM", -color aquamarine
+     7'd11 "MEM_ACC_SD", -color aquamarine
+     7'd12 "WRITE_BACK" -color aquamarine
+     -default decimal
+     -defaultcolor cyan
+}
+
 radix define ALU {
      4'b0000 "SUM", -color orange
      4'b0001 "SHIFT LEFT", -color green
@@ -220,7 +238,7 @@ add wave -group "PC" \
     -color green tb_control/control_top/processor/program_counter/w_data \
     -color yellow tb_control/control_top/processor/program_counter/load
 add wave -group "Reg File" \
-    -color cyan tb_control/control_top/processor/reg_file/registers \
+    -color cyan -decimal tb_control/control_top/processor/reg_file/registers \
     -color yellow tb_control/control_top/processor/reg_file/reg_write \
     -color green -radix Register tb_control/control_top/processor/reg_file/w_reg \
     -radix Register tb_control/control_top/processor/reg_file/r_reg1 \
@@ -253,7 +271,7 @@ add wave -group "Mem Data" \
      tb_control/control_top/processor/memory_data/write
 
 quietly WaveActivateNextPane
-add wave -color yellow -label "state" tb_control/control_top/state
+add wave -color cyan -radix States -label "state" tb_control/control_top/state
 add wave -radix Instruction -label "instruction" {tb_control/control_top/instruction[31:25] & tb_control/control_top/instruction[14:12] & tb_control/control_top/instruction[6:0]}
 add wave -color cyan -label "PC" tb_control/control_top/processor/program_counter/r_data
 
