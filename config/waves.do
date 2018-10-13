@@ -124,9 +124,13 @@ radix define Instruction {
      -default binary
 }
 
-echo "opcode colors:\nalu ops = orange\nload/store = cyan\nnop/break = read\njump/branch = green\n"
-
-echo "alu colors:\nsum/sub = orange\nbitwise = green\nload = cyan"
+echo "==---==--===---==--=-==---==--=-|| «  » ||-=--==---==-=--==---===--==---==\n"
+echo "````````````````````````````88bd88b``88b``d888b,`d8888b"
+echo "````````````````````````````88P'`````88P`?8b,```d8P'``P"
+echo "```````````````````````````d88``````d88`````?8b`88b````"
+echo "``````````````````````````d88'`````d88'``?888P'``?888P'"
+echo "\nWelcome to the RISC-DCCCLXVII architecture"
+echo "\nIf you want to have a better view of the states, right click the bottom state wave on the wave list, and on \"radix\", select \"Numeric Enums\""
 
 # state machine list
 add list -width 30 \
