@@ -122,8 +122,8 @@ instr_reg instr_reg (
 
 regfile_64 reg_file (
     .reg_write(RegWrite),
-    .r_reg1(rd_instr_24_20),
-    .r_reg2(rd_instr_19_15),
+    .r_reg1(rd_instr_19_15),
+    .r_reg2(rd_instr_24_20),
     .w_reg(rd_instr_11_7),
     .r_data1(rd_regfile_1),
     .r_data2(rd_regfile_2),
