@@ -139,8 +139,11 @@ add wave -group "ALU" \
 add wave -group "Sign extend" \
      -label "in" tb_control/control_top/processor/sign_extend/i_num \
      -label "out" -color cyan tb_control/control_top/processor/sign_extend/o_extended \
-     -label "opcode" -color gray -radix Opcode tb_control/control_top/processor/sign_extend/opcode 
-
+     -label "opcode" -color gray -radix Opcode tb_control/control_top/processor/sign_extend/opcode
+add wave -group "Reg ALUOut" \
+     tb_control/control_top/processor/alu_out/load \
+     tb_control/control_top/processor/alu_out/w_data \
+     tb_control/control_top/processor/alu_out/r_data
 
 # ==================================================
 # ====---==--==-|| « Multiplexers » ||-==--==---====

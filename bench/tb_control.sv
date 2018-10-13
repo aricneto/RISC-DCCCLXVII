@@ -30,10 +30,12 @@ module tb_control;
     );
 
     // uncomment ONE of these lines to test an instruction set
-    // type R tests
-    //defparam control_top.processor.memory_instr.init_file = "mem/test_tr.mif"; // 160 2 5 0
-    // type I arithmetic tests
-    defparam control_top.processor.memory_instr.init_file = "mem/test_ti_arith.mif"; //
+    // type R tests || 160 2 5 0
+    //defparam control_top.processor.memory_instr.init_file = "mem/test/test_tr.mif"; 
+    // type I arithmetic tests || 41 0 1312 534 0
+    //defparam control_top.processor.memory_instr.init_file = "mem/test/test_ti_arith.mif"; 
+    // type I load tests ||
+    defparam control_top.processor.memory_instr.init_file = "mem/test/test_ti_ld.mif"; // 
 
     initial begin
         $monitor("instruction: %b\nopcode: %b\nfunct7: %b\nfunct3: %b\n\n===-==-===-==-===", control_top.processor.instr_reg.instr_all, control_top.processor.instr_reg.opcode, control_top.processor.instr_reg.instr_all[31:25], control_top.processor.instr_reg.instr_all[14:12]);

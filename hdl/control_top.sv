@@ -167,10 +167,10 @@ always_comb begin
 
         // opcode: « ld » OR « SD »
         MEM_ADDRESS_COMP: begin
-            LoadAOut = 1;
             ALUSrcA  = 1;
             ALUSrcB  = operations::_ALB_IMM;
             ALUOp    = operations::SUM;
+            LoadAOut = 1;
 
             case (opcode)
                 opcodes::LD: next_state = MEM_ACC_LD;
