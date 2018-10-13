@@ -69,6 +69,43 @@ radix define ALU {
      -default binary
 }
 
+# {funct7, funct3, opcode}
+radix define Instruction {
+     // r-type
+     17'b0000000_000_0110011 "ADD", -color orange
+     17'b0100000_000_0110011 "SUB", -color orange
+     17'b0000000_111_0110011 "AND", -color orange
+     17'b0000000_010_0110011 "SLT", -color orange
+     // i-type
+     17'b???????_000_0010011 "ADDI", -color violet
+     17'b0000000_101_0010011 "SRLI", -color violet
+     17'b0100000_101_0010011 "SRAI", -color violet
+     17'b0000000_001_0010011 "SLLI", -color violet
+     17'b???????_010_0010011 "SLTI", -color violet
+     17'b???????_000_1100111 "JALR", -color cyan
+     17'b???????_011_0000011 "LD", -color yellow
+     17'b???????_010_0000011 "LW", -color yellow
+     17'b???????_100_0000011 "LBU", -color yellow
+     17'b???????_001_0000011 "LH", -color yellow
+     17'b???????_000_0010011 "NOP", -color green
+     17'b???????_000_1110011 "BREAK", -color red
+     // s-type
+     17'b???????_111_0100011 "SD", -color "spring green"
+     17'b???????_010_0100011 "SW", -color "spring green"
+     17'b???????_001_0100011 "SH", -color "spring green"
+     17'b???????_000_0100011 "SB", -color "spring green"
+     // sb-type
+     17'b???????_000_1100011 "BEQ", -color cyan
+     17'b???????_001_1100011 "BNE", -color cyan
+     17'b???????_101_1100011 "BGE", -color cyan
+     17'b???????_100_1100011 "BLT", -color cyan
+     // u-type
+     17'b???????_???_0110111 "LUI", -color yellow
+     // j-type
+     17'b???????_???_1101111 "JAL", -color cyan
+     -default binary
+}
+
 echo "opcode colors:\nalu ops = orange\nload/store = cyan\nnop/break = read\njump/branch = green\n"
 
 echo "alu colors:\nsum/sub = orange\nbitwise = green\nload = cyan"
@@ -80,6 +117,7 @@ add list -width 30 \
 
 # clock/reset
 add wave tb_control/control_top/reset
+add wave tb_control/control_top/clk
 
 add wave -divider ""
 
@@ -216,8 +254,8 @@ add wave -group "Mem Data" \
 
 quietly WaveActivateNextPane
 add wave -color yellow -label "state" tb_control/control_top/state
+add wave -radix Instruction -label "instruction" {tb_control/control_top/instruction[31:25] & tb_control/control_top/instruction[14:12] & tb_control/control_top/instruction[6:0]}
 add wave -color cyan -label "PC" tb_control/control_top/processor/program_counter/r_data
-add wave tb_control/control_top/clk
 
 # watch signals
 # ::add watch tb_control/control_top/processor/program_counter/r_data -radix decimal -radixenum # default

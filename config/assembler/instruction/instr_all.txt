@@ -1,0 +1,16 @@
+addi x1,x2,534
+ld x1,8(x0)
+addi x3,x1,793
+ld x2,16(x0)
+slti x3,x2,2
+add x2,x1,x3
+lw x3,16(x1)
+srli x2,x3,3
+sub x2,x3,x1
+slli x2,x4,5
+and x2,x3,x2
+lh x4,16(x1)
+srai x4,x2,2
+lbu x5,24(x0)
+slt x3,x1,x1
+lbu x6,32(x0)

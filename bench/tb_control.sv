@@ -35,7 +35,9 @@ module tb_control;
     // type I arithmetic tests || 41 0 1312 534 0
     //defparam control_top.processor.memory_instr.init_file = "mem/test/test_ti_arith.mif"; 
     // type I load tests ||
-    defparam control_top.processor.memory_instr.init_file = "mem/test/test_ti_ld.mif"; // 
+    //defparam control_top.processor.memory_instr.init_file = "mem/test/test_ti_ld.mif";
+    // test all
+    defparam control_top.processor.memory_instr.init_file = "mem/test/test_all.mif";
 
     initial begin
         $monitor("instruction: %b\nopcode: %b\nfunct7: %b\nfunct3: %b\n\n===-==-===-==-===", control_top.processor.instr_reg.instr_all, control_top.processor.instr_reg.opcode, control_top.processor.instr_reg.instr_all[31:25], control_top.processor.instr_reg.instr_all[14:12]);

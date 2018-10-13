@@ -12,9 +12,9 @@ Instructions:
         ✔ slti @done(18-10-13 09:57)
         ☐ jalr
         ✔ ld @done(18-10-13 11:04)
-        ☐ lw
-        ☐ lbu
-        ☐ lh
+        ✔ lw @done(18-10-13 14:23)
+        ✔ lbu @done(18-10-13 14:23)
+        ✔ lh @done(18-10-13 14:23)
         ☐ nop
         ☐ break
     Type S:

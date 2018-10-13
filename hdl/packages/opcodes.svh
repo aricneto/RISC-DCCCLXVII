@@ -42,7 +42,7 @@ parameter BREAK = 7'b1110011;
 parameter TYPE_S = 7'b0100011;
 
 // opcode for sb-type instructions
-parameter TYPE_SB = 7'b1100111;
+parameter TYPE_SB = 7'b1100011;
 
 // opcode for u-type instructions
 parameter TYPE_U = 7'b0110111;
