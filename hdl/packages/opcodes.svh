@@ -20,6 +20,9 @@ package opcodes;
 // opcode for r-type instructions
 parameter TYPE_R = 7'b0110011;
 
+// opcode for arithmetic i-type instructions
+parameter IMM_ARITH = 7'b0010011;
+
 // opcode for i-type instructions
 parameter ADDI  = 7'b0010011;
 parameter SRLI  = 7'b0010011;

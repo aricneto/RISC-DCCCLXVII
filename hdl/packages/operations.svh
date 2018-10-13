@@ -13,7 +13,7 @@
 package operations;
 
 // ALU ops
-enum {SUM, SHIFT_LEFT, SUB, LOAD, XOR, SHIFT_RIGHT, NOT, AND} ops_alu;
+enum {SUM, SHIFT_LEFT, SUB, LOAD, XOR, SHIFT_RIGHT, NOT, AND, SHIFT_LEFT_A, SHIFT_RIGHT_A, LESS} ops_alu;
 
 // ALUSrcB MUX
 enum {_ALB_REG_B, _ALB_CONST4, _ALB_IMM, _ALB_IMM2} mux_ALUSrcB;

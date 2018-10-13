@@ -6,7 +6,7 @@ module tb_alu;
 
     enum {SUM, SHIFT_LEFT, SUB, LOAD, XOR, SHIFT_RIGHT, NOT, AND} ops;
     
-    logic [2:0] funct;
+    logic [3:0] funct;
 
     // alu operand inputs
     logic signed [63:0] num_a;

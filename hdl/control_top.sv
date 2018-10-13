@@ -31,7 +31,7 @@ logic PCStateOut;
 // ALU flags
 logic ALUSrcA;
 logic [1:0] ALUSrcB;
-logic [2:0] ALUOp;
+logic [3:0] ALUOp;
 logic LoadAOut;
 
 // regfile flags
@@ -96,7 +96,7 @@ enum {
     INSTR_FETCH,
     INSTR_DECODE,
     MEM_ADDRESS_COMP,
-    EXECUTION_TYPE_I,
+    IMM_ARITH,
     EXECUTION_TYPE_R,
     EXECUTION_TYPE_U,
     R_TYPE_COMPL,
@@ -156,9 +156,9 @@ always_comb begin
             ALUOp    = operations::SUM;
 
             case (opcode)
-                opcodes::LD: next_state = MEM_ADDRESS_COMP;
+                opcodes::LD, opcodes::SD: next_state = MEM_ADDRESS_COMP;
                 opcodes::TYPE_S: next_state = MEM_ADDRESS_COMP;
-                opcodes::ADDI: next_state = EXECUTION_TYPE_I;
+                opcodes::IMM_ARITH: next_state = IMM_ARITH;
                 opcodes::TYPE_R: next_state = EXECUTION_TYPE_R;
                 opcodes::TYPE_U: next_state = EXECUTION_TYPE_U;
                 opcodes::TYPE_SB: next_state = BRANCH_COMPL;
@@ -184,22 +184,27 @@ always_comb begin
             ALUSrcA  = operations::_ALA_REG_A;
             ALUSrcB  = operations::_ALB_REG_B;
 
-            if (funct3 == 3'b000)
-                ALUOp = funct7[6:4];
-            else if (funct3 == 3'b010)
-                ALUOp = 3'b001;
-            else
-                ALUOp = funct3;
+            case (funct3)
+                3'b000: ALUOp = funct7[6:4] == 3'b000 ? operations::SUM : operations::SUB;
+                3'b010: ALUOp = operations::SHIFT_LEFT;
+                3'b111: ALUOp = operations::AND;
+            endcase
 
             next_state = R_TYPE_COMPL;
         end
 
-        // opcode: « i-type »
-        EXECUTION_TYPE_I: begin
+        // opcode: « addi, srai, srli, ... »
+        IMM_ARITH: begin
             LoadAOut = 1;
             ALUSrcA  = operations::_ALA_REG_A;
             ALUSrcB  = operations::_ALB_IMM;
-            ALUOp    = funct3; // fixme: srai uses funct7
+            
+            case (funct3)
+                3'b000: ALUOp = operations::SUM;
+                3'b101: ALUOp = funct7 == opcodes::F7_SRAI ? operations::SHIFT_RIGHT_A : operations::SHIFT_RIGHT;
+                3'b001: ALUOp = operations::SHIFT_LEFT;
+                3'b010: ALUOp = operations::LESS;
+            endcase
 
             next_state = R_TYPE_COMPL;
         end

@@ -23,8 +23,12 @@ assign opcode = i_num[6:0];
 
 always_comb begin
     case (opcode)
-        opcodes::ADDI, opcodes::JALR, opcodes::LD:
-            o_extended = $signed(i_num[31:20]);
+        opcodes::IMM_ARITH, opcodes::JALR, opcodes::LD: begin
+            if (i_num[14:12] == opcodes::F3_SRAI || i_num[14:12] == opcodes::F3_SLLI)
+                o_extended = $signed(i_num[24:20]);
+            else
+                o_extended = $signed(i_num[31:20]);
+        end
         opcodes::TYPE_S:
             o_extended = $signed({i_num[31:25], i_num[11:7]});
         opcodes::TYPE_SB:

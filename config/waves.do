@@ -56,14 +56,16 @@ radix define Register {
 }
 
 radix define ALU {
-     3'b000 "SUM", -color orange
-     3'b001 "SHIFT LEFT", -color green
-     3'b010 "SUB", -color orange
-     3'b011 "LOAD", -color cyan
-     3'b100 "XOR", -color green
-     3'b101 "SHIFT_RIGHT", -color green
-     3'b110 "NOT", -color green
-     3'b111 "AND", -color green
+     4'b0000 "SUM", -color orange
+     4'b0001 "SHIFT LEFT", -color green
+     4'b0010 "SUB", -color orange
+     4'b0011 "LOAD", -color cyan
+     4'b0100 "XOR", -color green
+     4'b0101 "SHIFT_RIGHT", -color green
+     4'b0110 "NOT", -color green
+     4'b0111 "AND", -color green
+     4'b1000 "SHIFT_LEFT_A", -color green
+     4'b1001 "SHIFT_RIGHT_A", -color green
      -default binary
 }
 

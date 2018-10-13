@@ -16,7 +16,7 @@ module alu #(
     parameter SIZE = 64
 )(
     // alu funct
-    input wire [2:0] funct,
+    input wire [3:0] funct,
 
     // alu operand inputs
     input logic signed [SIZE-1:0] a,
@@ -57,7 +57,7 @@ assign zero = (result == 0);  // output true if result is zero
 assign negative = result[SIZE-1]; // output true if result is negative
 
 // output true if overflow occurred 
-assign overflow = funct == 3'b000 ? ((a[SIZE-1] == b[SIZE-1]) & res_add[SIZE-1] != a[SIZE-1]) : ((a[SIZE-1] != b[SIZE-1]) & res_sub[SIZE-1] != a[SIZE-1]);
+assign overflow = funct == 4'b000 ? ((a[SIZE-1] == b[SIZE-1]) & res_add[SIZE-1] != a[SIZE-1]) : ((a[SIZE-1] != b[SIZE-1]) & res_sub[SIZE-1] != a[SIZE-1]);
 
 always_comb begin
     case (funct)
@@ -65,18 +65,24 @@ always_comb begin
             res = res_add;
         operations::SUB: // sub
             res = res_sub;
-        operations::SHIFT_LEFT:
+        operations::SHIFT_LEFT: // logical shift
             res = a << b;
-        operations::SHIFT_RIGHT:
+        operations::SHIFT_RIGHT: // logical shift
             res = a >> b;
+        operations::SHIFT_LEFT_A: // arithmetic shift
+            res = a <<< b;
+        operations::SHIFT_RIGHT_A: // arithmetic shift
+            res = a >>> b;
         operations::LOAD: // load
-            res = b;
+            res = a;
         operations::AND: // and
             res = a & b;
         operations::XOR: // xor
             res = a ^ b;
         operations::NOT: // not a
             res = ~a;
+        operations::LESS: // a < b
+            res = a < b;
         default: 
 	        res = '0;
 	endcase

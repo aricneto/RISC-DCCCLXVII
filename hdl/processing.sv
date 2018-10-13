@@ -17,7 +17,7 @@ module processing(
     // ALU flags
     input logic ALUSrcA,
     input logic [1:0] ALUSrcB,
-    input logic [2:0] ALUOp,
+    input logic [3:0] ALUOp,
     input logic LoadAOut,
 
     // regfile flags
