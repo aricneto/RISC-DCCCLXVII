@@ -40,15 +40,8 @@ module memory_64 #(
      // clock
      input wire clk    
 );
-
-    // memory is stored in sets of 8 bytes, so we multiply the address by 8
-    logic [63:0] real_raddress;
-    logic [63:0] real_waddress;
-
-    assign real_raddress = raddress << 3;
-    assign real_waddress = waddress << 3;
     
-    wire [15:0]readUsefullAddress = real_raddress[15:0]; 
+    wire [15:0]readUsefullAddress = raddress[15:0]; 
     
     wire [15:0]addS0 = readUsefullAddress + 0;
     wire [15:0]addS1 = readUsefullAddress + 1;
@@ -59,7 +52,7 @@ module memory_64 #(
     wire [15:0]addS6 = readUsefullAddress + 6;
     wire [15:0]addS7 = readUsefullAddress + 7;
     
-    wire [15:0]writeUsefullAddress = real_waddress[15:0]; 
+    wire [15:0]writeUsefullAddress = waddress[15:0]; 
     
     wire [15:0]waddS0 = writeUsefullAddress + 0;
     wire [15:0]waddS1 = writeUsefullAddress + 1;
