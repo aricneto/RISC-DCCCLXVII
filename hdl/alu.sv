@@ -49,9 +49,9 @@ assign res_sub = a - b;
 assign result = res;
 
 // equality test outputs
-assign equal   = a == b; // output true if a == b
-assign greater = a > b;  // output true if a > b
-assign less    = a < b;  // output true if a < b
+assign equal   = a == b;  // output true if a == b
+assign greater = a >= b;  // output true if a >= b
+assign less    = a < b;   // output true if a < b
 
 assign zero = (result == 0);  // output true if result is zero
 assign negative = result[SIZE-1]; // output true if result is negative

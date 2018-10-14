@@ -30,7 +30,7 @@ module tb_control;
         .reset(reset)
     );
 
-    // uncomment ONE of these lines to test an instruction set
+    // =--==--»» uncomment ONE of these lines to test an instruction set ««--==--=
     // type R tests || 160 2 5 0
     //defparam control_top.processor.memory_instr.init_file = "mem/test/test_type_r.mif"; 
     // type I arithmetic tests || 41 0 1312 534 0
@@ -38,12 +38,15 @@ module tb_control;
     // test ld ||
     //defparam control_top.processor.memory_instr.init_file = "mem/test/test_ld.mif";
     // test sd
-    defparam control_top.processor.memory_instr.init_file = "mem/test/test_sd.mif";
+    //defparam control_top.processor.memory_instr.init_file = "mem/test/test_sd.mif";
+    // test beq
+    defparam control_top.processor.memory_instr.init_file = "mem/test/test_beq.mif";
     // test all
     //defparam control_top.processor.memory_instr.init_file = "mem/test/test_all.mif";
 
 
-    //defparam control_top.processor.memory_data.init_file = "";
+    // disable data memory
+    defparam control_top.processor.memory_data.init_file = "";
 
     initial begin
         $monitor("instruction: %b\nopcode: %b\nfunct7: %b\nfunct3: %b\n\n===-==-===-==-===", control_top.processor.instr_reg.instr_all, control_top.processor.instr_reg.opcode, control_top.processor.instr_reg.instr_all[31:25], control_top.processor.instr_reg.instr_all[14:12]);

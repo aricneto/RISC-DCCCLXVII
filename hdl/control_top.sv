@@ -51,11 +51,16 @@ logic IMemRead;
 logic IRWrite;
 
 logic [31:0] instruction;
+logic alu_zero;
+logic alu_equal;
+logic alu_greater;
+logic alu_less;
 
 processing processor (
     // PC flags
     .PCWrite(PCWrite),
     .PCSource(PCSource),
+    .PCWriteState(PCWriteState),
     .PCWriteCond(PCWriteCond),
 
     // ALU flags
@@ -81,6 +86,10 @@ processing processor (
     .IRWrite(IRWrite),
 
     .instruction_out(instruction),
+    .alu_zero(alu_zero),
+    .alu_equal(alu_equal),
+    .alu_greater(alu_greater),
+    .alu_less(alu_less),
 
     // clock and reset
     .clk(clk),
@@ -90,10 +99,20 @@ processing processor (
 logic [6:0] funct7;
 logic [2:0] funct3;
 logic [6:0] opcode;
+logic branch_cond;
 
 assign funct7 = instruction[31:25];
 assign funct3 = instruction[14:12];
 assign opcode = instruction[6:0];
+
+// assign branching condition depending on ALU results
+assign branch_cond = funct3 == opcodes::F3_BEQ ?  alu_equal   : 
+                     funct3 == opcodes::F3_BNE ? ~alu_equal   :
+                     funct3 == opcodes::F3_BGE ?  alu_greater :
+                     funct3 == opcodes::F3_BLT ?  alu_less    : 0;
+
+// assign PCWriteState
+assign PCWriteState = (PCWrite || (branch_cond && PCWriteCond));
 
 enum {
     START,
@@ -106,7 +125,8 @@ enum {
     R_TYPE_COMPL,
     BRANCH_COMPL,
     MEM_ACC_LD,
-    WAIT_READMEM,
+    WAIT_READ_DATA_MEM,
+    WAIT_READ_INSTR_MEM,
     MEM_ACC_SD,
     WRITE_BACK
 } state, next_state;
@@ -189,9 +209,9 @@ always_comb begin
             ALUSrcB  = operations::_ALB_REG_B;
 
             case (funct3)
-                3'b000: ALUOp = funct7[6:4] == 3'b000 ? operations::SUM : operations::SUB;
-                3'b010: ALUOp = operations::SHIFT_LEFT;
-                3'b111: ALUOp = operations::AND;
+                opcodes::F3_ADD: ALUOp = funct7[6:4] == 3'b000 ? operations::SUM : operations::SUB;
+                opcodes::F3_SLT: ALUOp = operations::SHIFT_LEFT;
+                opcodes::F3_AND: ALUOp = operations::AND;
             endcase
 
             next_state = R_TYPE_COMPL;
@@ -204,10 +224,10 @@ always_comb begin
             ALUSrcB  = operations::_ALB_IMM;
             
             case (funct3)
-                3'b000: ALUOp = operations::SUM;
-                3'b101: ALUOp = funct7 == opcodes::F7_SRAI ? operations::SHIFT_RIGHT_A : operations::SHIFT_RIGHT;
-                3'b001: ALUOp = operations::SHIFT_LEFT;
-                3'b010: ALUOp = operations::LESS;
+                opcodes::F3_ADDI: ALUOp = operations::SUM;
+                opcodes::F3_SRLI: ALUOp = funct7 == opcodes::F7_SRAI ? operations::SHIFT_RIGHT_A : operations::SHIFT_RIGHT;
+                opcodes::F3_SLLI: ALUOp = operations::SHIFT_LEFT;
+                opcodes::F3_SLTI: ALUOp = operations::LESS;
             endcase
 
             next_state = R_TYPE_COMPL;
@@ -225,25 +245,32 @@ always_comb begin
 
         // opcode: « beq »
         BRANCH_COMPL: begin
-            //PCWriteCond = 1;
+            PCWriteCond = 1;
             PCSource = operations::_PC_ALU_REG;
             ALUSrcA  = operations::_ALA_REG_A;
             ALUSrcB  = operations::_ALB_REG_B;
-            ALUOp    = operations::SUM; // fixme: fix operation
 
-            next_state = INSTR_FETCH;
+            // ALUOut already has (pc + imm << 2) from previous instr. decode
+            // branch condition is assigned above this always block
+
+            next_state = WAIT_READ_INSTR_MEM;
         end
 
         // opcode: « ld »
         MEM_ACC_LD: begin
             DMemOp  = 0;
-            next_state = WAIT_READMEM;
+            next_state = WAIT_READ_DATA_MEM;
         end
 
-        // wait 1 clock cycle for the memory to load the address
-        WAIT_READMEM: begin
+        // wait 1 clock cycle for the memory to load an address
+        WAIT_READ_DATA_MEM: begin
             LoadMDR = 1;
             next_state = WRITE_BACK;
+        end
+
+        // wait 1 clock cycle for the memory to load an address (in case of a branch)
+        WAIT_READ_INSTR_MEM: begin
+            next_state = INSTR_FETCH;            
         end
 
         // opcode: « sd »
@@ -251,10 +278,10 @@ always_comb begin
             DMemOp = 1;
 
              case (funct3)
-                3'b111: StoreSplice = operations::SPL_SD;
-                3'b010: StoreSplice = operations::SPL_SW;
-                3'b001: StoreSplice = operations::SPL_SH;
-                3'b000: StoreSplice = operations::SPL_SB;
+                opcodes::F3_SD: StoreSplice = operations::SPL_SD;
+                opcodes::F3_SW: StoreSplice = operations::SPL_SW;
+                opcodes::F3_SH: StoreSplice = operations::SPL_SH;
+                opcodes::F3_SB: StoreSplice = operations::SPL_SB;
             endcase
 
             next_state = INSTR_FETCH;
@@ -265,10 +292,10 @@ always_comb begin
             MemToReg = 1;
 
             case (funct3)
-                3'b011: LoadSplice = operations::SPL_LD;
-                3'b010: LoadSplice = operations::SPL_LW;
-                3'b001: LoadSplice = operations::SPL_LH;
-                3'b100: LoadSplice = operations::SPL_LBU;
+                opcodes::F3_LD : LoadSplice = operations::SPL_LD;
+                opcodes::F3_LW : LoadSplice = operations::SPL_LW;
+                opcodes::F3_LH : LoadSplice = operations::SPL_LH;
+                opcodes::F3_LBU: LoadSplice = operations::SPL_LBU;
             endcase
 
             next_state = INSTR_FETCH;

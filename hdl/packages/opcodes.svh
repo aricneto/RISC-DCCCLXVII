@@ -57,20 +57,28 @@ parameter TYPE_UJ = 7'b1101111;
 //          -> funct3 codes
 
 parameter F3_JALR = 3'b000;
+
 parameter F3_BEQ  = 3'b000;
 parameter F3_BNE  = 3'b001;
-parameter F3_BLT  = 3'b100;
 parameter F3_BGE  = 3'b101;
-parameter F3_LH   = 3'b001;
+parameter F3_BLT  = 3'b100;
+
+parameter F3_LD   = 3'b011;
 parameter F3_LW   = 3'b010;
-parameter F3_SB   = 3'b000;
-parameter F3_SH   = 3'b001;
+parameter F3_LH   = 3'b001;
+parameter F3_LBU  = 3'b100;
+
+parameter F3_SD   = 3'b111;
 parameter F3_SW   = 3'b010;
+parameter F3_SH   = 3'b001;
+parameter F3_SB   = 3'b000;
+
 parameter F3_ADDI = 3'b000;
 parameter F3_SLTI = 3'b010;
 parameter F3_SLLI = 3'b001;
 parameter F3_SRLI = 3'b101;
 parameter F3_SRAI = 3'b101;
+
 parameter F3_ADD  = 3'b000;
 parameter F3_SUB  = 3'b000;
 parameter F3_SLL  = 3'b001;

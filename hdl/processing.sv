@@ -12,6 +12,7 @@ module processing(
     // PC flags
     input logic PCWrite,
     input logic PCWriteCond,
+    input logic PCWriteState,
     input logic PCSource,
 
     // ALU flags
@@ -38,6 +39,10 @@ module processing(
 
     // instruction outputs
     output logic [31:0] instruction_out,
+    output logic alu_zero,
+    output logic alu_equal,
+    output logic alu_greater,
+    output logic alu_less,
 
     // clock and reset
     input logic clk,
@@ -63,7 +68,6 @@ wire [6:0] opcode;
 
 // == « ALU » == //
 wire [63:0] alu_res;
-wire alu_zero;
 
 // == « ALU MUX » == //
 wire [63:0] mux_alu_a;
@@ -74,7 +78,6 @@ wire [63:0] reg_alu_out;
 
 // == « PC » == //
 wire [31:0] pc_data;
-logic PCWriteState;
 
 // == « PC MUX » == //
 wire [63:0] mux_pc_out;
@@ -94,8 +97,8 @@ wire [63:0] instr_extended;
 // == « reg file MUX » == //
 wire [63:0] mux_reg_file_data;
 
+
 assign instruction_out = rd_instr_all;
-    assign PCWriteState = (PCWrite || (alu_zero && PCWriteCond));
 
 reg_ld #(.SIZE(32)) program_counter (
     .load(PCWriteState),
@@ -164,7 +167,7 @@ mux_4to1_64 mux_ALU_B (
     .i_0(rd_reg_b),
     .i_1(64'd4),
     .i_2(instr_extended),
-    .i_3(instr_extended * 2),
+    .i_3(instr_extended <<< 2),
     .o_select(mux_alu_b)
 );
 
@@ -173,7 +176,10 @@ alu alu (
     .a(mux_alu_a),
     .b(mux_alu_b),
     .result(alu_res),
-    .zero(alu_zero)
+    .zero(alu_zero),
+    .equal(alu_equal),
+    .greater(alu_greater),
+    .less(alu_less)
 );
 
 reg_ld alu_out (

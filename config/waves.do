@@ -66,9 +66,10 @@ radix define States {
      7'd7 "R_TYPE_COMPL", -color violet
      7'd8 "BRANCH_COMPL", -color violet
      7'd9 "MEM_ACC_LD", -color violet
-     7'd10 "WAIT_READMEM", -color violet
-     7'd11 "MEM_ACC_SD", -color violet
-     7'd12 "WRITE_BACK" -color violet
+     7'd10 "WAIT_READ_DATA_MEM", -color violet
+     7'd11 "WAIT_READ_INSTR_MEM", -color violet
+     7'd12 "MEM_ACC_SD", -color violet
+     7'd13 "WRITE_BACK" -color violet
      -default decimal
      -defaultcolor cyan
 }
