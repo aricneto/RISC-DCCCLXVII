@@ -25,7 +25,7 @@ enum {_ALA_PC, _ALA_REG_A} mux_ALUSrcA;
 enum {_PC_ALU_OUT, _PC_ALU_REG} mux_PCSource;
 
 // File Write MUX: alu_out, mem_out
-enum {_FW_ALU_OUT, _FW_MEM_OUT} mux_FileWrite;
+enum {_FW_ALU_OUT, _FW_MEM_OUT, _FW_PC_4} mux_FileWrite;
 
 // Load splicer control
 enum {SPL_LD, SPL_LW, SPL_LH, SPL_LBU} splice_load;

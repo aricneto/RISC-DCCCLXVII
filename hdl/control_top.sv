@@ -38,7 +38,7 @@ logic LoadAOut;
 logic RegWrite;
 logic LoadRegA;
 logic LoadRegB;
-logic MemToReg;
+logic [1:0] MemToReg;
 
 // data memory flags
 logic DMemOp;
@@ -128,7 +128,9 @@ enum {
     WAIT_READ_DATA_MEM,
     WAIT_READ_INSTR_MEM,
     MEM_ACC_SD,
-    WRITE_BACK
+    WRITE_BACK,
+    JUMP_COMPL,
+    JUMP_EXEC
 } state, next_state;
 
 always_ff @(posedge clk) begin
@@ -149,11 +151,13 @@ always_comb begin
     RegWrite    = 0;
     LoadRegA    = 0;
     LoadRegB    = 0;
-    MemToReg    = 0;
+    MemToReg    = '0;
     DMemOp      = 0;
     LoadMDR     = 0;
     IMemRead    = 0;
     IRWrite     = 0;
+    LoadSplice  = 0;
+    StoreSplice = 0;
 
     case (state)
         START: begin
@@ -186,6 +190,7 @@ always_comb begin
                 opcodes::TYPE_R: next_state = EXECUTION_TYPE_R;
                 opcodes::TYPE_U: next_state = EXECUTION_TYPE_U;
                 opcodes::TYPE_SB: next_state = BRANCH_COMPL;
+                opcodes::TYPE_UJ: next_state = JUMP_EXEC;
             endcase // todo: add default
         end
 
@@ -249,9 +254,24 @@ always_comb begin
             PCSource = operations::_PC_ALU_REG;
             ALUSrcA  = operations::_ALA_REG_A;
             ALUSrcB  = operations::_ALB_REG_B;
-
-            // ALUOut already has (pc + imm << 2) from previous instr. decode
+            // ALUOut already has (pc + imm << 2) from previous instr_decode
             // branch condition is assigned above this always block
+
+            next_state = WAIT_READ_INSTR_MEM;
+        end
+
+        JUMP_EXEC: begin
+            // save pc to rd first
+            RegWrite = 1;
+            MemToReg = operations::_FW_PC_4;
+
+            next_state = JUMP_COMPL;     
+        end
+
+        JUMP_COMPL: begin
+            PCWrite = 1;
+            PCSource = operations::_PC_ALU_REG;
+            // ALUOut already has (pc + imm << 2) from previous instr_decode 
 
             next_state = WAIT_READ_INSTR_MEM;
         end
@@ -289,7 +309,7 @@ always_comb begin
 
         WRITE_BACK: begin
             RegWrite = 1;
-            MemToReg = 1;
+            MemToReg = 2'b01;
 
             case (funct3)
                 opcodes::F3_LD : LoadSplice = operations::SPL_LD;

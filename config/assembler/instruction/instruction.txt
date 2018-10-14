@@ -1,18 +1,4 @@
-0 addi x3,x0,17
-4 addi x6,x3,4
-8 add x4,x6,x0
-12 beq x3,x6,3
-16 beq x4,x6,3
-20 addi x1,x0,1
-24 addi x1,x0,2
-28 addi x1,x0,3
-32 bne x3,x6,2
-36 addi x1,x0,4
-40 addi x1,x0,5
-44 bne x6,x4,2
-48 bge x3,x6,2
-52 bge x6,x3,2
-56 addi x1,x0,6
-60 addi x1,x0,7
-64 blt x3,x6,2
-68 blt x6,x3,2
+addi x3,x0,17
+addi x6,x3,4
+add x4,x6,x0
+jal x10,8

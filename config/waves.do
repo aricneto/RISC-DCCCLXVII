@@ -59,17 +59,19 @@ radix define States {
      7'd0 "START", 
      7'd1 "FETCH", -color yellow
      7'd2 "DECODE", -color "spring green"
-     7'd3 "MEM_ADDRESS_COMP",  -color violet
-     7'd4 "IMM_ARITH", -color violet
-     7'd5 "EXECUTION_TYPE_R", -color violet
-     7'd6 "EXECUTION_TYPE_U", -color violet
-     7'd7 "R_TYPE_COMPL", -color violet
-     7'd8 "BRANCH_COMPL", -color violet
-     7'd9 "MEM_ACC_LD", -color violet
-     7'd10 "WAIT_READ_DATA_MEM", -color violet
-     7'd11 "WAIT_READ_INSTR_MEM", -color violet
-     7'd12 "MEM_ACC_SD", -color violet
-     7'd13 "WRITE_BACK" -color violet
+     7'd3 "MEM ADDRESS COMP",  -color violet
+     7'd4 "IMM ARITH", -color violet
+     7'd5 "EXECUTION TYPE R", -color violet
+     7'd6 "EXECUTION TYPE U", -color violet
+     7'd7 "ARITH COMPL", -color violet
+     7'd8 "BRANCH COMPL", -color violet
+     7'd9 "MEM ACC LD", -color violet
+     7'd10 "WAIT READ DATA MEM", -color violet
+     7'd11 "WAIT READ INSTR MEM", -color violet
+     7'd12 "MEM ACC SD", -color violet
+     7'd13 "WRITE BACK" -color violet
+     7'd14 "JUMP COMPL" -color violet
+     7'd15 "JUMP EXEC" -color violet
      -default decimal
      -defaultcolor cyan
 }
@@ -179,7 +181,7 @@ add wave -group "Immediate" -decimal \
     -label "type s" {tb_control/control_top/instruction[31:25] & tb_control/control_top/instruction[11:7]} \
     -label "type sb" {tb_control/control_top/instruction[31] & tb_control/control_top/instruction[7] & tb_control/control_top/instruction[30:25] & tb_control/control_top/instruction[11:8]} \
     -label "type u" {tb_control/control_top/instruction[31:12]} \
-    -label "type uj" {tb_control/control_top/instruction[31] & tb_control/control_top/instruction[20:12] & tb_control/control_top/instruction[21] & tb_control/control_top/instruction[30:22]}
+    -label "type uj" {tb_control/control_top/instruction[31] & tb_control/control_top/instruction[19:12] & tb_control/control_top/instruction[20] & tb_control/control_top/instruction[30:21]}
 
 # processing signals
 
@@ -230,6 +232,7 @@ add wave -group "MUX ALU B" -color gray \
 add wave -group "MUX Reg File" -color gray \
     -label "\[0\] alu" tb_control/control_top/processor/mux_reg_file/i_0 \
     -label "\[1\] mem" tb_control/control_top/processor/mux_reg_file/i_1 \
+    -label "\[2\] PC" tb_control/control_top/processor/mux_reg_file/i_2 \
     -label "sel" -color yellow -unsigned tb_control/control_top/processor/mux_reg_file/i_select \
     -label "out" -color cyan tb_control/control_top/processor/mux_reg_file/o_select
 

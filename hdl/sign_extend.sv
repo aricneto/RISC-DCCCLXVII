@@ -38,7 +38,7 @@ always_comb begin
         opcodes::TYPE_U:
             o_extended = $signed(i_num[31:12]);
         opcodes::TYPE_UJ:
-            o_extended = $signed({i_num[31], i_num[20:12], i_num[21], i_num[30:22]});
+            o_extended = $signed({i_num[31], i_num[19:12], i_num[20], i_num[30:21]});
     endcase
 end
 

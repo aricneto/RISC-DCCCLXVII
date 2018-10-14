@@ -25,7 +25,7 @@ module processing(
     input logic RegWrite,
     input logic LoadRegA,
     input logic LoadRegB,
-    input logic MemToReg,
+    input logic [1:0] MemToReg,
 
     // data memory flags
     input logic DMemOp,
@@ -231,10 +231,11 @@ load_splicer load_splicer (
     .o_extended(ext_mem_rd_data)
 );
 
-mux_2to1_64 mux_reg_file (
+mux_4to1_64 mux_reg_file (
     .i_select(MemToReg),
     .i_0(reg_alu_out),
     .i_1(ext_mem_rd_data),
+    .i_2({32'd0, pc_data}),
     .o_select(mux_reg_file_data)
 );
     
