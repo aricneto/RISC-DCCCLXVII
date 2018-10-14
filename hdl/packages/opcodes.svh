@@ -30,11 +30,14 @@ parameter SRAI  = 7'b0010011;
 parameter SLLI  = 7'b0010011;
 parameter SLTI  = 7'b0010011;
 parameter JALR  = 7'b1100111;
+parameter JAL   = 7'b1101111;
+
 parameter SD    = 7'b0100011;
 parameter LD    = 7'b0000011;
 parameter LW    = 7'b0000011;
 parameter LBU   = 7'b0000011;
 parameter LH    = 7'b0000011;
+
 parameter NOP   = 7'b0010011;
 parameter BREAK = 7'b1110011;
 

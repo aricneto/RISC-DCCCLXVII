@@ -10,7 +10,7 @@ Instructions:
         ✔ srai @done(18-10-13 09:57)
         ✔ slli @done(18-10-13 09:57)
         ✔ slti @done(18-10-13 09:57)
-        ☐ jalr
+        ✔ jalr @done(18-10-14 01:09)
         ✔ ld @done(18-10-13 11:04)
         ✔ lw @done(18-10-13 14:23)
         ✔ lbu @done(18-10-13 14:23)
@@ -30,6 +30,6 @@ Instructions:
     Type U:
         ☐ lui
     Type UJ:
-        ☐ jal
+        ✔ jal @done(18-10-14 00:44)
 Things:
     ✔ zero constante @done(18-10-10 21:10)

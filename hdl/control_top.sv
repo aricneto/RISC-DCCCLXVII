@@ -181,7 +181,7 @@ always_comb begin
             LoadRegB = 1;
             LoadAOut = 1;
             ALUSrcA  = operations::_ALA_PC;
-            ALUSrcB  = operations::_ALB_IMM2;
+            ALUSrcB  = operations::_ALB_IMM2; // FIXME: should this be IMM for branch and jump?
             ALUOp    = operations::SUM;
 
             case (opcode)
@@ -190,7 +190,7 @@ always_comb begin
                 opcodes::TYPE_R: next_state = EXECUTION_TYPE_R;
                 opcodes::TYPE_U: next_state = EXECUTION_TYPE_U;
                 opcodes::TYPE_SB: next_state = BRANCH_COMPL;
-                opcodes::TYPE_UJ: next_state = JUMP_EXEC;
+                opcodes::TYPE_UJ, opcodes::JALR: next_state = JUMP_EXEC;
             endcase // todo: add default
         end
 
@@ -270,8 +270,18 @@ always_comb begin
 
         JUMP_COMPL: begin
             PCWrite = 1;
-            PCSource = operations::_PC_ALU_REG;
-            // ALUOut already has (pc + imm << 2) from previous instr_decode 
+
+            case (opcode)
+                opcodes::JALR: begin
+                    PCSource = operations::_PC_ALU_OUT;
+                    ALUSrcA  = operations::_ALA_REG_A;
+                    ALUSrcB  = operations::_ALB_IMM;
+                end
+                opcodes::JAL: begin
+                    PCSource = operations::_PC_ALU_REG;
+                end
+            endcase
+            // else, ALUOut already has (pc + imm << 2) from previous instr_decode 
 
             next_state = WAIT_READ_INSTR_MEM;
         end
