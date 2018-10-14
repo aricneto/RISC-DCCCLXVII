@@ -59,19 +59,20 @@ radix define States {
      7'd0 "START", 
      7'd1 "FETCH", -color yellow
      7'd2 "DECODE", -color "spring green"
-     7'd3 "MEM ADDRESS COMP",  -color violet
-     7'd4 "IMM ARITH", -color violet
-     7'd5 "EXECUTION TYPE R", -color violet
-     7'd6 "EXECUTION TYPE U", -color violet
-     7'd7 "ARITH COMPL", -color violet
+     7'd3 "MEM ADDRESS COMP",  -color white
+     7'd4 "IMM ARITH", -color white
+     7'd5 "EXECUTION TYPE R", -color white
+     7'd6 "EXECUTION TYPE U", -color white
+     7'd7 "ARITH COMPL", -color white
      7'd8 "BRANCH COMPL", -color violet
-     7'd9 "MEM ACC LD", -color violet
-     7'd10 "WAIT READ DATA MEM", -color violet
-     7'd11 "WAIT READ INSTR MEM", -color violet
-     7'd12 "MEM ACC SD", -color violet
-     7'd13 "WRITE BACK" -color violet
-     7'd14 "JUMP COMPL" -color violet
-     7'd15 "JUMP EXEC" -color violet
+     7'd9 "MEM ACC LD", -color white
+     7'd10 "WAIT READ DATA MEM", -color white
+     7'd11 "WAIT READ INSTR MEM", -color white
+     7'd12 "MEM ACC SD", -color white
+     7'd13 "WRITE BACK" -color white
+     7'd14 "JUMP COMPL JAL" -color violet
+     7'd15 "JUMP COMPL JALR" -color violet
+     7'd16 "JUMP EXEC" -color white
      -default decimal
      -defaultcolor cyan
 }

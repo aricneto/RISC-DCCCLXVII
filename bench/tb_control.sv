@@ -42,14 +42,14 @@ module tb_control;
     // test beq
     //defparam control_top.processor.memory_instr.init_file = "mem/test/test_beq.mif";
     // test jal 
-    //defparam control_top.processor.memory_instr.init_file = "mem/test/test_jal.mif";
+    defparam control_top.processor.memory_instr.init_file = "mem/test/test_jal.mif";
     // test jalr 
-    defparam control_top.processor.memory_instr.init_file = "mem/test/test_jalr.mif";
+    //defparam control_top.processor.memory_instr.init_file = "mem/test/test_jalr.mif";
     // test all
     //defparam control_top.processor.memory_instr.init_file = "mem/test/test_all.mif";
 
 
-    // disable data memory
+    // UNCOMMENT if you want to DISABLE data memory
     defparam control_top.processor.memory_data.init_file = "";
 
     initial begin

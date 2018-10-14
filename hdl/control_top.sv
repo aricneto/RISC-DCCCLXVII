@@ -129,7 +129,8 @@ enum {
     WAIT_READ_INSTR_MEM,
     MEM_ACC_SD,
     WRITE_BACK,
-    JUMP_COMPL,
+    JUMP_COMPL_JAL,
+    JUMP_COMPL_JALR,
     JUMP_EXEC
 } state, next_state;
 
@@ -265,23 +266,25 @@ always_comb begin
             RegWrite = 1;
             MemToReg = operations::_FW_PC_4;
 
-            next_state = JUMP_COMPL;     
+            case (opcode)
+                opcodes::JALR: next_state = JUMP_COMPL_JALR;
+                opcodes::JAL: next_state = JUMP_COMPL_JAL;
+            endcase
         end
 
-        JUMP_COMPL: begin
+        JUMP_COMPL_JAL: begin
             PCWrite = 1;
+            PCSource = operations::_PC_ALU_OUT;
+            ALUSrcA  = operations::_ALA_REG_A;
+            ALUSrcB  = operations::_ALB_IMM;
 
-            case (opcode)
-                opcodes::JALR: begin
-                    PCSource = operations::_PC_ALU_OUT;
-                    ALUSrcA  = operations::_ALA_REG_A;
-                    ALUSrcB  = operations::_ALB_IMM;
-                end
-                opcodes::JAL: begin
-                    PCSource = operations::_PC_ALU_REG;
-                end
-            endcase
-            // else, ALUOut already has (pc + imm << 2) from previous instr_decode 
+            next_state = WAIT_READ_INSTR_MEM;
+        end
+
+        JUMP_COMPL_JALR: begin
+            PCWrite = 1;
+            PCSource = operations::_PC_ALU_REG;
+            //ALUOut already has (pc + imm << 2) from previous instr_decode 
 
             next_state = WAIT_READ_INSTR_MEM;
         end

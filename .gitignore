@@ -11,7 +11,7 @@
 **/work
 
 # Compile files
-#**/modelsim.ini
+**/modelsim.ini
 /**/*.wlf
 /**/*.ver
 /libs/lib_*/*
