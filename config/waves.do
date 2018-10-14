@@ -281,7 +281,8 @@ add wave -group "Splice Load" -decimal tb_control/control_top/processor/load_spl
 quietly WaveActivateNextPane
 add wave -color cyan -radix States -label "state" tb_control/control_top/state
 add wave -radix Instruction -label "instruction" {tb_control/control_top/instruction[31:25] & tb_control/control_top/instruction[14:12] & tb_control/control_top/instruction[6:0]}
-add wave -color cyan -label "PC" tb_control/control_top/processor/program_counter/r_data
+add wave -color "pale green" -decimal tb_control/control_top/processor/reg_file/registers
+add wave -color "Cornflower Blue" -label "PC" tb_control/control_top/processor/program_counter/r_data
 
 # watch signals
 # ::add watch tb_control/control_top/processor/program_counter/r_data -radix decimal -radixenum # default

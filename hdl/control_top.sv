@@ -122,7 +122,7 @@ enum {
     IMM_ARITH,
     EXECUTION_TYPE_R,
     EXECUTION_TYPE_U,
-    R_TYPE_COMPL,
+    ARITH_COMPL,
     BRANCH_COMPL,
     MEM_ACC_LD,
     WAIT_READ_DATA_MEM,
@@ -214,7 +214,7 @@ always_comb begin
                 opcodes::F3_AND: ALUOp = operations::AND;
             endcase
 
-            next_state = R_TYPE_COMPL;
+            next_state = ARITH_COMPL;
         end
 
         // opcode: « addi, srai, srli, ... »
@@ -230,7 +230,7 @@ always_comb begin
                 opcodes::F3_SLTI: ALUOp = operations::LESS;
             endcase
 
-            next_state = R_TYPE_COMPL;
+            next_state = ARITH_COMPL;
         end
         
         // opcode: « u-type » 
@@ -240,7 +240,7 @@ always_comb begin
             ALUSrcB = operations::_ALB_IMM;
             ALUOp = operations::LOAD;
 
-            next_state = R_TYPE_COMPL;
+            next_state = ARITH_COMPL;
         end
 
         // opcode: « beq »
@@ -301,7 +301,7 @@ always_comb begin
             next_state = INSTR_FETCH;
         end
 
-        R_TYPE_COMPL: begin
+        ARITH_COMPL: begin
             RegWrite = 1;
             MemToReg = operations::_FW_ALU_OUT;
 

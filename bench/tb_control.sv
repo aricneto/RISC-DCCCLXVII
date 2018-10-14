@@ -40,9 +40,9 @@ module tb_control;
     // test sd
     //defparam control_top.processor.memory_instr.init_file = "mem/test/test_sd.mif";
     // test beq
-    defparam control_top.processor.memory_instr.init_file = "mem/test/test_beq.mif";
+    //defparam control_top.processor.memory_instr.init_file = "mem/test/test_beq.mif";
     // test all
-    //defparam control_top.processor.memory_instr.init_file = "mem/test/test_all.mif";
+    defparam control_top.processor.memory_instr.init_file = "mem/test/test_all.mif";
 
 
     // disable data memory

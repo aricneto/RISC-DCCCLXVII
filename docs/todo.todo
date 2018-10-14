@@ -23,10 +23,10 @@ Instructions:
         ✔ sh @done(18-10-13 19:09)
         ✔ sb @done(18-10-13 19:09)
     Type SB:
-        ☐ beq
-        ☐ bne
-        ☐ bge
-        ☐ blt
+        ✔ beq @done(18-10-13 22:40)
+        ✔ bne @done(18-10-13 22:40)
+        ✔ bge @done(18-10-13 22:40)
+        ✔ blt @done(18-10-13 22:40)
     Type U:
         ☐ lui
     Type UJ:
