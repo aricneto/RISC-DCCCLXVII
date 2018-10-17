@@ -10,6 +10,9 @@ skinparam class {
 	BorderColor gray
 }
 
+class start {
+
+}
 
 class instr_fetch {
     + 1 IMemRead
@@ -30,28 +33,36 @@ class instr_decode {
     # 00 ALUOp
 }
 
-class mem_comp < ld or sd > {
+class treat_break {
+
+}
+
+class mem_address_comp < lx or sx > {
     + 1 LoadAOut
     + 1 ALUSrcA
     # 10 ALUSrcB
     # 00 ALUOp 
 }
 
-class mem_acc_ld < ld > {
+class mem_acc_ld < lx > {
     - 0 DMemOp
     + 1 LoadMDR
 }
 
-class mem_acc_sd < sd >{
+class mem_acc_sd < sx >{
     + 1 DMemOp
+    ... Store Splice ...
+    ~ depends on f3
 }
 
 class write_back {
     + 1 RegWrite
     + 1 MemToReg
+    .. LoadSplice ..
+    ~ depends on f3
 }
 
-class exec_type_r < op: 51 >{
+class exec_type_r < type r >{
     + 1 LoadAOut
     + 1 ALUSrcA
     # 00 ALUSrcB
@@ -60,49 +71,94 @@ class exec_type_r < op: 51 >{
     # f3 if f3 != 0
 }
 
-class exec_type_i < op: 19 >{
+class exec_type_u < type u > {
+    + 1 LoadAOut
+    + 1 ALUSrcA
+    # 10 ALUSrcB
+    ~ LOAD ALUOp
+}
+
+class imm_arith < op: addi, srai... >{
     + 1 LoadAOut
     + 1 ALUSrcA
     # 10 ALUSrcB
     .. ALUOp ..
-    # f3 if f3 != 2
+    ~ depends on f3 and f7
 }
 
-class compl_alu {
+class arith_compl {
     + 1 RegWrite
     - 0 MemToReg
 }
 
-class branch_compl < beq > {
+class branch_compl < type sb > {
     + 1 PCWriteCond
     # 01 PCSource
     + 1 ALUSrcA
     # 00 ALUSrcB
-    # 01 ALUOp
 }
 
+class jump_exec < jal, jalr > {
+    + 1 RegWrite
+    + 10 MemToReg
+}
+
+class jump_compl_jalr < jalr > {
+    + 1 PCWrite
+    + 1 PCSource
+}
+
+class jump_compl_jal < jal > {
+    + 1 PCWrite
+    + 0 PCSource
+    + 1 ALUSrcA
+    + 10 ALUSrcB
+}
+
+class wait_read_data_mem {
+    + 1 LoadMDR
+}
+
+class wait_read_instr_mem {
+
+}
+
+start --> instr_fetch
 instr_fetch --> instr_decode
 
-instr_decode --> mem_comp
-instr_decode --> exec_type_i
+instr_decode --> mem_address_comp
+instr_decode --> imm_arith
 instr_decode --> exec_type_r
+instr_decode --> exec_type_u
 instr_decode --> branch_compl
+instr_decode --> jump_exec
+instr_decode --> treat_break
 
-mem_comp --> mem_acc_ld
-mem_comp --> mem_acc_sd
+treat_break --> end
 
-mem_acc_ld --> write_back
-write_back ..> instr_fetch
+mem_address_comp --> mem_acc_ld
+mem_address_comp --> mem_acc_sd
 
-mem_acc_sd ..> instr_fetch
+exec_type_r --> arith_compl
+imm_arith --> arith_compl
+exec_type_u --> arith_compl
 
-exec_type_r --> compl_alu
-exec_type_i --> compl_alu
+branch_compl --> wait_read_instr_mem
+jump_exec --> jump_compl_jalr
+jump_exec --> jump_compl_jal
 
-compl_alu ..> instr_fetch
+jump_compl_jal --> wait_read_instr_mem
+jump_compl_jalr --> wait_read_instr_mem
 
-branch_compl ..> instr_fetch
+mem_acc_ld --> wait_read_data_mem
+wait_read_data_mem --> write_back
 
+mem_acc_sd -.-> _instr_fetch_
+write_back -.-> _instr_fetch_
+arith_compl -.-> _instr_fetch_
+wait_read_instr_mem -.-> _instr_fetch_
+
+_instr_fetch_ -.-> instr_fetch
 
 hide class circle
 
