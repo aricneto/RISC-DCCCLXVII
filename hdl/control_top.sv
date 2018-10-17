@@ -131,7 +131,9 @@ enum {
     WRITE_BACK,
     JUMP_COMPL_JAL,
     JUMP_COMPL_JALR,
-    JUMP_EXEC
+    JUMP_EXEC,
+    TREAT_BREAK,
+    END
 } state, next_state;
 
 always_ff @(posedge clk) begin
@@ -192,7 +194,17 @@ always_comb begin
                 opcodes::TYPE_U: next_state = EXECUTION_TYPE_U;
                 opcodes::TYPE_SB: next_state = BRANCH_COMPL;
                 opcodes::TYPE_UJ, opcodes::JALR: next_state = JUMP_EXEC;
+                opcodes::BREAK: next_state = TREAT_BREAK;
+                // default: treat exception 
             endcase // todo: add default
+        end
+        
+        TREAT_BREAK: begin
+            if ({instruction[31:21], instruction[19:7]} == 'b0 && instruction[20] == 1)
+                next_state = END;
+            //else begin
+            //    // fixme: should throw exception
+            //end
         end
 
         // opcode: « ld » OR « SD »
@@ -339,6 +351,9 @@ always_comb begin
             MemToReg = operations::_FW_ALU_OUT;
 
             next_state = INSTR_FETCH;
+        end
+
+        END: begin
         end
 
         default: begin

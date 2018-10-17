@@ -15,8 +15,8 @@ Instructions:
         ✔ lw @done(18-10-13 14:23)
         ✔ lbu @done(18-10-13 14:23)
         ✔ lh @done(18-10-13 14:23)
-        ☐ nop
-        ☐ break
+        ✔ nop @done(18-10-16 22:49)
+        ✔ break @done(18-10-16 22:49)
     Type S:
         ✔ sd @done(18-10-13 19:09)
         ✔ sw @done(18-10-13 19:09)

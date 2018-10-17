@@ -73,6 +73,8 @@ radix define States {
      7'd14 "JUMP COMPL JAL" -color violet
      7'd15 "JUMP COMPL JALR" -color violet
      7'd16 "JUMP EXEC" -color white
+     7'd17 "TREAT BREAK" -color white
+     7'd18 "END" -color red
      -default decimal
      -defaultcolor cyan
 }
@@ -285,8 +287,9 @@ add wave -group "Splice Load" -decimal tb_control/control_top/processor/load_spl
 quietly WaveActivateNextPane
 add wave -color cyan -radix States -label "state" tb_control/control_top/state
 add wave -radix Instruction -label "instruction" {tb_control/control_top/instruction[31:25] & tb_control/control_top/instruction[14:12] & tb_control/control_top/instruction[6:0]}
-add wave -color "pale green" -decimal tb_control/control_top/processor/reg_file/registers
-add wave -color "Cornflower Blue" -label "PC" tb_control/control_top/processor/program_counter/r_data
+add wave -decimal -color "pale green" -decimal tb_control/control_top/processor/reg_file/registers
+add wave -unsigned -color "Cornflower Blue" -label "PC" tb_control/control_top/processor/program_counter/r_data
+add wave tb_control/control_top/clk
 
 # watch signals
 # ::add watch tb_control/control_top/processor/program_counter/r_data -radix decimal -radixenum # default
