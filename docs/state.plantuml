@@ -33,7 +33,7 @@ class instr_decode {
     # 00 ALUOp
 }
 
-class treat_break {
+class treat_break < break >{
 
 }
 

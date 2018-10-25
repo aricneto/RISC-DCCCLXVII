@@ -16,3 +16,4 @@
 /**/*.ver
 /libs/lib_*/*
 transcript
+out/**/*
