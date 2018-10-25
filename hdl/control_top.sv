@@ -288,7 +288,7 @@ always_comb begin
             PCWrite = 1;
             PCSource = operations::_PC_ALU_OUT;
             ALUSrcA  = operations::_ALA_REG_A;
-            ALUSrcB  = operations::_ALB_IMM;
+            ALUSrcB  = operations::_ALB_IMM2;
 
             next_state = WAIT_READ_INSTR_MEM;
         end

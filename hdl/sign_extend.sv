@@ -29,16 +29,21 @@ always_comb begin
             else
                 o_extended = $signed(i_num[31:20]);
         end
-        opcodes::JALR, opcodes::LD:
-            o_extended = $signed(i_num[31:20]);          
+        opcodes::JALR:
+            o_extended = $signed(i_num[31:20]); // shift is done in control unit 
+        opcodes::LD:
+            if (i_num[14:12] == opcodes::F3_LBU)
+                o_extended = {52'b0, i_num[31:20]};
+            else
+                o_extended = $signed(i_num[31:20]);
         opcodes::TYPE_S:
             o_extended = $signed({i_num[31:25], i_num[11:7]});
         opcodes::TYPE_SB:
-            o_extended = $signed({i_num[31], i_num[7], i_num[30:25], i_num[11:8], 1'b0} << 1);
+            o_extended = $signed({i_num[31], i_num[7], i_num[30:25], i_num[11:8]});
         opcodes::TYPE_U:
             o_extended = $signed({i_num[31:12], 12'd0});
         opcodes::TYPE_UJ:
-            o_extended = $signed({i_num[31], i_num[19:12], i_num[20], i_num[30:21]});
+            o_extended = $signed({i_num[31], i_num[19:12], i_num[20], i_num[30:21]}); // shift is done in control unit
     endcase
 end
 
