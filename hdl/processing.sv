@@ -7,6 +7,12 @@
 //        connects all modules and components necessary for the RISC-V
 // ==--===--===-==---==--==--===--===-==---==--==--===--===-==---==--==--==
 
+`include "packages/opcodes.svh"
+`include "packages/operations.svh"
+
+import opcodes::*;
+import operations::*;
+
 module processing(
     // ===-==-=== « control flags » ===-==-=== //
     // PC flags
@@ -97,6 +103,8 @@ wire [63:0] instr_extended;
 // == « reg file MUX » == //
 wire [63:0] mux_reg_file_data;
 
+// == « cause MUX » == //
+wire [63:0] mux_cause_out;
 
 assign instruction_out = rd_instr_all;
 
@@ -226,6 +234,27 @@ reg_ld reg_mem_data (
     .reset(reset)
 );
 
+mux_2to1_64 mux_cause (
+    .i_select(IntCause),
+    .i_0(operations::_CAUSE_OPCODE),
+    .i_1(operations::_CAUSE_OVERFLOW),
+    .o_select(mux_cause_out)
+);
+
+reg_ld reg_epc (
+    .load(EPCWrite),
+    .w_data(reg_alu_out),
+    .clk(clk),
+    .reset(reset)
+);
+
+reg_ld reg_cause (
+    .load(CauseWrite),
+    .w_data(mux_cause_out),
+    .clk(clk),
+    .reset(reset)
+);
+
 load_splicer load_splicer (
     .control(LoadSplice),
     .i_num(reg_mem_rd_data),
@@ -239,5 +268,7 @@ mux_4to1_64 mux_reg_file (
     .i_2({32'd0, pc_data}),
     .o_select(mux_reg_file_data)
 );
+
+
     
 endmodule: processing

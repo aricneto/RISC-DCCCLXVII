@@ -28,7 +28,7 @@ Instructions:
         ✔ bge @done(18-10-13 22:40)
         ✔ blt @done(18-10-13 22:40)
     Type U:
-        ☐ lui
+        ✔ lui @done(18-10-25 21:54)
     Type UJ:
         ✔ jal @done(18-10-14 00:44)
 Things:
@@ -36,3 +36,4 @@ Things:
     ✔ lbu extend @done(18-10-25 20:27)
     ☐ shift modifications
     ☐ exceptions
+    ☐ update sign extend exception diagram

@@ -24,6 +24,9 @@ enum {_ALA_PC, _ALA_REG_A, _ALA_ZERO} mux_ALUSrcA;
 // PC MUX
 enum {_PC_ALU_OUT, _PC_ALU_REG} mux_PCSource;
 
+// Cause MUX
+enum {_CAUSE_OPCODE, _CAUSE_OVERFLOW} mux_Cause;
+
 // File Write MUX: alu_out, mem_out
 enum {_FW_ALU_OUT, _FW_MEM_OUT, _FW_PC_4} mux_FileWrite;
 
