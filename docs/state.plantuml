@@ -19,7 +19,7 @@ class instr_fetch {
     + 1 IrWrite
     + 1 PCWrite
     # 00 PCSource
-    - 0 ALUSrcA
+    - 00 ALUSrcA
     # 01 ALUSrcB
     # 00 ALUOp
 }
@@ -28,7 +28,7 @@ class instr_decode {
     + 1 LoadRegA
     + 1 LoadRegB
     + 1 LoadAOut
-    - 0 ALUSrcA
+    - 00 ALUSrcA
     # 11 ALUSrcB
     # 00 ALUOp
 }
@@ -39,7 +39,7 @@ class treat_break < break >{
 
 class mem_address_comp < lx or sx > {
     + 1 LoadAOut
-    + 1 ALUSrcA
+    + 01 ALUSrcA
     # 10 ALUSrcB
     # 00 ALUOp 
 }
@@ -64,7 +64,7 @@ class write_back {
 
 class exec_type_r < type r >{
     + 1 LoadAOut
-    + 1 ALUSrcA
+    + 01 ALUSrcA
     # 00 ALUSrcB
     .. ALUOp ..
     # f7 if f3 == 0
@@ -73,14 +73,14 @@ class exec_type_r < type r >{
 
 class exec_type_u < type u > {
     + 1 LoadAOut
-    + 1 ALUSrcA
+    + 10 ALUSrcA
     # 10 ALUSrcB
     ~ LOAD ALUOp
 }
 
 class imm_arith < op: addi, srai... >{
     + 1 LoadAOut
-    + 1 ALUSrcA
+    + 01 ALUSrcA
     # 10 ALUSrcB
     .. ALUOp ..
     ~ depends on f3 and f7
@@ -94,7 +94,7 @@ class arith_compl {
 class branch_compl < type sb > {
     + 1 PCWriteCond
     # 01 PCSource
-    + 1 ALUSrcA
+    + 01 ALUSrcA
     # 00 ALUSrcB
 }
 
@@ -111,7 +111,7 @@ class jump_compl_jalr < jalr > {
 class jump_compl_jal < jal > {
     + 1 PCWrite
     + 0 PCSource
-    + 1 ALUSrcA
+    + 01 ALUSrcA
     + 10 ALUSrcB
 }
 

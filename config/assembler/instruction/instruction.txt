@@ -3,9 +3,5 @@ addi x4,x9,4
 nop
 nop
 addi x6,x4,2
-add x4,x6,x9
-nop
-add x2,x6,x0
-break
-nop
-nop
+lui x6,189
+lui x11,12358

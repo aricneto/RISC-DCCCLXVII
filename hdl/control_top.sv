@@ -29,7 +29,7 @@ logic PCWriteCond;
 logic PCStateOut;
 
 // ALU flags
-logic ALUSrcA;
+logic [1:0] ALUSrcA;
 logic [1:0] ALUSrcB;
 logic [3:0] ALUOp;
 logic LoadAOut;
@@ -147,7 +147,7 @@ always_comb begin
     PCSource    = 0;
     PCWriteCond = 0;
     PCStateOut  = 0;
-    ALUSrcA     = 0;
+    ALUSrcA     = '0;
     ALUSrcB     = '0;
     ALUOp       = operations::SUM;
     LoadAOut    = 0;
@@ -209,7 +209,7 @@ always_comb begin
 
         // opcode: « ld » OR « SD »
         MEM_ADDRESS_COMP: begin
-            ALUSrcA  = 1;
+            ALUSrcA  = operations::_ALA_REG_A;
             ALUSrcB  = operations::_ALB_IMM;
             ALUOp    = operations::SUM;
             LoadAOut = 1;
@@ -254,9 +254,9 @@ always_comb begin
         // opcode: « u-type » 
         EXECUTION_TYPE_U: begin
             LoadAOut = 1;
-            ALUSrcA = operations::_ALA_REG_A;
+            ALUSrcA = operations::_ALA_ZERO;
             ALUSrcB = operations::_ALB_IMM;
-            ALUOp = operations::LOAD;
+            ALUOp = operations::SUM;
 
             next_state = ARITH_COMPL;
         end

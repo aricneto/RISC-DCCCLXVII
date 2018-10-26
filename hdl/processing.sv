@@ -16,7 +16,7 @@ module processing(
     input logic PCSource,
 
     // ALU flags
-    input logic ALUSrcA,
+    input logic [1:0] ALUSrcA,
     input logic [1:0] ALUSrcB,
     input logic [3:0] ALUOp,
     input logic LoadAOut,
@@ -155,10 +155,11 @@ reg_ld reg_ALU_b (
     .reset(reset)
 );
 
-mux_2to1_64 mux_ALU_A (
+mux_4to1_64 mux_ALU_A (
     .i_select(ALUSrcA),
     .i_0({32'd0, pc_data}),
     .i_1(rd_reg_a),
+    .i_2(64'd0),
     .o_select(mux_alu_a)
 );
 

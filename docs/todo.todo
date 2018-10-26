@@ -33,3 +33,6 @@ Instructions:
         ✔ jal @done(18-10-14 00:44)
 Things:
     ✔ zero constante @done(18-10-10 21:10)
+    ✔ lbu extend @done(18-10-25 20:27)
+    ☐ shift modifications
+    ☐ exceptions
