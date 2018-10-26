@@ -109,11 +109,13 @@ processing processor (
 );
 
 logic [6:0] funct7;
+logic [5:0] funct6;
 logic [2:0] funct3;
 logic [6:0] opcode;
 logic branch_cond;
 
 assign funct7 = instruction[31:25];
+assign funct6 = instruction[31:24];
 assign funct3 = instruction[14:12];
 assign opcode = instruction[6:0];
 
@@ -262,7 +264,7 @@ always_comb begin
             
             case (funct3)
                 opcodes::F3_ADDI: ALUOp = operations::SUM;
-                opcodes::F3_SRLI: ALUOp = funct7 == opcodes::F7_SRAI ? operations::SHIFT_RIGHT_A : operations::SHIFT_RIGHT;
+                opcodes::F3_SRLI: ALUOp = funct6 == opcodes::F6_SRAI ? operations::SHIFT_RIGHT_A : operations::SHIFT_RIGHT;
                 opcodes::F3_SLLI: ALUOp = operations::SHIFT_LEFT;
                 opcodes::F3_SLTI: ALUOp = operations::LESS;
             endcase

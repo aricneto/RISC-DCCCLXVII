@@ -25,7 +25,7 @@ always_comb begin
     case (opcode)
         opcodes::IMM_ARITH: begin
             if (i_num[14:12] == opcodes::F3_SRAI || i_num[14:12] == opcodes::F3_SLLI)
-                o_extended = $signed(i_num[24:20]);
+                o_extended = $signed(i_num[23:20]);
             else
                 o_extended = $signed(i_num[31:20]);
         end

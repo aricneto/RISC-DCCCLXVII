@@ -46,7 +46,7 @@ module tb_control;
     // test jalr 
     //defparam control_top.processor.memory_instr.init_file = "mem/test/test_jalr.mif";
     // test all
-    defparam control_top.processor.memory_instr.init_file = "mem/test/test_all.mif";
+    //defparam control_top.processor.memory_instr.init_file = "mem/test/test_all.mif";
     // test lui
     //defparam control_top.processor.memory_instr.init_file = "mem/test/test_lui.mif";
 

@@ -94,9 +94,9 @@ parameter F3_AND  = 3'b111;
 //          ╚  ╚═╝╝╚╝╚═╝ ╩ 7
 //          -> funct7 codes
 
-parameter F7_SLLI = 7'b0000000;
-parameter F7_SRLI = 7'b0000000;
-parameter F7_SRAI = 7'b0100000;
+parameter F6_SLLI = 7'b000000;
+parameter F6_SRLI = 7'b000000;
+parameter F6_SRAI = 7'b010000;
 parameter F7_ADD  = 7'b0000000;
 parameter F7_SUB  = 7'b0100000;
 parameter F7_SLL  = 7'b0000000;
