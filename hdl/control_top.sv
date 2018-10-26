@@ -305,7 +305,7 @@ always_comb begin
             endcase
         end
 
-        JUMP_COMPL_JAL: begin
+        JUMP_COMPL_JALR: begin
             PCWrite = 1;
             PCSource = operations::_PC_ALU_OUT;
             ALUSrcA  = operations::_ALA_REG_A;
@@ -314,7 +314,7 @@ always_comb begin
             next_state = WAIT_READ_INSTR_MEM;
         end
 
-        JUMP_COMPL_JALR: begin
+        JUMP_COMPL_JAL: begin
             PCWrite = 1;
             PCSource = operations::_PC_ALU_REG;
             //ALUOut already has (pc + imm << 2) from previous instr_decode 
