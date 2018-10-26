@@ -205,7 +205,7 @@ always_comb begin
             LoadRegB = 1;
             LoadAOut = 1;
             ALUSrcA  = operations::_ALA_PC;
-            ALUSrcB  = operations::_ALB_IMM2; // FIXME: should this be IMM for branch and jump?
+            ALUSrcB  = operations::_ALB_IMM; // FIXME: should this be IMM for branch and jump?
             ALUOp    = operations::SUM;
 
             case (opcode)
@@ -213,8 +213,8 @@ always_comb begin
                 opcodes::IMM_ARITH: next_state = IMM_ARITH;
                 opcodes::TYPE_R: next_state = EXECUTION_TYPE_R;
                 opcodes::TYPE_U: next_state = EXECUTION_TYPE_U;
-                opcodes::TYPE_SB: next_state = BRANCH_COMPL;
-                opcodes::TYPE_UJ, opcodes::JALR: next_state = JUMP_EXEC;
+                opcodes::TYPE_SB, opcodes::JALR: next_state = BRANCH_COMPL;
+                opcodes::TYPE_UJ: next_state = JUMP_EXEC;
                 opcodes::BREAK: next_state = TREAT_BREAK;
                 default: next_state = EXCEPT_OPCODE;
             endcase
@@ -284,14 +284,24 @@ always_comb begin
 
         // opcode: « beq »
         BRANCH_COMPL: begin
-            PCWriteCond = 1;
-            PCSource = operations::_PC_ALU_REG;
-            ALUSrcA  = operations::_ALA_REG_A;
-            ALUSrcB  = operations::_ALB_REG_B;
-            // ALUOut already has (pc + imm << 2) from previous instr_decode
-            // branch condition is assigned above this always block
 
-            next_state = WAIT_READ_INSTR_MEM;
+            case (funct3)
+                opcodes::F3_BNE, opcodes::F3_BGE, opcodes::F3_BLT: begin
+                    PCWriteCond = 1;
+                    PCSource = operations::_PC_ALU_REG;
+                    ALUSrcA  = operations::_ALA_REG_A;
+                    ALUSrcB  = operations::_ALB_REG_B;
+
+                    next_state = WAIT_READ_INSTR_MEM;
+                end
+                opcodes::F3_JALR: begin
+                    next_state = JUMP_EXEC;
+                end
+
+            endcase
+            
+            // ALUOut already has (pc + imm << 2) from previous instr_decode
+            // branch condition is assigned above, outside this always block
         end
 
         JUMP_EXEC: begin
@@ -305,19 +315,19 @@ always_comb begin
             endcase
         end
 
-        JUMP_COMPL_JALR: begin
-            PCWrite = 1;
-            PCSource = operations::_PC_ALU_OUT;
-            ALUSrcA  = operations::_ALA_REG_A;
-            ALUSrcB  = operations::_ALB_IMM2;
-
-            next_state = WAIT_READ_INSTR_MEM;
-        end
-
         JUMP_COMPL_JAL: begin
             PCWrite = 1;
             PCSource = operations::_PC_ALU_REG;
             //ALUOut already has (pc + imm << 2) from previous instr_decode 
+
+            next_state = WAIT_READ_INSTR_MEM;
+        end
+
+        JUMP_COMPL_JALR: begin
+            PCWrite = 1;
+            PCSource = operations::_PC_ALU_OUT;
+            ALUSrcA  = operations::_ALA_REG_A;
+            ALUSrcB  = operations::_ALB_IMM;
 
             next_state = WAIT_READ_INSTR_MEM;
         end

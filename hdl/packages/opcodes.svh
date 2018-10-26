@@ -38,6 +38,7 @@ parameter LW    = 7'b0000011;
 parameter LBU   = 7'b0000011;
 parameter LH    = 7'b0000011;
 
+
 parameter NOP   = 7'b0010011;
 parameter BREAK = 7'b1110011;
 
@@ -94,9 +95,9 @@ parameter F3_AND  = 3'b111;
 //          ╚  ╚═╝╝╚╝╚═╝ ╩ 7
 //          -> funct7 codes
 
-parameter F6_SLLI = 7'b000000;
-parameter F6_SRLI = 7'b000000;
-parameter F6_SRAI = 7'b010000;
+parameter F6_SLLI = 6'b000000;
+parameter F6_SRLI = 6'b000000;
+parameter F6_SRAI = 6'b010000;
 parameter F7_ADD  = 7'b0000000;
 parameter F7_SUB  = 7'b0100000;
 parameter F7_SLL  = 7'b0000000;

@@ -25,7 +25,7 @@ always_comb begin
         operations::SPL_SH:
             o_extended = {48'd0, i_num[15:0]};
         operations::SPL_SB:
-            o_extended = {56'd0, i_num[7:0]};
+            o_extended = i_num[7:0];
     endcase
 end
 
