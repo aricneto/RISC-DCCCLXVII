@@ -46,15 +46,15 @@ module tb_control;
     // test jalr 
     //defparam control_top.processor.memory_instr.init_file = "mem/test/test_jalr.mif";
     // test all
-    //defparam control_top.processor.memory_instr.init_file = "mem/test/test_all.mif";
+    defparam control_top.processor.memory_instr.init_file = "mem/test/test_all.mif";
     // test lui
-    defparam control_top.processor.memory_instr.init_file = "mem/test/test_lui.mif";
+    //defparam control_top.processor.memory_instr.init_file = "mem/test/test_lui.mif";
 
 	//defparam control_top.processor.memory_instr.init_file = "mem/test/test_assembler.mif";
 
 
     // UNCOMMENT if you want to DISABLE data memory
-    defparam control_top.processor.memory_data.init_file = "";
+    // defparam control_top.processor.memory_data.init_file = "";
 
     initial begin
         $monitor("instruction: %b\nopcode: %b\nfunct7: %b\nfunct3: %b\n\n===-==-===-==-===", control_top.processor.instr_reg.instr_all, control_top.processor.instr_reg.opcode, control_top.processor.instr_reg.instr_all[31:25], control_top.processor.instr_reg.instr_all[14:12]);

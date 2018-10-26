@@ -22,7 +22,7 @@ enum {_ALB_REG_B, _ALB_CONST4, _ALB_IMM, _ALB_IMM2} mux_ALUSrcB;
 enum {_ALA_PC, _ALA_REG_A, _ALA_ZERO} mux_ALUSrcA;
 
 // PC MUX
-enum {_PC_ALU_OUT, _PC_ALU_REG} mux_PCSource;
+enum {_PC_ALU_OUT, _PC_ALU_REG, _PC_EXCEPT} mux_PCSource;
 
 // Cause MUX
 enum {_CAUSE_OPCODE, _CAUSE_OVERFLOW} mux_Cause;

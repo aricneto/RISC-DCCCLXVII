@@ -23,10 +23,16 @@ module control_top(
 // ===-==-=== « control flags » ===-==-=== //
 // PC flags
 logic PCWrite;
-logic PCSource;
+logic [1:0] PCSource;
 logic PCWriteCond;
 // final result between PCWrite and PCSource
 logic PCStateOut;
+
+// Other
+logic DataMemSrc;
+logic IntCause;
+logic EPCWrite;
+logic CauseWrite;
 
 // ALU flags
 logic [1:0] ALUSrcA;
@@ -62,6 +68,12 @@ processing processor (
     .PCSource(PCSource),
     .PCWriteState(PCWriteState),
     .PCWriteCond(PCWriteCond),
+
+    // Other
+    .DataMemSrc(DataMemSrc),
+    .IntCause(IntCause),
+    .CauseWrite(CauseWrite),
+    .EPCWrite(EPCWrite),
 
     // ALU flags
     .ALUSrcA(ALUSrcA),
@@ -133,7 +145,10 @@ enum {
     JUMP_COMPL_JALR,
     JUMP_EXEC,
     TREAT_BREAK,
-    END
+    END,
+    EXCEPT_OPCODE,
+    EXCEPT_OVERFLOW,
+    WAIT_READ_EXCEPT
 } state, next_state;
 
 always_ff @(posedge clk) begin
@@ -144,7 +159,7 @@ end
 always_comb begin
     // zero all control inputs, then assert only the needed ones
     PCWrite     = 0;
-    PCSource    = 0;
+    PCSource    = '0;
     PCWriteCond = 0;
     PCStateOut  = 0;
     ALUSrcA     = '0;
@@ -161,6 +176,10 @@ always_comb begin
     IRWrite     = 0;
     LoadSplice  = 0;
     StoreSplice = 0;
+    DataMemSrc  = 0;
+    IntCause    = 0;
+    EPCWrite    = 0;
+    CauseWrite  = 0;
 
     case (state)
         START: begin
@@ -195,8 +214,8 @@ always_comb begin
                 opcodes::TYPE_SB: next_state = BRANCH_COMPL;
                 opcodes::TYPE_UJ, opcodes::JALR: next_state = JUMP_EXEC;
                 opcodes::BREAK: next_state = TREAT_BREAK;
-                // default: treat exception 
-            endcase // todo: add default
+                default: next_state = EXCEPT_OPCODE;
+            endcase
         end
         
         TREAT_BREAK: begin
@@ -351,6 +370,23 @@ always_comb begin
             MemToReg = operations::_FW_ALU_OUT;
 
             next_state = INSTR_FETCH;
+        end
+
+        EXCEPT_OPCODE: begin
+            IntCause = 0;
+            CauseWrite = 1;
+            EPCWrite = 1;
+            DataMemSrc = 1;
+            DMemOp = 0;
+
+            next_state = WAIT_READ_EXCEPT;
+        end
+
+        WAIT_READ_EXCEPT: begin
+            PCSource = 2'b10;
+            PCWrite = 1;
+
+            next_state = END;
         end
 
         END: begin

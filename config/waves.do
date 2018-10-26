@@ -75,6 +75,9 @@ radix define States {
      7'd16 "JUMP EXEC" -color white
      7'd17 "TREAT BREAK" -color white
      7'd18 "END" -color red
+     7'd19 "EXCEPT_OPCODE" -color red
+     7'd20 "EXCEPT_OVERFLOW" -color red
+     7'd21 "WAIT_READ_EXCEP" -color white
      -default decimal
      -defaultcolor cyan
 }
@@ -215,6 +218,7 @@ add wave -divider "Multiplexers"
 add wave -group "MUX PC" -color gray \
     -label "\[0\] alu" tb_control/control_top/processor/mux_PC/i_0 \
     -label "\[1\] reg alu" tb_control/control_top/processor/mux_PC/i_0 \
+    -label "\[2\] except" tb_control/control_top/processor/mux_PC/i_1 \
     -label "sel" -color yellow -unsigned tb_control/control_top/processor/mux_PC/i_select \
     -label "out" -color cyan tb_control/control_top/processor/mux_PC/i_0
 
@@ -239,6 +243,9 @@ add wave -group "MUX Reg File" -color gray \
     -label "sel" -color yellow -unsigned tb_control/control_top/processor/mux_reg_file/i_select \
     -label "out" -color cyan tb_control/control_top/processor/mux_reg_file/o_select
 
+add wave -group "MUX Mem Src" tb_control/control_top/processor/mux_mem_src/*
+add wave -group "MUX Reg File" tb_control/control_top/processor/mux_cause/*
+
 
 # ===============================================
 # ====---==--==-|| « Registers » ||-==--==---====
@@ -261,6 +268,8 @@ add wave -group "Instr Reg" -binary tb_control/control_top/processor/instr_reg/*
 add wave -group "Reg Mem Data" tb_control/control_top/processor/reg_mem_data/*
 add wave -group "Reg ALU A" tb_control/control_top/processor/reg_ALU_a/*
 add wave -group "Reg ALU B" tb_control/control_top/processor/reg_ALU_b/*
+add wave -group "Reg EPC" tb_control/control_top/processor/reg_epc/*
+add wave -group "Reg Cause" tb_control/control_top/processor/reg_cause/*
 
 
 # ===============================================

@@ -105,12 +105,12 @@ class jump_exec < jal, jalr > {
 
 class jump_compl_jalr < jalr > {
     + 1 PCWrite
-    + 1 PCSource
+    + 01 PCSource
 }
 
 class jump_compl_jal < jal > {
     + 1 PCWrite
-    + 0 PCSource
+    + 00 PCSource
     + 01 ALUSrcA
     + 10 ALUSrcB
 }

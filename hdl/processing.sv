@@ -19,7 +19,14 @@ module processing(
     input logic PCWrite,
     input logic PCWriteCond,
     input logic PCWriteState,
-    input logic PCSource,
+    input logic [1:0] PCSource,
+
+    // Other
+    input logic DataMemSrc,
+    input logic IntCause,
+    input logic EPCWrite,
+    input logic CauseWrite,
+
 
     // ALU flags
     input logic [1:0] ALUSrcA,
@@ -78,6 +85,9 @@ wire [63:0] alu_res;
 // == « ALU MUX » == //
 wire [63:0] mux_alu_a;
 wire [63:0] mux_alu_b;
+
+// == « mem src MUX » == //
+wire [63:0] mux_mem_src_out;
 
 // == « ALU REG » == //
 wire [63:0] reg_alu_out;
@@ -199,10 +209,11 @@ reg_ld alu_out (
     .reset(reset)
 );
 
-mux_2to1_64 mux_PC (
+mux_4to1_64 mux_PC (
     .i_select(PCSource),
     .i_0(alu_res),
     .i_1(reg_alu_out),
+    .i_2(mem_rd_data),
     .o_select(mux_pc_out)
 );
 
@@ -218,8 +229,8 @@ store_splicer store_splicer (
 );
 
 memory_64 #(.init_file("mem/dados.mif")) memory_data (
-    .raddress(reg_alu_out),
-    .waddress(reg_alu_out),
+    .raddress(mux_mem_src_out),
+    .waddress(mux_mem_src_out),
     .data_out(mem_rd_data),
     .data_in(ext_mem_w_data),
     .write(DMemOp),
@@ -234,16 +245,23 @@ reg_ld reg_mem_data (
     .reset(reset)
 );
 
+mux_2to1_64 mux_mem_src (
+    .i_select(DataMemSrc),
+    .i_0(reg_alu_out),
+    .i_1(mux_cause_out + 254), // TODO: perguntar endereço << 3
+    .o_select(mux_mem_src_out)
+);
+
 mux_2to1_64 mux_cause (
     .i_select(IntCause),
-    .i_0(operations::_CAUSE_OPCODE),
-    .i_1(operations::_CAUSE_OVERFLOW),
+    .i_0(64'd0),
+    .i_1(64'd1),
     .o_select(mux_cause_out)
 );
 
 reg_ld reg_epc (
     .load(EPCWrite),
-    .w_data(reg_alu_out),
+    .w_data({32'd0, pc_data - 4}),
     .clk(clk),
     .reset(reset)
 );
