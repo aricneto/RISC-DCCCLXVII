@@ -294,8 +294,17 @@ always_comb begin
 
                     next_state = WAIT_READ_INSTR_MEM;
                 end
-                opcodes::F3_JALR: begin
-                    next_state = JUMP_EXEC;
+                opcodes::F3_JALR, opcodes::F3_BEQ: begin
+                    if (opcode == opcodes::JALR)
+                        next_state = JUMP_EXEC;
+                    else begin
+                        PCWriteCond = 1;
+                        PCSource = operations::_PC_ALU_REG;
+                        ALUSrcA  = operations::_ALA_REG_A;
+                        ALUSrcB  = operations::_ALB_REG_B;
+
+                        next_state = WAIT_READ_INSTR_MEM;
+                    end
                 end
 
             endcase
@@ -398,7 +407,7 @@ always_comb begin
             PCSource = 2'b10;
             PCWrite = 1;
 
-            next_state = END;
+            next_state = WAIT_READ_INSTR_MEM;
         end
 
         END: begin

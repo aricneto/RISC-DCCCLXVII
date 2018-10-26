@@ -127,7 +127,7 @@ reg_ld #(.SIZE(32)) program_counter (
 );
 
 memory_32 #(.init_file("mem/instruction.mif")) memory_instr (
-    .raddress(pc_data),
+    .raddress(mux_mem_src_out),
     .data_out(mem_rd_instr),
     .clk(clk),
     .write(1'b0)
@@ -213,7 +213,7 @@ mux_4to1_64 mux_PC (
     .i_select(PCSource),
     .i_0(alu_res),
     .i_1(reg_alu_out),
-    .i_2(mem_rd_data),
+    .i_2(mem_rd_instr),
     .o_select(mux_pc_out)
 );
 
@@ -229,8 +229,8 @@ store_splicer store_splicer (
 );
 
 memory_64 #(.init_file("mem/dados.mif")) memory_data (
-    .raddress(mux_mem_src_out),
-    .waddress(mux_mem_src_out),
+    .raddress(reg_alu_out),
+    .waddress(reg_alu_out),
     .data_out(mem_rd_data),
     .data_in(ext_mem_w_data),
     .write(DMemOp),
@@ -247,7 +247,7 @@ reg_ld reg_mem_data (
 
 mux_2to1_64 mux_mem_src (
     .i_select(DataMemSrc),
-    .i_0(reg_alu_out),
+    .i_0(pc_data),
     .i_1(mux_cause_out + 254), // TODO: perguntar endereço << 3
     .o_select(mux_mem_src_out)
 );
