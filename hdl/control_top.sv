@@ -249,7 +249,7 @@ always_comb begin
 
             case (funct3)
                 opcodes::F3_ADD: ALUOp = funct7[6:4] == 3'b000 ? operations::SUM : operations::SUB;
-                opcodes::F3_SLT: ALUOp = operations::SHIFT_LEFT;
+                opcodes::F3_SLT: ALUOp = operations::LESS;
                 opcodes::F3_AND: ALUOp = operations::AND;
             endcase
 
