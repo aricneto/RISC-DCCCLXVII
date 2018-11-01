@@ -149,7 +149,6 @@ enum {
     TREAT_BREAK,
     END,
     EXCEPT_OPCODE,
-    EXCEPT_OVERFLOW,
     WAIT_READ_EXCEPT
 } state, next_state;
 
